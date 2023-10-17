@@ -62,7 +62,7 @@ img.right{
 	clear: both;
 }
 
-/* Estilização do site */
+/* Estilização da home, serviço, depoimentos */
 
 header{
 	background-color: #030630;
@@ -459,8 +459,110 @@ footer.fixed{
 	.contato-container input[type=submit]:hover{
 		background-color: #03449c;
 		font-size: 18px;
+
 	}
 /* PÁGINA CONTATO */
+
+/* página notícias*/
+    .header-noticias{
+		width: 100%;
+		background: #03084e;
+		padding: 40px 0;
+	}
+
+	.header-noticias h2:nth-of-type(1){
+		font-size: 41px;
+	}
+
+	.header-noticias h2{
+		color: white;
+		text-align: center;
+		text-transform: uppercase;
+		font-weight: normal;
+	}
+
+	.header-noticias h2 > b{
+		color: #F40B5C;
+	}
+
+	section.container-portal{
+		padding: 50px 0;
+	}
+
+	.box-content-sidebar{
+		width: 100%;
+		margin-bottom: 20px;
+		border-radius: 15px;
+		background: #DDDDDD;
+		padding: 15px;
+		color: #333864;
+	}
+
+	.sidebar{
+		float: left;
+		width: 30%;
+	}
+
+	.box-content-sidebar h3{
+		font-size: 18px;
+		font-weight: normal;
+		margin: 10px 0;
+	}
+
+	.box-content-sidebar input[type=text]{
+		width: 100%;
+		height: 35px;
+		border: 1px solid whitesmoke;
+		padding-left: 8px;
+		margin: 10px 0;
+	}
+
+	.box-content-sidebar input[type=submit]{
+		cursor: pointer;
+		background: #F40B5C;
+		color: whitesmoke;
+		border: 0;
+		width: 115px;
+		height: 35px;
+		font-weight: bold;
+		margin: 10px 0;
+		transition: all 0.4s;
+	}
+
+	.box-content-sidebar input[type=submit]:hover{
+		background: #f52b72;
+	}
+
+	.box-content-sidebar select{
+		width: 100%;
+		height: 35px;
+		border: 1px solid whitesmoke;
+		padding-left: 8px;
+		margin: 10px 0;
+	}
+
+	.autor-box-portal{
+		margin: 10px;
+		text-align: center;
+		color: #292929;
+	}
+
+	.box-img-autor{
+		width: 160px;
+		height: 160px;
+		border-radius: 50%;
+		margin: 10px 0;
+		display: inline-block;
+		background-image: url('../painel/uploads/allansan.jpg');
+		background-size: 100% 100%;
+	}
+
+	.autor-box-portal p{
+		font-size: 15px;
+		margin-top: 8px;
+		font-weight: lighter;
+	}
+/* página notícias*/
 
 @media screen and (max-width: 1204px){
 	img.right{
@@ -531,7 +633,7 @@ footer.fixed{
 @media screen and (max-width: 768px){
 	section.banner-principal form h2{
 		font-weight: 600;
-		font-size: 29px;
+		font-size: 22px;
 	}
 	img.right{
 		float: none !important;
