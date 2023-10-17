@@ -80,5 +80,13 @@ if(isset($_GET['loggout'])){
     <script src="<?php echo INCLUDE_PATH ?>js/jquery-3.7.0.min.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.mask.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/main.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({ 
+            selector:'.tinymce',
+            plugins: "image",
+            height: 300
+        });
+    </script>
 </body>
 </html>
