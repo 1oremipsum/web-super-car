@@ -40,7 +40,7 @@
 	}
 	?>
 
-	<div class="sucesso">Formulário enviado com sucesso</div>
+	<div class="sucesso">Formulário enviado com sucesso!</div>
 	<div class="overlay-loading">
 		<img src="<?php echo INCLUDE_PATH; ?>imagens/Spinner-1s-200px.gif" />
 	</div>

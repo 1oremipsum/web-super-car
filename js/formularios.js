@@ -12,7 +12,7 @@ $(function(){
 		}).done(function(data){
 			if(data.sucesso){
 				$('.overlay-loading').fadeOut();
-				$('.sucesso').fadeIn();
+				$('.sucesso').slideToggle();
 				setTimeout(function(){
 					$('.sucesso').fadeOut();
 				},3000)
