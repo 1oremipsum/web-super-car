@@ -1,0 +1,550 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Open Sans";
+}
+
+::-webkit-scrollbar{
+    background-color: #4e4b77;
+    width: 12px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #100631;
+    border: #4d4d7e 1px solid;
+}
+
+html, body{
+	height: 100%;
+}
+
+body{
+	overflow-x: hidden;
+}
+
+/* Boot CSS */
+
+img{
+	width: 100%;
+}
+
+img.right{
+	border: 1px solid;
+	border-radius: 10%;
+	margin-top: 45px;
+}
+
+.center{
+	max-width: 1280px;
+	padding: 0 2%;
+	margin: 0 auto;
+}
+
+.w33{
+	width: 33.3%;
+}
+
+.w50{
+	width: 50%;
+	padding: 0 5%;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.clear{
+	clear: both;
+}
+
+/* Estilização do site */
+
+header{
+	background-color: #030630;
+	padding: 0px 0;
+	width: 100%;
+	height: 140px;
+	position: relative;
+}
+
+.logo{
+	position: absolute;
+	top: -25px;
+}
+
+.mobile{
+	display: none;
+}
+
+nav.descktop ul{
+	list-style-type: none;
+	display: flex;
+	position: absolute;
+	top: 55px;
+	right: 45px;
+}
+
+nav.descktop li{
+	font-weight: 600;
+	font-size: 15px;
+	padding: 0 25px;
+	text-transform: uppercase;
+	display: inline-block;
+}
+
+nav.descktop a{
+	color: #4c57f5;
+	text-decoration: none;
+}
+
+nav.descktop a:hover{
+	text-decoration: underline;
+}
+
+section.banner-container{
+	width: 100%;
+	height: 800px;
+	position: relative;
+}
+
+.banner-single{
+	position: absolute;
+	display: none;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+}
+
+.overlay{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(70,70,70, 0.4);
+	z-index: 2;
+}
+
+section.banner-container form{
+	width: 40%;
+	max-width: 600px;
+	position: absolute;
+	z-index: 3;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -90%);
+	-ms-transform: translate(-50%, -90%);
+}
+
+section.banner-container form h2{
+	color: rgb(250, 250, 250);
+	font-weight: 600;
+	font-size: 35px;
+	text-align: center;
+}
+
+section.banner-container form input[type=email]{
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+	background: lightgray;
+	text-align: center;
+	color: #333;
+	font-size: 18px;
+	padding-left: 10px;
+	border: none;
+}
+
+section.banner-container form input[type=submit]{
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+	background: #008dc5;
+	color: whitesmoke;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 20px;
+	border: none;
+	transition: all 0.8s;
+}
+
+section.banner-container form input[type=submit]:hover{
+	background-color: #03449c;
+	font-size: 21px;
+}
+
+.bullets{
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 4;
+}
+
+.bullets span{
+	margin: 0 5px;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background-color: whitesmoke;
+}
+
+.bullets span.active_slider{
+	background: aqua;
+}
+
+section.descricao-empresa{
+	padding: 30px 0;
+	background-color: #030630;
+}
+
+section.descricao-empresa h2{
+	font-size: 35px;
+	font-weight: 600;
+	color: whitesmoke;
+}
+
+section.descricao-empresa p{
+	font-size: 16px;
+	color: whitesmoke;
+	text-align: justify;
+	margin-top: 10px;
+}
+
+section.qualidades{
+	padding: 40px;
+	background-color: #03084e;
+	text-align: center;
+}
+
+section.qualidades h2.title{
+	font-size: 35px;
+	font-weight: 600;
+	color: whitesmoke;
+}
+
+.box-qualidade{
+	margin: 40px 0;
+	padding: 0 30px;
+}
+
+section.qualidades h3{
+	color: #E1E7E4;
+	font-size: 50px;
+	text-align: center;
+	margin-top: 10px;
+}
+
+section.qualidades h4{
+	color: whitesmoke;
+	font-size: 25px;
+	font-weight: 600;
+}
+
+section.qualidades p{
+	color: whitesmoke;
+	text-align: justify;
+	font-size: 16px;
+	font-weight: 300;
+	margin: 25px;
+}
+
+section.extras{
+	background-color: #030630;
+	color: whitesmoke;
+	padding: 40px 35px;
+	text-align: justify;
+}
+
+.servicos-container, .depoimentos-container{
+	padding: 0 50px;
+}
+
+section.extras .title{
+	font-weight: 600;
+	font-size: 28px;
+	margin-bottom: 20px;
+}
+
+.depoimento-single{
+	padding: 10px 0;
+	border-bottom: 1px solid #5056A0;
+}
+
+p.depoimento-descricao{
+	font-style: italic;
+	font-weight: 300;
+	font-size: 15px;
+}
+
+p.nome-autor{
+	font-weight: bold;
+	font-size: 18px;
+	margin-top: 20px;
+}
+
+.servicos-info ul{
+	margin: 20px 0;
+	list-style-position: inside;
+}
+
+.servicos-info li{
+	margin-bottom: 15px;
+}
+
+footer{
+	background-color: #0c0c0c;
+	padding: 30px 0;
+}
+
+footer p{
+	color: whitesmoke;
+	text-align: center;
+	font-weight: 600;
+}
+
+footer.fixed{
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+}
+
+.sucesso{
+	display: none;
+	position: fixed;
+	right: 20px;
+	top: 10px;
+	padding: 10px 2%;
+	color: #008000;
+	font-weight: bold;
+	background: #69f75c;
+	z-index: 11;
+}
+
+.overlay-loading{
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-loading img{
+	width: 62px;
+	height: 62px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* PÁGINA DE ERRO */
+	section.erro-404 h1{
+		margin-top: 10%;
+		font-size: 40px;
+		text-align: center;
+		border-bottom: 1px solid black;
+	}
+
+	section.erro-404 p{
+		padding-top: 10px;
+		text-align: center;
+		font-size: 18px;
+		font-weight: 400;
+	}
+
+	section.erro-404 a{
+		color: #05649b;
+		text-decoration: none;
+	}
+/* PÁGINA DE ERRO */
+
+
+/* PÁGINA CONTATO */
+	#map{
+		width: 100%;
+		height: 400px;
+	}
+
+	.contato-dialog{
+		width: 100%;
+		padding: 30px 30px;
+		background-color: #03084e;
+	}
+
+	.contato-dialog h1{
+		text-align: center;
+		font-size: 50px;
+		color: #E1E7E4;
+	}
+
+	.contato-dialog h2{
+		font-weight: 600;
+		color: whitesmoke;
+		font-size: 30px;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	.contato-dialog p{
+		text-align: center;
+		color: whitesmoke;
+		font-size: 16px;
+		font-weight: 400;
+	}
+
+	.contato-container{
+		padding: 40px 0;;
+		text-align: center;
+		background-color: #030630;
+	} 
+
+	.contato-container input[type=text]{
+		background-color: whitesmoke;
+		margin: 4px 0;
+		width: 50%;
+		height: 40px;
+		padding-left: 8px;
+		font-size: 16px;
+		color: #444;
+		border: 1px solid black;
+	}
+
+	.contato-container input[type=email]{
+		background-color: whitesmoke;
+		margin: 4px 0;
+		width: 50%;
+		height: 40px;
+		padding-left: 8px;
+		font-size: 16px;
+		color: #444;
+		border: 1px solid black;
+	}
+
+	.contato-container textarea{
+		margin: 8px 0;
+		width: 50%;
+		height: 120px;
+		border: 1px solid black;
+		resize: vertical;
+		padding-left: 8px;
+		font-size: 16px;
+		max-width: 800px;
+		color: #444;
+	}
+
+	.contato-container input[type=submit]{
+		background-color: #008dc5;
+		transition: all 0.4s;
+		font-size: 16px;
+		width: 50%;
+		height: 40px;
+		color: whitesmoke;
+		cursor: pointer;
+		border: none;
+	}
+
+	.contato-container input[type=submit]:hover{
+		background-color: #03449c;
+		font-size: 18px;
+	}
+/* PÁGINA CONTATO */
+
+@media screen and (max-width: 1204px){
+	img.right{
+		float: none !important;
+		margin-top: 110px;
+	}
+	.w33{
+		width: 100%;
+		margin: 10px;
+	}
+	.box-qualidade{
+		margin: 0;
+		padding: 10px 10px;
+	}
+	section.erro-404 h1{
+		margin-top: 15%;
+	}
+}
+
+@media screen and (max-width: 790px){
+	header{
+		border-top: 1px  solid #4c57f5;
+		border-bottom: 1px  solid #4c57f5;
+	}
+	nav.descktop{
+		display: none;
+	}
+	nav.mobile{
+		display: block;
+	}
+	nav.mobile ul{
+		list-style-type: none;
+		background: #030630;
+		display: none;
+		z-index: 3;
+		position: absolute;
+		top: 138px;
+		right: 0;
+		width: 100%;
+		border-top:  1px  solid #4c57f5;
+		border-left:  1px  solid #4c57f5;
+		border-right:  1px  solid #4c57f5;
+	}
+	nav.mobile li{
+		text-align: center;
+		border-bottom: 1px  solid #4c57f5;
+		padding: 8px;
+		width: 100%;
+	}
+	nav.mobile li a{
+		text-decoration: none;
+		color: #4c57f5;
+		font-weight: 400;
+		font-size: 18px;
+	}
+	.botao-menu-mobile{
+		color: #4c57f5;
+		font-size: 32px;
+		margin-top: 42px;
+		margin-right: 3.2rem;
+		cursor: pointer;
+	}
+	section.erro-404 h1{
+		margin-top: 20%;
+	}
+}
+
+@media screen and (max-width: 768px){
+	section.banner-principal form h2{
+		font-weight: 600;
+		font-size: 29px;
+	}
+	img.right{
+		float: none !important;
+		display: block;
+		margin: 0 auto !important;
+		max-width: 600px;
+	}
+	.w50{
+		width: 100%;
+		padding: 20px;
+	}
+	.box-qualidade{
+		margin: 0;
+		padding: 10px 10px;
+	}
+	section.erro-404 h1{
+		margin-top: 30%;
+	}
+}

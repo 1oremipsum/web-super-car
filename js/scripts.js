@@ -1,0 +1,118 @@
+$(function () {
+	var map;
+	
+	function initialize() {
+
+	  var mapProp = {
+	    center:new google.maps.LatLng(-25.437027, -49.038339),
+	    zoom:14,
+	   	scrollwheel: false,
+	     styles: [{
+	     stylers: [{
+	      saturation: -100
+	    }]
+	     }],
+	    mapTypeId:google.maps.MapTypeId.ROADMAP
+	  };
+	  
+	  map=new google.maps.Map(document.getElementById("map"),mapProp);
+	}
+
+	function addMarker(lat,long,icon,content,showInfoWindow,openInfoWindow){
+		  var myLatLng = {lat:lat,lng:long};
+
+		  if(icon === ''){
+			   var marker = new google.maps.Marker({
+			    position: myLatLng,
+			    map: map,
+			    icon:icon
+			  });
+		  }else{
+			  var marker = new google.maps.Marker({
+			    position: myLatLng,
+			    map: map,
+			    icon:icon
+			  });
+		}
+
+		  var infoWindow = new google.maps.InfoWindow({
+	                content: content,
+	                maxWidth:200
+	        });
+
+		  google.maps.event.addListener(infoWindow, 'domready', function() {
+
+		   // Reference to the DIV which receives the contents of the infowindow using jQuery
+		   var iwOuter = $('.gm-style-iw');
+
+		   /* The DIV we want to change is above the .gm-style-iw DIV.
+		    * So, we use jQuery and create a iwBackground variable,
+		    * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
+		    */
+		   var iwBackground = iwOuter.prev();
+
+		   // Remove the background shadow DIV
+		   iwBackground.children(':nth-child(2)').css({'background' : 'rgb(255,255,255)'}).css({'border-radius':'0px'});
+
+		   // Remove the white background DIV
+		   iwBackground.children(':nth-child(4)').css({'background' : 'rgb(255,255,255)'}).css({'border-radius':'0px'});
+
+		   // Moves the shadow of the arrow 76px to the left margin 
+			iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'display:none;'});
+
+			// Moves the arrow 76px to the left margin 
+			iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'display:none;'});
+
+		});
+		  	if(showInfoWindow == undefined){
+		        google.maps.event.addListener(marker, 'click', function () {
+		              infoWindow.open(map, marker);
+		         });
+	    	}else if(openInfoWindow == true){
+	    		infoWindow.open(map, marker);
+	    	}
+	}
+
+	$('nav.mobile').click(function () {
+		var listMenu = $('nav.mobile ul');
+
+		if (listMenu.is(':hidden') == true) {
+			var icon = $('.botao-menu-mobile').find('i');
+			icon.removeClass('fa-solid fa-bars');
+			icon.addClass('fa-solid fa-xmark');
+			listMenu.slideToggle();
+		} else {
+			var icon = $('.botao-menu-mobile').find('i');
+			icon.removeClass('fa-solid fa-xmark');
+			icon.addClass('fa-solid fa-bars');
+			listMenu.slideToggle();
+		}
+	})
+
+	if ($('target').length > 0) {
+		//O elemento existe -> dar o scroll em algum elemento.
+		var elemento = '#' + $('target').attr('target');
+		var divScroll = $(elemento).offset().top;
+		$('html,body').animate({ scrollTop: divScroll }, 2000);
+	}
+
+	carregarDinamico();
+	function carregarDinamico() {
+		$('[realtime]').click(function () {
+			var pagina = $(this).attr('realtime');
+			$('.container-principal').hide();
+			$('.container-principal').load(INCLUDE_PATH + pagina + '.php');
+
+			setTimeout(function () {
+				initialize();
+				addMarker(-25.437027, -49.038339, '', 'Minha casa', undefined, false);
+			}, 1000);
+
+			$('.container-principal').fadeIn(1000);
+			window.history.pushState('', '',pagina);
+			return false;
+		})
+	}
+
+	initialize()
+})
