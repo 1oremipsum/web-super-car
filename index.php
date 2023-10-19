@@ -20,7 +20,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="revenda,automóveis,carros,motos,indústria-automobilística">
 	<meta name="description" content="Revenda de Automóveis">
-	<link rel="icon" href="<?php echo INCLUDE_PATH; ?>favicon.ico" type="image/x-ico" />
+	<link rel="icon" href="<?php echo INCLUDE_PATH; ?>super.ico" type="image/x-ico" />
 	<meta charset="utf-8">
 	<title><?php echo $infoSite['titulo'];?></title>
 </head>

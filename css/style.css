@@ -530,7 +530,7 @@ footer.fixed{
 	}
 
 	.box-content-sidebar input[type=submit]:hover{
-		background: #f52b72;
+		background: #f7377a;
 	}
 
 	.box-content-sidebar select{
@@ -561,6 +561,83 @@ footer.fixed{
 		font-size: 15px;
 		margin-top: 8px;
 		font-weight: lighter;
+	}
+
+	.conteudo-portal{
+		float: left;
+		width: 70%;
+		padding-left: 50px;
+	}
+
+	.header-conteudo-portal{
+		color: #333864;
+	}
+
+	.header-conteudo-portal h2{
+		font-size: 25px;
+		font-weight: bold;
+	}
+
+	.header-conteudo-portal h2 > span{
+		border-top: 2px solid #333864;
+	}
+
+	.box-single-conteudo{
+		margin: 15px 0;
+		padding: 15px 0;
+		border-bottom: 1px solid #ccc;
+	}
+
+	.box-single-conteudo h2{
+		color: #333864;
+		font-weight: normal;
+		font-size: 22px;
+	}
+
+	.box-single-conteudo p{
+		color: #292929;
+		font-weight: normal;
+		font-size: 16px;
+		margin-top: 8px;
+	}
+
+	.box-single-conteudo a{
+		background: #01b95d;
+		display: block;
+		font-size: 15px;
+		margin-top: 8px;
+		width: 100px;
+		height: 30px;
+		line-height: 30px;
+		padding: 0 3px;
+		text-align: center;
+		text-decoration: none;
+		color: white;
+		transition: all 0.4s;
+	}
+
+	.box-single-conteudo a:hover{
+		background: #23ca77;
+	}
+
+	.pages{
+		text-align: center;
+	}
+
+	.pages a{
+		margin: 0 5px;
+		width: 34px;
+		height: 34px;
+		border-radius: 50%;
+		display: inline-block;
+		padding: 6px 2px;
+		background: rgb(220, 220, 220);
+		text-decoration: none;
+		color: darkblue;
+	}
+
+	.pages a.active-page{
+		background-color: rgb(190, 190, 190);
 	}
 /* página notícias*/
 
@@ -631,6 +708,16 @@ footer.fixed{
 }
 
 @media screen and (max-width: 768px){
+	.conteudo-portal{
+		width: 100%;
+		padding-left: 0;
+	}
+
+	.sidebar{
+		width: 100%;
+		text-align: center;
+	}
+
 	section.banner-principal form h2{
 		font-weight: 600;
 		font-size: 22px;

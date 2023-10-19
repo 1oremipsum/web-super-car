@@ -8,7 +8,6 @@
 <section class="container-portal">
     <div class="center">
         <div class="sidebar">
-
             <div class="box-content-sidebar">
                 <h3>Realizar busca <i style="padding: 0 5px" class="fa-solid fa-magnifying-glass"></i></h3>
                 <form>
@@ -37,8 +36,28 @@
                     </div>
                </div>
             </div><!-- box-content-sidebar -->
-
         </div><!-- sidebar -->
+        <div class="conteudo-portal">
+            <div class="header-conteudo-portal">
+                <!-- <h2>Visualizando todas as notícias</h2> -->
+                <h2>Visualizando Notícias de Automóveis Novos</h2>
+            </div><!-- header-conteudo-portal -->
+            <?php 
+                for($i=0;$i<6;$i++){
+            ?>
+            <div class="box-single-conteudo">
+                <h2>19/10/2023 - Conheça os novos modelos de auto...</h2>
+                <p> A prática cotidiana prova que a execução dos pontos do programa assume importantes posições no estabelecimento das condições financeiras e administrativas exigidas. Desta maneira, a complexidade dos estudos efetuados maximiza as possibilidades por conta dos procedimentos normalmente adotados. Não obstante, o desenvolvimento contínuo de distintas formas de atuação cumpre um papel essencial na formulação do orçamento set...</p>
+                <a href="<?php echo INCLUDE_PATH; ?>automoveis-novos/nome-do-post">Leia mais</a>
+            </div><!-- box-single-conteudo -->
+            <?php } ?>
+            <div class="pages">
+                <a class="active-page" href="">1</a>
+                <a href="">2</a>
+                <a href="">3</a>
+                <a href="">4</a>
+            </div><!-- pages -->
+        </div><!-- conteudo-portal -->    
         <div class="clear"></div>
     </div><!-- center -->
 </section><!-- container-portal -->
