@@ -79,9 +79,14 @@
 			include('pages/' . $url . '.php');
 		} else {
 			if ($url != 'sobre' && $url != 'servicos') {
-				$pg404 = true;
-				include('pages/404.php');
-			} else {
+				$urlParametro = explode('/', $url)[0];
+				if($urlParametro != 'noticias'){
+					$pg404 = true;
+					include('pages/404.php');
+				}else {
+					include('pages/noticias.php');
+				}
+			}else {
 				include('pages/home.php');
 			}
 		}
