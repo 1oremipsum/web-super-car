@@ -1,6 +1,9 @@
 <?php 
     $url = explode('/', $_GET['url']);
     if(!isset($url[2])){    // noticias[0]/categoria[1]/nome-da-noticia[2]
+        $categoria = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` WHERE slug = ?");
+        $categoria->execute(array(@$url[1]));
+        $categoria = $categoria->fetch();
 ?>
 <section class="header-noticias">
     <div class="center">
@@ -24,16 +27,15 @@
                 <h3>Selecione a categoria <i style="padding: 0 5px" class="fa-solid fa-tags"></i></h3>
                 <form>
                     <select name="categoria">
+                        <option value="" disabled selected="">Todas as categorias</option>
                         <?php 
                             $categorias = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` ORDER BY order_id ASC");
                             $categorias->execute();
                             $categorias = $categorias->fetchAll();
                             foreach ($categorias as $key => $value) {
                         ?>
-                        <option value="<?php echo $value['slug']; ?>"><?php echo $value['nome']; ?></option>
-                        <?php 
-                            }
-                        ?>
+                        <option <?php if($value['slug'] == @$url[1]) echo 'selected'; ?> value="<?php echo $value['slug']; ?>"><?php echo $value['nome']; ?></option>
+                        <?php } ?>
                     </select>
                 </form>
             </div><!-- box-content-sidebar -->
@@ -51,16 +53,32 @@
         </div><!-- sidebar -->
         <div class="conteudo-portal">
             <div class="header-conteudo-portal">
-                <!-- <h2>Visualizando todas as notícias</h2> -->
-                <h2>Visualizando Notícias de <b>Automóveis Novos</b></h2>
+                <?php 
+                    if(@$categoria['nome'] == ''){
+                        echo '<h2>Visualizando todas as notícias</h2>';
+                    }else{
+                        echo '<h2>Visualizando notícias em <b>'.$categoria['nome'].'</b></h2>';
+                    }
+
+                    $query = "SELECT * FROM `tb_site.noticias` ";
+                    if(@$categoria['nome'] != ''){
+                        $query.="WHERE categoria_id = $categoria[id]";
+                    }
+                    $sql = MySql::conectar()->prepare($query);
+                    $sql->execute();
+                    $noticias = $sql->fetchAll()
+                ?>
             </div><!-- header-conteudo-portal -->
             <?php 
-                for($i=0;$i<6;$i++){
+                foreach ($noticias as $key => $value) {
+                    $sql = MySql::conectar()->prepare("SELECT `slug` FROM `tb_site.categorias` WHERE id = ?");
+                    $sql->execute(array($value['categoria_id']));
+                    $categoriaNome = $sql->fetch()['slug'];
             ?>
             <div class="box-single-conteudo">
-                <h2>19/10/2023 - Conheça os novos modelos de auto...</h2>
-                <p> A prática cotidiana prova que a execução dos pontos do programa assume importantes posições no estabelecimento das condições financeiras e administrativas exigidas. Desta maneira, a complexidade dos estudos efetuados maximiza as possibilidades por conta dos procedimentos normalmente adotados. Não obstante, o desenvolvimento contínuo de distintas formas de atuação cumpre um papel essencial na formulação do orçamento set...</p>
-                <a href="<?php echo INCLUDE_PATH; ?>noticias/categoria/nome-do-post">Leia mais</a>
+                <h2><?php echo date('d/m/Y', strtotime($value['data'])); ?> - <?php echo $value['titulo']; ?></h2>
+                <p><?php echo substr(strip_tags($value['conteudo']),0,455).'...'; ?></p>
+                <a href="<?php echo INCLUDE_PATH; ?>noticias/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>">Leia mais</a>
             </div><!-- box-single-conteudo -->
             <?php } ?>
         </div><!-- conteudo-portal -->   

@@ -98,8 +98,8 @@
 			<p>Super.car - Todos os direitos reservados.</p>
 		</div>
 	</footer>
-	
-	<script src="<?php echo INCLUDE_PATH; ?>js/jquery-3.7.0.min.js"></script>
+
+	<script src="<?php echo INCLUDE_PATH; ?>js/jquery.js"></script>
 	<script src="<?php echo INCLUDE_PATH; ?>js/constants.js"></script>
 
 	<script defer src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDHPNQxozOzQSZ-djvWGOBUsHkBUoT_qH4&callback=Function.prototype'></script>
@@ -107,8 +107,26 @@
 	<script defer src="<?php echo INCLUDE_PATH; ?>js/scripts.js"></script>
 	<script src="<?php echo INCLUDE_PATH; ?>js/slider.js"></script>
 
+	<?php
+		if(is_array($url) && strstr($url[0],'noticias') !== false){
+	?>
+		<script>
+			$(function(){
+				$('select').change(function(){
+					location.href=include_path+"noticias/"+$(this).val();
+				})
+			})
+		</script>
+	<?php
+		}
+	?>
+
+	<?php 
+		if($url == 'contato'){
+	?>
+	<?php } ?>
+
 	<script src="<?php echo INCLUDE_PATH; ?>js/qualidades.js"></script>
 	<script src="<?php echo INCLUDE_PATH; ?>js/formularios.js"></script>
 </body>
-
 </html>
