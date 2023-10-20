@@ -29,7 +29,7 @@
                         if(Painel::imagemValida($imagem)){
                             Painel::deleteFile($imagem_atual);
                             $imagem = Painel::updateFile($imagem);
-                            $arr = ['titulo'=>$titulo, 'categoria_id'=>$categoria_id, 'capa'=>$imagem, 'slug'=>$slug, 'id'=>$id, 'nome_tabela'=>'tb_site.noticias'];
+                            $arr = ['titulo'=>$titulo, 'data'=>date('Y-m-d'), 'categoria_id'=>$categoria_id, 'capa'=>$imagem, 'slug'=>$slug, 'id'=>$id, 'nome_tabela'=>'tb_site.noticias'];
                             Painel::update($arr);
                             $noticia = Painel::select('tb_site.noticias', 'id = ?', array($id)); //update
                             Painel::alert('sucesso','Alteração realizada com sucesso!');

@@ -24,8 +24,16 @@
                 <h3>Selecione a categoria <i style="padding: 0 5px" class="fa-solid fa-tags"></i></h3>
                 <form>
                     <select name="categoria">
-                        <option value="carros-novos">Carros Novos</option>
-                        <option value="servicos-alta">Serviços em Alta</option>
+                        <?php 
+                            $categorias = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` ORDER BY order_id ASC");
+                            $categorias->execute();
+                            $categorias = $categorias->fetchAll();
+                            foreach ($categorias as $key => $value) {
+                        ?>
+                        <option value="<?php echo $value['slug']; ?>"><?php echo $value['nome']; ?></option>
+                        <?php 
+                            }
+                        ?>
                     </select>
                 </form>
             </div><!-- box-content-sidebar -->

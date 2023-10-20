@@ -11,6 +11,7 @@ if(isset($_GET['loggout'])){
     <link href="<?php echo INCLUDE_PATH_PAINEL; ?>css/style.css" rel="stylesheet" />
     <link href="<?php echo INCLUDE_PATH; ?>fontawesome/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="<?php echo INCLUDE_PATH; ?>super.ico" type="image/x-ico" />
     <title>Painel de Controle</title>
 </head>
 <body>
