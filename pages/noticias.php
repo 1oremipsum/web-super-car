@@ -27,7 +27,7 @@
                 <h3>Selecione a categoria <i style="padding: 0 5px" class="fa-solid fa-tags"></i></h3>
                 <form>
                     <select name="categoria">
-                        <option value="" disabled selected="">Todas as categorias</option>
+                        <option value="" selected="">Todas as categorias</option>
                         <?php 
                             $categorias = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` ORDER BY order_id ASC");
                             $categorias->execute();
@@ -53,7 +53,7 @@
         </div><!-- sidebar -->
         <div class="conteudo-portal">
             <div class="header-conteudo-portal">
-                <?php 
+                <?php
                     if(@$categoria['nome'] == ''){
                         echo '<h2>Visualizando todas as notícias</h2>';
                     }else{
@@ -64,9 +64,34 @@
                     if(@$categoria['nome'] != ''){
                         $query.="WHERE categoria_id = $categoria[id]";
                     }
+
+                    $valorPorPg = 3;
+                    $query1 = "SELECT * FROM `tb_site.noticias` ";
+                    if(@$categoria['nome'] != ''){
+                       $categoria['id'] = (int)$categoria['id'];
+                       $query1.="WHERE categoria_id = $categoria[id]";
+                    }
+                    $totalPg = MySql::conectar()->prepare($query1);
+                    $totalPg->execute();
+                    $totalPg = ceil($totalPg->rowCount() / $valorPorPg);
+
+                    if(isset($_GET['pagina'])){
+                        $pagina = (int)$_GET['pagina'];
+                        if($pagina > $totalPg){
+                            $pagina = $totalPg;
+                        }else if($pagina <= 0){
+                            $pagina = 1;
+                        }
+                        $queryPg = ($pagina - 1) * $valorPorPg;
+                        $query.= " ORDER BY order_id DESC LIMIT $queryPg, $valorPorPg";
+                    }else {
+                        $pagina = 1;
+                        $query.= " ORDER BY order_id DESC LIMIT 0,$valorPorPg";
+                    }
+
                     $sql = MySql::conectar()->prepare($query);
                     $sql->execute();
-                    $noticias = $sql->fetchAll()
+                    $noticias = $sql->fetchAll();
                 ?>
             </div><!-- header-conteudo-portal -->
             <?php 
@@ -81,13 +106,19 @@
                 <a href="<?php echo INCLUDE_PATH; ?>noticias/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>">Leia mais</a>
             </div><!-- box-single-conteudo -->
             <?php } ?>
+            <div class="pages">
+                <?php 
+                    for ($i=1; $i <= $totalPg; $i++) { 
+                        @$catStr = ($categoria['nome'] != '') ? '/'.$categoria['slug'] : '';
+                        if(@$pagina == $i){
+                            echo '<a class="active-page" href="'.INCLUDE_PATH.'noticias'. $catStr.'?pagina='.$i.'">'.$i.'</a>';
+                        }else{
+                            echo '<a href="'.INCLUDE_PATH.'noticias'. $catStr.'?pagina='.$i.'">'.$i.'</a>';
+                        }
+                    }
+                ?>
+        </div><!-- pages --> 
         </div><!-- conteudo-portal -->   
-        <div class="pages">
-                <a class="active-page" href="">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="">4</a>
-            </div><!-- pages --> 
         <div class="clear"></div>
     </div><!-- center -->
 </section><!-- container-portal -->

@@ -120,12 +120,7 @@
 	<?php
 		}
 	?>
-
-	<?php 
-		if($url == 'contato'){
-	?>
-	<?php } ?>
-
+	
 	<script src="<?php echo INCLUDE_PATH; ?>js/qualidades.js"></script>
 	<script src="<?php echo INCLUDE_PATH; ?>js/formularios.js"></script>
 </body>
