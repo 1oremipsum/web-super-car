@@ -1,7 +1,7 @@
 <section class="noticia-single">
     <div class="center">
         <header>
-            <h1 class="right"><i class="fa-solid fa-calendar-days"></i> 19/10/2023</h1>
+            <h1 class="right"><i class="fa-regular fa-calendar-days"></i> 19/10/2023</h1>
             <h1>Título da Minha Notícia</h1>
         </header>
         <article>

@@ -1,5 +1,5 @@
 $(function(){
-	$('body').on('submit','form',function(){
+	$('body').on('submit','form.ajax-form',function(){
 		var form = $(this);
 		$.ajax({
 			beforeSend:function(){

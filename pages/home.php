@@ -10,7 +10,7 @@
 	<div class="overlay"></div>
 
 	<div class="center">
-		<form method="post" class="right">
+		<form method="post" class="ajax-form">
 			<h2>Seu melhor e-mail!</h2>
 			<input type="email" name="email" required />
 			<input type="hidden" name="identificador" value="from_home" />

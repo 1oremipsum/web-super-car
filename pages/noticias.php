@@ -17,9 +17,9 @@
         <div class="sidebar">
             <div class="box-content-sidebar">
                 <h3>Realizar busca <i style="padding: 0 5px" class="fa-solid fa-magnifying-glass"></i></h3>
-                <form>
-                    <input type="text" name="busca" placeholder="O que deseja pesquisar?" required>
-                    <input type="submit" name="acao" value="Buscar!">
+                <form method="post">
+                    <input type="text" name="parametro" placeholder="O que deseja pesquisar?" required>
+                    <input type="submit" name="buscar" value="Buscar!">
                 </form>
             </div><!-- box-content-sidebar -->
 
@@ -54,10 +54,15 @@
         <div class="conteudo-portal">
             <div class="header-conteudo-portal">
                 <?php
-                    if(@$categoria['nome'] == ''){
-                        echo '<h2>Visualizando todas as notícias</h2>';
+                    if(!isset($_POST['parametro'])){
+                        if(@$categoria['nome'] == ''){
+                            echo '<h2>Visualizando todas as notícias</h2>';
+                        }else{
+                            echo '<h2>Visualizando notícias em <b>'.$categoria['nome'].'</b></h2>';
+                        }
                     }else{
-                        echo '<h2>Visualizando notícias em <b>'.$categoria['nome'].'</b></h2>';
+                        $par = $_POST['parametro'];
+                        echo '<h2>Visualizando resultados da busca por <b>"'.$par.'"</b></h2>';
                     }
 
                     $query = "SELECT * FROM `tb_site.noticias` ";
@@ -65,28 +70,51 @@
                         $query.="WHERE categoria_id = $categoria[id]";
                     }
 
-                    $valorPorPg = 3;
+                    if(isset($_POST['parametro'])){
+                        if(strstr($query, 'WHERE') !== false){
+                            $busca = $_POST['parametro'];
+                            $query.=" AND titulo LIKE '%$busca%'";
+                        }else{
+                            $busca = $_POST['parametro'];
+                            $query.=" WHERE titulo LIKE '%$busca%'";
+                        }
+                    }
+
+                    $valorPorPg = 4;
                     $query1 = "SELECT * FROM `tb_site.noticias` ";
                     if(@$categoria['nome'] != ''){
                        $categoria['id'] = (int)$categoria['id'];
                        $query1.="WHERE categoria_id = $categoria[id]";
                     }
+                    if(isset($_POST['parametro'])){
+                        if(strstr($query1, 'WHERE') !== false){
+                            $busca = $_POST['parametro'];
+                            $query1.=" AND titulo LIKE '%$busca%'";
+                        }else{
+                            $busca = $_POST['parametro'];
+                            $query1.=" WHERE titulo LIKE '%$busca%'";
+                        }
+                    }
                     $totalPg = MySql::conectar()->prepare($query1);
                     $totalPg->execute();
                     $totalPg = ceil($totalPg->rowCount() / $valorPorPg);
 
-                    if(isset($_GET['pagina'])){
-                        $pagina = (int)$_GET['pagina'];
-                        if($pagina > $totalPg){
-                            $pagina = $totalPg;
-                        }else if($pagina <= 0){
+                    if(!isset($_POST['parametro'])){
+                        if(isset($_GET['pagina'])){
+                            $pagina = (int)$_GET['pagina'];
+                            if($pagina > $totalPg){
+                                $pagina = $totalPg;
+                            }else if($pagina <= 0){
+                                $pagina = 1;
+                            }
+                            $queryPg = ($pagina - 1) * $valorPorPg;
+                            $query.= " ORDER BY order_id DESC LIMIT $queryPg, $valorPorPg";
+                        }else {
                             $pagina = 1;
+                            $query.= " ORDER BY order_id DESC LIMIT 0,$valorPorPg";
                         }
-                        $queryPg = ($pagina - 1) * $valorPorPg;
-                        $query.= " ORDER BY order_id DESC LIMIT $queryPg, $valorPorPg";
-                    }else {
-                        $pagina = 1;
-                        $query.= " ORDER BY order_id DESC LIMIT 0,$valorPorPg";
+                    }else{
+                        $query.= " ORDER BY order_id DESC";
                     }
 
                     $sql = MySql::conectar()->prepare($query);
@@ -108,12 +136,14 @@
             <?php } ?>
             <div class="pages">
                 <?php 
-                    for ($i=1; $i <= $totalPg; $i++) { 
-                        @$catStr = ($categoria['nome'] != '') ? '/'.$categoria['slug'] : '';
-                        if(@$pagina == $i){
-                            echo '<a class="active-page" href="'.INCLUDE_PATH.'noticias'. $catStr.'?pagina='.$i.'">'.$i.'</a>';
-                        }else{
-                            echo '<a href="'.INCLUDE_PATH.'noticias'. $catStr.'?pagina='.$i.'">'.$i.'</a>';
+                    if(!isset($_POST['parametro'])){
+                        for ($i=1; $i <= $totalPg; $i++) { 
+                            @$catStr = ($categoria['nome'] != '') ? '/'.$categoria['slug'] : '';
+                            if(@$pagina == $i){
+                                echo '<a class="active-page" href="'.INCLUDE_PATH.'noticias'. $catStr.'?pagina='.$i.'">'.$i.'</a>';
+                            }else{
+                                echo '<a href="'.INCLUDE_PATH.'noticias'. $catStr.'?pagina='.$i.'">'.$i.'</a>';
+                            }
                         }
                     }
                 ?>

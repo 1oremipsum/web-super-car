@@ -9,7 +9,7 @@
 </div>
 <div class="contato-container">
     <div class="center">
-        <form method="post">
+        <form method="post" class="ajax-form">
             <input required type="text" name="nome" placeholder="Nome completo..." />
             <div></div>
             <input required type="email" name="email" placeholder="E-mail para contato..." />
