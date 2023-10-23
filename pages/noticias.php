@@ -130,8 +130,12 @@
             ?>
             <div class="box-single-conteudo">
                 <h2><?php echo date('d/m/Y', strtotime($value['data'])); ?> - <?php echo $value['titulo']; ?></h2>
+                <div class="capa-conteudo">
+                    <img src="<?php echo INCLUDE_PATH_PAINEL; ?>uploads/<?php echo $value['capa']; ?>">
+                </div><!-- capa-conteudo -->
                 <p><?php echo substr(strip_tags($value['conteudo']),0,455).'...'; ?></p>
-                <a href="<?php echo INCLUDE_PATH; ?>noticias/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>">Leia mais</a>
+                <a href="<?php echo INCLUDE_PATH; ?>noticias/<?php echo $categoriaNome; ?>/<?php echo $value
+                ['slug']; ?>">Leia mais</a>
             </div><!-- box-single-conteudo -->
             <?php } ?>
             <div class="pages">
