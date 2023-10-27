@@ -53,6 +53,10 @@ if(isset($_GET['loggout'])){
             <h2>Configuração Geral</h2>
             <a <?php selecionadoMenu('editar-site'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>editar-site">Editar Site</a>
 
+            <h2>Gestão de Clientes</h2>
+            <a <?php selecionadoMenu('cadastrar-cliente'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-cliente">Cadastrar Cliente</a>
+            <a <?php selecionadoMenu('listar-clientes'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-clientes">Listar Clientes</a>
+            
             <h2>Gestão de Notícias</h2>
             <a <?php selecionadoMenu('cadastrar-categoria'); ?> href="<?php echo INCLUDE_PATH_PAINEL; ?>cadastrar-categoria">Cadastrar Categoria</a>
             <a <?php selecionadoMenu('gerenciar-categorias'); ?> href="<?php echo INCLUDE_PATH_PAINEL; ?>gerenciar-categorias">Gerenciar Categorias</a>
@@ -78,8 +82,9 @@ if(isset($_GET['loggout'])){
         <?php Painel::LoadPage() ?>
     </div><!-- content -->
 
-    <script src="<?php echo INCLUDE_PATH ?>js/jquery-3.7.0.min.js"></script>
+    <script src="<?php echo INCLUDE_PATH ?>js/jquery.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.mask.js"></script>
+    <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.ajaxform.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/main.js"></script>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
@@ -89,5 +94,6 @@ if(isset($_GET['loggout'])){
             height: 300
         });
     </script>
+    <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/ajax.js"></script>
 </body>
 </html>

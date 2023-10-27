@@ -17,13 +17,14 @@
 	define('INCLUDE_PATH','http://localhost/Projeto_1/');
 	define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
 
+	define('BASE_DIR_PAINEL', __DIR__.'/painel');
+
 	define('HOST','localhost');
     define('USER','root');
     define('PASSWORD','');
     define('DATABASE','super_car');
 
 	define('NOME_EMPRESA', 'Super.Car');
-	define('BASE_DIR_PAINEL', __DIR__.'/painel');
 	
 	function getCargo($indice){
 		return Painel::$cargos[$indice];

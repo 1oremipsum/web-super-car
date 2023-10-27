@@ -2,7 +2,7 @@
 
     class Painel
     {
-        public static $cargos = [0 => 'Espectador', 1 => 'Sub-administrador', 2 => 'Administrador'];
+        public static $cargos = [0 => 'espectador', 1 => 'Sub-administrador', 2 => 'Administrador'];
 
         public static function logado()
         {
@@ -89,6 +89,15 @@
                 return false;
             }
         }
+
+        public static function uploadFile($file){
+			$formatoArquivo = explode('.',$file['name']);
+			$imagemNome = uniqid().'.'.$formatoArquivo[count($formatoArquivo) - 1];
+			if(move_uploaded_file($file['tmp_name'],BASE_DIR_PAINEL.'/uploads/'.$imagemNome))
+				return $imagemNome;
+			else
+				return false;
+		}
 
         public static function deleteFile($file){
             @unlink('uploads/'.$file); // @ = ocultar erro do php.

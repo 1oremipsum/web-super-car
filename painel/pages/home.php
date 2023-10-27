@@ -1,4 +1,5 @@
 <?php 
+    if($_SESSION['cargo'] > 0){
     $usuariosOnline = Painel::listarUsuariosOnline();
 
     $visitasTotais = Painel::getVisitasTotais();
@@ -102,3 +103,4 @@
         </div><!-- table-responsive -->
     </div>
 </div><!-- box-content left w100 -->
+<?php } ?>
