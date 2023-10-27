@@ -1,4 +1,5 @@
 <?php 
+    verificaPermissao(2);
     if(isset($_GET['id'])){
         $id = (int)$_GET['id'];
         $depoimento = Painel::select('tb_site.depoimentos','id = ?', array($id));

@@ -1,24 +1,30 @@
 <?php 
-    /*
-    $clientes = MySql::conectar()->prepare("SELECT * from `tb_admin.usuarios` WHERE cargo = 0");
+    verificaPermissao(2);
+    $clientes = MySql::conectar()->prepare("SELECT * from `tb_site.clientes`");
     $clientes->execute();
     $clientes = $clientes->fetchAll();
-    */
 ?>
 <div class="box-content">
     <h2><i class="fa-solid fa-address-card"></i> Clientes Cadastrados</h2>
     <div class="boxes">
-        <div class="box-single-wraper">
-            <div class="box-single">
-                <div class="box-top">
-                    <h2><i class="fa-regular fa-user"></i></h2>
-                </div><!-- box-top -->
-                <div class="box-body">
-                    <p><b>Nome: Allan Sanches</b></p>
-                    <p><b>E-mail: Allan Sanches</b></p>
-                </div><!-- box-body -->
-            </div><!-- box-single -->
-        </div><!-- box-single-wraper -->
-        <div class="clear"></div>
+        <?php foreach ($clientes as $key => $value) { ?>
+
+            <div class="box-single-wraper">
+                <div class="box-single">
+                    <div class="box-top">
+                        <h2><i class="fa-solid fa-user"></i></h2>
+                    </div><!-- box-top -->
+                    <div class="box-body">
+                        <p><b>Nome:</b> <?php echo $value['nome']?></p>
+                        <p><b>E-mail:</b> <?php echo $value['email']?></p>
+                        <div class="group-btn">
+                            <a class="btn-edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-categoria?id=<?php echo $value['id']; ?>"><i class="fa-solid fa-pen"></i> <b>Editar</b></a>
+                            <a actionBtn="delete" class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-categorias?excluir=<?php echo $value['id']; ?>"><i class="fa-solid fa-trash-can"></i> <b>Excluir</b></a>
+                        </div>
+                    </div><!-- box-body -->
+                </div><!-- box-single -->
+            </div><!-- box-single-wraper -->
+            <?php } ?>
+            <div class="clear"></div>
     </div><!-- boxes -->
 </div><!-- content -->

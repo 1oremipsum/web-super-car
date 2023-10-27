@@ -1,4 +1,5 @@
 <?php 
+    verificaPermissao(2);
     if(isset($_GET['excluir'])){
         $idExcluir = (int)$_GET['excluir'];
         $selectCapa = MySql::conectar()->prepare("SELECT capa FROM `tb_site.noticias` WHERE id = ?");

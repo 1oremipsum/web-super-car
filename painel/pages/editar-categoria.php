@@ -1,4 +1,5 @@
 <?php 
+    verificaPermissao(2); 
     if(isset($_GET['id'])){
         $id = (int)$_GET['id'];
         $categoria = Painel::select('tb_site.categorias','id = ?', array($id));

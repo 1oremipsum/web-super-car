@@ -1,3 +1,4 @@
+<?php verificaPermissao(1); ?>
 <div class="box-content">
     <i class="fa-solid fa-comment-dots"></i><h2> Adicionar Depoimento</h2>
 

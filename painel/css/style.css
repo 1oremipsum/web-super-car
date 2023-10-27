@@ -594,7 +594,10 @@ body{
     .box-single{
         width: 100%;
         border: 1px solid whitesmoke;
-        min-height: 230px;
+        height: 150px;
+        max-height: 210px;
+        overflow-y: auto;
+        overflow-x: auto;
     }
 
     .box-top{
@@ -608,13 +611,47 @@ body{
         font-size: 28px;
     }
 
-    .body-box{
-        padding: 20px;
+    .box-body{
+        padding: 12px 8px;
+    }
+
+    .box-body p{
+        color: whitesmoke;
+        font-size: 14px;
+    }
+
+    .group-btn{
+        margin-top: 14px;
+        font-size: 14px;
+    }
+
+    .group-btn i{
+        font-size: 15px;
+    }
+
+    .group-btn a{
+        display: inline-block;
+    }
+
+    .group-btn .btn-edit{
+        width: 82px;
+        height: 23px;
+        border: 1px solid lightseagreen;;
+    }
+
+    .group-btn .btn-delete{
+        margin-left: 1px;
+        width: 82px;
+        height: 24px;
+        border: 1px solid red;
     }
 /* fim listar-clientes */
 
 @media screen and (max-width: 1024px){
     .box-metrica-single{
+        width: 100%;
+    }
+    .box-single-wraper{
         width: 100%;
     }
 }
@@ -642,13 +679,14 @@ body{
 }
 
 @media screen and (max-width: 400px){
+
 	.box-metrica-wraper h2{
-	font-size: 24px;
+	    font-size: 24px;
 	}
 
 	.box-metrica-wraper p{
-	padding: 10px 0;
-	font-size: 22px;
+        padding: 10px 0;
+        font-size: 22px;
 	}
 
 	.menu-wraper{

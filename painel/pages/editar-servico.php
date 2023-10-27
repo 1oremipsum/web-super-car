@@ -1,4 +1,5 @@
 <?php 
+    verificaPermissao(2);
     if(isset($_GET['id'])){
         $id = (int)$_GET['id'];
         $servico = Painel::select('tb_site.servicos','id = ?', array($id));

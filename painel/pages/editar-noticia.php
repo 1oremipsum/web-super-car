@@ -1,4 +1,5 @@
 <?php 
+    verificaPermissao(2);
     if(isset($_GET['id'])){
         $id = (int)$_GET['id'];
         $noticia = Painel::select('tb_site.noticias', 'id = ?', array($id));

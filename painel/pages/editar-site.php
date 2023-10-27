@@ -1,4 +1,5 @@
 <?php 
+    verificaPermissao(2);
     $site = Painel::select('tb_site.config', false);
 ?>
 <div class="box-content">

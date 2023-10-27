@@ -1,4 +1,5 @@
 <?php 
+    verificaPermissao(2);
     if(isset($_GET['excluir'])){
         $idExcluir = (int)$_GET['excluir'];
         $selectImagem = MySql::conectar()->prepare("SELECT slide FROM `tb_site.slides` WHERE id = ?");

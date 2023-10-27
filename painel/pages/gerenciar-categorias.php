@@ -1,4 +1,5 @@
 <?php 
+    verificaPermissao(2);
     if(isset($_GET['excluir'])){
         $idExcluir = intval($_GET['excluir']);
         Painel::deletar('tb_site.categorias', $idExcluir);

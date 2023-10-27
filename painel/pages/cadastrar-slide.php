@@ -1,3 +1,4 @@
+<?php verificaPermissao(1); ?>
 <div class="box-content">
     <i class="fa-solid fa-images"></i><h2> Cadastrar Slide</h2>
 

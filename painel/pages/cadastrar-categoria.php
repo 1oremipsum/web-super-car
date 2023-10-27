@@ -1,3 +1,4 @@
+<?php verificaPermissao(1); ?>
 <div class="box-content">
     <i class="fa-solid fa-tag"></i><h2> Cadastrar Categoria</h2>
 
