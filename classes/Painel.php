@@ -16,6 +16,15 @@
             header('Location: ' . INCLUDE_PATH_PAINEL);
         }
 
+        public static function loadJS($files, $page){
+            $url = explode('/',@$_GET['url'])[0];
+            if($page == $url){
+                foreach ($files as $key => $value) {
+                    echo '<script src="'.INCLUDE_PATH_PAINEL.'js/'.$value.'"></script>';
+                }
+            }
+        }
+
         public static function loadPage()
         {
             if (isset($_GET['url'])) {

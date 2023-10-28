@@ -101,5 +101,6 @@ if(isset($_GET['loggout'])){
         });
     </script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/ajax.js"></script>
+    <?php Painel::loadJS(array('clientes.js'), 'listar-clientes'); ?>
 </body>
 </html>
