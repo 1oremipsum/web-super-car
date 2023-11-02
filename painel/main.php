@@ -15,6 +15,7 @@ if(isset($_GET['loggout'])){
     <title>Painel de Controle</title>
 </head>
 <body>
+<base base=<?php echo INCLUDE_PATH_PAINEL; ?> />
 <div class="menu">
     <div class="menu-wraper">
         <div class="box-usuario">
@@ -91,6 +92,7 @@ if(isset($_GET['loggout'])){
     <script src="<?php echo INCLUDE_PATH ?>js/jquery.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.mask.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.ajaxform.js"></script>
+    <script src="<?php echo INCLUDE_PATH ?>js/constants.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/main.js"></script>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
@@ -100,7 +102,8 @@ if(isset($_GET['loggout'])){
             height: 300
         });
     </script>
-    <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/ajax.js"></script>
-    <?php Painel::loadJS(array('clientes.js'), 'listar-clientes'); ?>
+     <?php Painel::loadJS(array('ajax.js'), 'listar-clientes'); ?>
+    <?php Painel::loadJS(array('ajax.js'), 'cadastrar-cliente'); ?>
+    <?php Painel::loadJS(array('ajax.js'), 'editar-cliente'); ?>
 </body>
 </html>

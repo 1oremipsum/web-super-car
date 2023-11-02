@@ -259,7 +259,7 @@ body{
             padding: 15px 25px;
             padding-bottom: 45px;
             margin-bottom: 20px;
-            border: 1px solid #a5d1f3;
+            border: 1px solid whitesmoke;
         }
 
         .box-content i{
@@ -594,9 +594,8 @@ body{
     .box-single{
         width: 100%;
         border: 1px solid whitesmoke;
-        height: 150px;
+        height: 170px;
         max-height: 210px;
-        overflow-y: auto;
         overflow-x: auto;
     }
 
@@ -604,11 +603,20 @@ body{
         text-align: center;
         color: whitesmoke;
         padding: 8px 0;
+        height: 75px;
         border-bottom: 1px solid whitesmoke;
     }
 
     .box-top i{
         font-size: 28px;
+    }
+
+    .box-top img{
+        border: 2px solid white;
+        display: block;
+        max-width: 60px;
+        margin: 0 auto;
+        border-radius: 50%;
     }
 
     .box-body{
@@ -621,7 +629,7 @@ body{
     }
 
     .group-btn{
-        margin-top: 14px;
+        margin-top: 7px;
         font-size: 14px;
     }
 

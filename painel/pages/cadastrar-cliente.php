@@ -26,6 +26,10 @@
         </div><!-- form-group -->
 
         <div class="form-group">
+            <input type="hidden" name="tipo_acao" value="cadastrar_cliente">
+        </div>
+
+        <div class="form-group">
             <input type="submit" name="acao" value="Cadastrar!"/>
         </div><!-- form-group -->
     </form>

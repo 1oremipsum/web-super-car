@@ -12,14 +12,19 @@
             <div class="box-single-wraper">
                 <div class="box-single">
                     <div class="box-top">
-                        <h2><i class="fa-solid fa-user"></i></h2>
+                        <?php if($value['img'] == ''){?>
+                            <h2><i class="fa-solid fa-user"></i></h2>
+                        <?php }else {?>
+                            <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['img'];?>">
+                        <?php } ?>
                     </div><!-- box-top -->
                     <div class="box-body">
                         <p><b>Nome:</b> <?php echo $value['nome']?></p>
                         <p><b>E-mail:</b> <?php echo $value['email']?></p>
                         <div class="group-btn">
-                            <a class="btn-edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-categoria?id=<?php echo $value['id']; ?>"><i class="fa-solid fa-pen"></i> <b>Editar</b></a>
-                            <a actionBtn="delete" class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-categorias?excluir=<?php echo $value['id']; ?>"><i class="fa-solid fa-trash-can"></i> <b>Excluir</b></a>
+                            <a class="btn-edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-cliente?id=<?php echo $value['id']; ?>"><i class="fa-solid fa-pen"></i> Editar</a>
+                            
+                            <a actionBtn="delete" class="btn-delete" item_id="<?php echo $value['id']; ?>" href="<?php echo INCLUDE_PATH_PAINEL ?>"><i class="fa-solid fa-trash-can"></i> <b>Excluir</b></a>
                         </div>
                     </div><!-- box-body -->
                 </div><!-- box-single -->
