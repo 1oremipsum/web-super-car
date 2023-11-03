@@ -597,6 +597,7 @@ body{
         height: 170px;
         max-height: 210px;
         overflow-x: auto;
+        border-radius: 10px;
     }
 
     .box-top{
@@ -655,6 +656,64 @@ body{
     }
 /* fim listar-clientes */
 
+/* barra de pesquisa*/
+    .search-box{
+        position: relative;
+        float: right;
+    }
+
+    .search-box form{
+       background-color: #000025;
+       padding: 10px;
+       border-radius: 40px;
+       width: 480px;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+    }
+
+
+    .search-txt{
+        margin-left: 20px;
+    }
+    
+    .search-box form input[type=text]{
+        max-width: 370px;
+        height: 30px;
+        border: 0 none;
+        background: none;
+        outline: 0 none;
+        padding: 0 10px;
+        color: #fffafa;
+        font-size: 14px;
+        transition: 0.5s;
+    }
+
+    .search-btn{
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #011844;
+        transition: 0.5s;
+    }
+
+    .search-btn:hover{
+        background-color: #06995c;
+    }
+
+    .busca-result{
+        text-align: center;
+        color: white;
+        font-size: 15px;
+        padding-left: 20px;
+    }
+
+    .busca-result b{
+        color: crimson;
+    }
+/* fim barra de pesquisa*/
+
 @media screen and (max-width: 1024px){
     .box-metrica-single{
         width: 100%;
@@ -674,6 +733,18 @@ body{
 		left: 0;
 		width: 100%;
 	}
+
+    .search-box{
+        float: none;
+    }
+
+    .search-box form{
+        width: 100%;
+    }
+
+    .search-box form input[type=text]{
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 500px){
