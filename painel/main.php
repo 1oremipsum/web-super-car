@@ -55,9 +55,17 @@ if(isset($_GET['loggout'])){
                 <h2>Configuração Geral</h2>
                 <a <?php selecionadoMenu('editar-site'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>editar-site">Editar Site</a>
 
+                <h2>Gestão de Automóveis</h2>
+                <a <?php selecionadoMenu('cadastrar-automovel'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-cliente">Cadastrar Automóvel</a>
+                <a <?php selecionadoMenu('listar-automoveis'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-clientes">Listar Automóveis</a>
+
                 <h2>Gestão de Clientes</h2>
                 <a <?php selecionadoMenu('cadastrar-cliente'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-cliente">Cadastrar Cliente</a>
                 <a <?php selecionadoMenu('listar-clientes'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-clientes">Listar Clientes</a>
+
+                <h2>Gestão de Concessionárias</h2>
+                <a <?php selecionadoMenu('cadastrar-concessionaria'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-concessionaria">Cadastrar Concessionária</a>
+                <a <?php selecionadoMenu('listar-concessionarias'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-concessionarias">Listar Concessionárias</a>
                 
                 <h2>Gestão de Notícias</h2>
                 <a <?php selecionadoMenu('cadastrar-categoria'); ?> href="<?php echo INCLUDE_PATH_PAINEL; ?>cadastrar-categoria">Cadastrar Categoria</a>
@@ -102,7 +110,8 @@ if(isset($_GET['loggout'])){
             height: 300
         });
     </script>
-     <?php Painel::loadJS(array('ajax.js'), 'listar-clientes'); ?>
+    <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/helperMask.js"></script>
+    <?php Painel::loadJS(array('ajax.js'), 'listar-clientes'); ?>
     <?php Painel::loadJS(array('ajax.js'), 'cadastrar-cliente'); ?>
     <?php Painel::loadJS(array('ajax.js'), 'editar-cliente'); ?>
 </body>

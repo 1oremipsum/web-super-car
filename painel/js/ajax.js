@@ -10,12 +10,12 @@ $(function(){
             $('.ajax').find('input[type=submit]').removeAttr('disabled');
             $('.box-alert').remove();
             if(data.sucesso){
-                $('.ajax').prepend('<div class="box-alert sucesso"><i class="fa-solid fa-circle-check"></i>'+data.msg+'</div>');
+                $('.ajax').prepend('<div class="box-alert sucesso"><i class="fa-solid fa-circle-check"></i> '+data.msg+'</div>');
                 if($('.ajax').hasAttr('atualizar') == false){
                     $('.ajax')[0].reset();
                 }
             }else {
-                $('.ajax').prepend('<div class="box-alert erro"><i class="fa-solid fa-circle-xmark"></i> Ocorreram os seguintes erros: <b>'+data.msg+'</b></div>');
+                $('.ajax').prepend('<div class="box-alert erro"><i class="fa-solid fa-circle-xmark"></i> Ocorreram os seguintes erros: <b>' + data.msg + '</b></div>');
             }
         }
     })
