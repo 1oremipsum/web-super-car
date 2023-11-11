@@ -18,7 +18,7 @@
                         Painel::alert('erro','O formato especificado não é válido!');
                     }else{
                         include('../classes/lib/WideImage.php');
-                        $imagem = Painel::updateFile($imagem);
+                        $imagem = Painel::updateFile($imagem, 'uploads/slides');
                         //WideImage::load('uploads/'.$imagem)->resize(100)->saveToFile('uploads/'.$imagem);
                         //faz o resize da img em 100px
                         $arr = ['nome'=>$nome, 'slide'=>$imagem, 'order_id'=>'0', 'nome_tabela'=>'tb_site.slides'];

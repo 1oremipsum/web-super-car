@@ -8,7 +8,7 @@
         $noticias = $noticias->fetchAll();
         foreach ($noticias as $key => $value) {
             $imgDelete = $value['capa'];
-            Painel::deleteFile($imgDelete);
+            Painel::deleteFile('uploads/noticias', $imgDelete);
         }
         $noticias = MySql::conectar()->prepare("DELETE FROM `tb_site.noticias` WHERE categoria_id = ?");
         $noticias->execute(array($idExcluir));

@@ -45,7 +45,7 @@
                         <?php if($value['img'] == ''){?>
                             <h2><i class="fa-solid fa-user"></i></h2>
                         <?php }else {?>
-                            <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['img'];?>">
+                            <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/clientes/<?php echo $value['img'];?>">
                         <?php } ?>
                     </div><!-- box-top -->
                     <div class="box-body">
@@ -59,7 +59,8 @@
                     </div><!-- box-body -->
                 </div><!-- box-single -->
             </div><!-- box-single-wraper -->
-            <?php } ?>
+            
+        <?php } ?>
             <div class="clear"></div>
     </div><!-- boxes -->
 </div><!-- content -->

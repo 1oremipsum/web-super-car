@@ -6,7 +6,7 @@
         $selectCapa->execute(array($_GET['excluir']));
 
         $imagem = $selectCapa->fetch()['capa'];
-        Painel::deleteFile($imagem);
+        Painel::deleteFile('uploads/noticias',$imagem);
 
         Painel::deletar('tb_site.noticias', $idExcluir);
         Painel::redirect(INCLUDE_PATH_PAINEL.'gerenciar-noticias');
@@ -46,7 +46,7 @@
                 <td style="width: 200px;"><?php echo $value['titulo']; ?></td>
                 <td style="width: 170px;"><?php echo $nomeCategoria; ?></td>
                 <td><img style="width: 120px;height: 80px;border:1px solid white" 
-                src="<?php echo INCLUDE_PATH_PAINEL; ?>uploads/<?php echo $value['capa']; ?>"></td>
+                src="<?php echo INCLUDE_PATH_PAINEL; ?>uploads/noticias/<?php echo $value['capa']; ?>"></td>
                 <td><a class="btn-edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-noticia?id=<?php echo $value['id']; ?>">Editar</a></td>
                 <td><a actionBtn="delete" class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-noticias?excluir=<?php echo $value['id']; ?>">Excluir</a></td>
                 <td><a class="btn order" href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-noticias?order=up&id=<?php echo $value['id']; ?>"><i class="fa-solid fa-angle-up"></i></a></td>

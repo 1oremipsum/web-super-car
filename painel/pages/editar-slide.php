@@ -21,8 +21,8 @@
 
                 if($imagem['name'] != ''){
                     if(Painel::imagemValida($imagem)){
-                        Painel::deleteFile($imagem_atual);
-                        $imagem = Painel::updateFile($imagem);
+                        Painel::deleteFile('uploads/sliders', $imagem_atual);
+                        $imagem = Painel::updateFile($imagem, 'uploads/sliders');
                         $arr = ['nome'=>$nome, 'slide'=>$imagem, 'id'=>$id, 'nome_tabela'=>'tb_site.slides'];
                         Painel::update($arr);
                         $slide = Painel::select('tb_site.slides', 'id = ?', array($id)); //atualizando

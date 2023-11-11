@@ -28,8 +28,8 @@
                 if($verifica->rowCount() == 0){
                     if($imagem['name'] != ''){
                         if(Painel::imagemValida($imagem)){
-                            Painel::deleteFile($imagem_atual);
-                            $imagem = Painel::updateFile($imagem);
+                            Painel::deleteFile('uploads/noticias', $imagem_atual);
+                            $imagem = Painel::updateFile($imagem, 'uploads/noticias');
                             $arr = ['titulo'=>$titulo, 'conteudo'=>$conteudo, 'data'=>date('Y-m-d'), 'categoria_id'=>$categoria_id, 'capa'=>$imagem, 'slug'=>$slug, 'id'=>$id, 'nome_tabela'=>'tb_site.noticias'];
                             Painel::update($arr);
                             $noticia = Painel::select('tb_site.noticias', 'id = ?', array($id)); //update

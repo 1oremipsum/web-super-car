@@ -1,14 +1,18 @@
+<?php 
+
+	$slides = MySql::conectar()->prepare("SELECT * FROM `tb_site.slides` ORDER BY order_id ASC");
+	$slides->execute(array());
+	$slides = $slides->fetchAll();
+	
+?>
 <section class="banner-container">
-	<div style="background-image: url('<?php echo INCLUDE_PATH; ?>imagens/banner.jpg');" class="banner-single"></div>
+	<?php foreach ($slides as $key => $value) { ?>
 
-	<div style="background-image: url('<?php echo INCLUDE_PATH; ?>imagens/banner2.jpg');" class="banner-single"></div>
+	<div style="background-image: url('<?php echo INCLUDE_PATH; ?>imagens/<?php echo $value['slide']; ?>');" class="banner-single"></div>
 
-	<div style="background-image: url('<?php echo INCLUDE_PATH; ?>imagens/banner3.jpeg');" class="banner-single"></div>
-
-	<div style="background-image: url('<?php echo INCLUDE_PATH; ?>imagens/banner4.jpg');" class="banner-single"></div>
-
+	<?php } ?>
+	
 	<div class="overlay"></div>
-
 	<div class="center">
 		<form method="post" class="ajax-form">
 			<h2>Seu melhor e-mail!</h2>
@@ -29,7 +33,7 @@
 		</div>
 
 		<div class="w50 right">
-			<img class="right" src="<?php echo INCLUDE_PATH; ?>imagens/empresa_resized.jpg" />
+			<img class="right" style="border-radius: 15px;" src="<?php echo INCLUDE_PATH; ?>imagens/empresa_resized.jpg" />
 		</div>
 		<div class="clear"></div>
 	</div>

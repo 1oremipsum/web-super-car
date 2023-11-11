@@ -14,8 +14,8 @@
                 if($imagem['name'] != ''){
                     //Existe o upload de imagem.
                     if(Painel::imagemValida($imagem)){
-                        Painel::deleteFile($imagem_atual);
-                        $imagem = Painel::updateFile($imagem);
+                        Painel::deleteFile('uploads/user',$imagem_atual);
+                        $imagem = Painel::updateFile($imagem, 'uploads/user');
                         if($usuario->atualizarUsuario($nome, $senha, $imagem)){
                             $_SESSION['img'] = $imagem;
                             Painel::alert('sucesso','Alteração realizada com sucesso!');

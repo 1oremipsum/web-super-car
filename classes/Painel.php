@@ -76,10 +76,9 @@
         }
 
         public static function imagemValida($imagem){
-            if($imagem['type'] == 'image/jpeg' || 
-                $imagem['type'] == 'image/jpg' || $imagem['type'] == 'image/png'){
+            if($imagem['type'] == 'image/jpeg' || $imagem['type'] == 'image/jpg' || $imagem['type'] == 'image/png'){
                 $tamanho = intval($imagem['size']/1024); //conversão para byts
-                if($tamanho < 300){
+                if($tamanho < 600){
                     return true;
                 }else{
                     return false;
@@ -89,27 +88,27 @@
             }
         }
 
-        public static function updateFile($file){
+        public static function updateFile($file, $path){
             $formatoArquivo = explode('.', $file['name']);
             $imagemNome = uniqid().'.'.$formatoArquivo[count($formatoArquivo) - 1];
-            if(move_uploaded_file($file['tmp_name'],BASE_DIR_PAINEL.'/uploads/'.$file['name'])){
+            if(move_uploaded_file($file['tmp_name'],BASE_DIR_PAINEL.'/'.$path.'/'.$file['name'])){
                 return $file['name'];
             }else{
                 return false;
             }
         }
 
-        public static function uploadFile($file){
+        public static function uploadFile($file, $path){
 			$formatoArquivo = explode('.',$file['name']);
 			$imagemNome = uniqid().'.'.$formatoArquivo[count($formatoArquivo) - 1];
-			if(move_uploaded_file($file['tmp_name'],BASE_DIR_PAINEL.'/uploads/'.$imagemNome))
+			if(move_uploaded_file($file['tmp_name'],BASE_DIR_PAINEL.'/'.$path.'/'.$imagemNome))
 				return $imagemNome;
 			else
 				return false;
 		}
 
-        public static function deleteFile($file){
-            @unlink('uploads/'.$file); // @ = ocultar erro do php.
+        public static function deleteFile($path, $file){
+            @unlink($path.'/'.$file); // @ = ocultar erro do php.
         }
 
         public static function insert($array){

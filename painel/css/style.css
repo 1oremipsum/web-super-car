@@ -26,7 +26,7 @@ body{
         max-width: 650px;
         width: 95%;
         padding: 50px 2%;
-        background: #062258;
+        background: rgb(20, 23, 68);
         position: absolute;
         top: 50%;
         left: 50%;
@@ -38,12 +38,13 @@ body{
         color: whitesmoke;
         text-align: center;
         margin-bottom: 8px;
-        font-size: 28px;
-        font-weight: 600;
+        font-size: 30px;
+        font-weight: lighter;
     }
 
     .box-login input[type=text], .box-login input[type=password]{
         width: 100%;
+        border-radius: 4px;
         height: 40px;
         border: 1px solid #ccc;
         padding-left: 8px;
@@ -53,12 +54,13 @@ body{
     .box-login input[type=submit]{
         width: 100%;
         height: 40px;
+        border-radius: 4px;
         cursor: pointer;
-        margin-top: 8px;
-        background: #00967d;
+        margin-top: 10px;
+        background: #025a4b;
         border: 0;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 20px;
+        font-weight: lighter;
         color: white;
         transition: all 0.8s;
     }
@@ -404,6 +406,8 @@ body{
 
     .box-content form input[type=text],
     .box-content form input[type=password]{
+        border: 0;
+        border-radius: 10px;
         width: 100%;
         font-size: 16px;
         font-weight: normal;
@@ -414,14 +418,19 @@ body{
     }
 
     .box-content form input[type=file]{
+        border: 0;
         width: 30%;
+        color: white;
+        border-radius: 10px;
         padding: 8px;
         border: 1px solid white; 
     }
 
     .box-content form input[type=submit]{
-        width: 20%;
+        border: 0;
+        width: 30%;
         height: 40px;
+        border-radius: 10px;
         cursor: pointer;
         margin-top: 18px;
         background: #0b73c4;
@@ -449,6 +458,7 @@ body{
     }
 
     .sucesso{
+        margin-top: 8px;
         border-radius: 10px;
         font-weight: 300;
         font-size: 16px;
@@ -594,8 +604,7 @@ body{
     .box-single{
         width: 100%;
         border: 1px solid whitesmoke;
-        height: 170px;
-        max-height: 210px;
+        height: 190px;
         overflow-x: auto;
         border-radius: 10px;
     }
@@ -604,7 +613,7 @@ body{
         text-align: center;
         color: whitesmoke;
         padding: 8px 0;
-        height: 75px;
+        height: 94px;
         border-bottom: 1px solid whitesmoke;
     }
 
@@ -615,7 +624,7 @@ body{
     .box-top img{
         border: 2px solid white;
         display: block;
-        max-width: 60px;
+        width: 80px;
         margin: 0 auto;
         border-radius: 50%;
     }
@@ -656,7 +665,14 @@ body{
     }
 /* fim listar-clientes */
 
-/* barra de pesquisa*/
+/* listar concessionárias */
+    .boxes{
+	    display: flex;
+	    flex-wrap: wrap;
+    }
+/* fim listar concessionárias */
+
+/* barra de pesquisa */
     .search-box{
         position: relative;
         float: right;

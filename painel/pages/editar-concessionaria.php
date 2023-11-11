@@ -13,12 +13,45 @@
 
     <form method="post" enctype="multipart/form-data">
         <?php 
+            $data['sucesso'] = true;
+
             if(isset($_POST['acao'])){
-                if(Painel::update($_POST)){
-                    Painel::alert('sucesso','Os dados da concessionária '.$_POST['nome'].' foram editados com sucesso!');
-                    $concess = Painel::select('tb_site.concessionarias','id = ?', array($id));
-                }else{
-                    Painel::alert('erro','Campos vazios não são permitidos!');
+                $nome = $_POST['nome'];
+                $cnpj = $_POST['cnpj'];
+                $cnpj_atual = $_POST['cnpj_atual'];
+                $logo = $_FILES['logo'];
+                $logo_atual = $_POST['logo_atual'];
+
+                if($cnpj != $cnpj_atual){
+                    $sql = MySql::conectar()->
+                    prepare("SELECT id FROM `tb_site.concessionarias` WHERE cnpj = ?");
+                    $sql->execute(array($cnpj));
+                    if($sql->rowCount() != 0){
+                        $data['sucesso'] = false;
+                        Painel::alert('erro', 'Já existe uma concessionária com este CNPJ!');
+                    }
+                }
+
+                if($data['sucesso'] == true){
+                    if($logo['name'] != ''){
+                        if(Painel::imagemValida($logo)){
+                            Painel::deleteFile('uploads/concessionarias', $logo_atual);
+                            $logo = Painel::updateFile($logo, 'uploads/concessionarias');
+                            $arr = ['nome'=>$nome, 'cnpj'=>$cnpj, 'logo'=>$logo, 'id'=>$id, 'nome_tabela'=>'tb_site.concessionarias'];
+                            Painel::update($arr);
+                            $concess = Painel::select('tb_site.concessionarias', 'id = ?', array($id)); //update
+                            Painel::alert('sucesso','Alteração realizada com sucesso!');   
+                        }else{
+                            Painel::alert('erro','Tipo de arquivo ou tamanho da imagem inválido.'); 
+                        }
+                    }else{
+                        $logo = $logo_atual;
+                        $arr = ['nome'=>$nome, 'cnpj'=>$cnpj, 'logo'=>$logo, 'id'=>$id, 
+                        'nome_tabela'=>'tb_site.concessionarias'];
+                        Painel::update($arr);
+                        $concess = Painel::select('tb_site.concessionarias', 'id = ?', array($id)); //atualizando
+                        Painel::alert('sucesso','Alteração realizada com sucesso!');
+                    }
                 }
             }
         ?>
@@ -31,7 +64,14 @@
         <div class="form-group">
             <label>CNPJ</label>
             <input type="text" name="cnpj" value="<?php echo $concess['cnpj']; ?>">
+            <input type="hidden" name="cnpj_atual" value="<?php echo $concess['cnpj']; ?>">
         </div><!-- form-group -->
+
+        <div class="form-group">
+            <label>Logomarca</label>
+            <input type="file" name="logo" />
+            <input type="hidden" name="logo_atual" value="<?php echo $concess['logo']; ?>">
+        </div>
 
         <div class="form-group">
             <input type="hidden" name="id" value="<?php echo $id; ?>">

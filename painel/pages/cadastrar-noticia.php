@@ -20,7 +20,7 @@
                         $verificar = MySql::conectar()->prepare("SELECT * FROM `tb_site.noticias` WHERE titulo = ? AND categoria_id = ?");
                         $verificar->execute(array($titulo, $categoria_id));
                         if($verificar->rowCount() == 0){
-                            $imagem = Painel::updateFile($capa);
+                            $imagem = Painel::updateFile($capa, 'uploads/noticias');
                             $slug = Painel::generateSlug($titulo);
                             $array = ['categoria_id'=>$categoria_id,'data'=>date('Y-m-d'), 'titulo'=>$titulo, 'conteudo'=>$conteudo, 'capa'=>$imagem, 'slug'=>$slug, 'order_id'=>'0', 'nome_tabela'=>'tb_site.noticias'];
                             if(Painel::insert($array)){

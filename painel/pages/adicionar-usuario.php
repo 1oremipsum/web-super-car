@@ -34,7 +34,7 @@
                         Painel::alert('erro','Dados de usuário já existentes!');
                     }else{
                         $usuario = new Usuario();
-                        $imagem = Painel::updateFile($imagem);
+                        $imagem = Painel::updateFile($imagem, 'uploads/user');
                         $usuario = Usuario::cadastrarUsuario($login, $senha, $imagem, $nome, $cargo);
                         Painel::alert('sucesso','Cadastro do usuário '.$login.' realizado com sucesso!');
                     }

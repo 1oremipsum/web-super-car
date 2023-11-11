@@ -1,16 +1,15 @@
 <?php 
     verificaPermissao(2);
-    if(isset($_GET['excluir'])){
-        $idExcluir = (int)$_GET['excluir'];
-        $selectImagem = MySql::conectar()->prepare("SELECT slide FROM `tb_site.slides` WHERE id = ?");
-        $selectImagem->execute(array($_GET['excluir']));
+    if(isset($_GET['deletar'])){
+        $id = (int)$_GET['deletar'];
+        $slide = MySql::conectar()->prepare("SELECT `slide` FROM `tb_site.slides` WHERE id = $id");
+        $slide->execute();
+        $slide = $slide->fetch();
+        @unlink(BASE_DIR_PAINEL.'/uploads/slides/'.$slide['slide']);
 
-        $imagem = $selectImagem->fetch()['slide'];
-        Painel::deleteFile($imagem);
-
-        Painel::deletar('tb_site.slides', $idExcluir);
+        MySql::conectar()->exec("DELETE FROM `tb_site.slides` WHERE id = $id");
         Painel::redirect(INCLUDE_PATH_PAINEL.'listar-slides');
-    }elseif(isset($_GET['order']) && isset($_GET['id'])){
+    }else if(isset($_GET['order']) && isset($_GET['id'])){
         Painel::orderItem('tb_site.slides', $_GET['order'], $_GET['id']);
     }
 
@@ -27,7 +26,7 @@
             if(count($slide) == 0){
                 Painel::alert("erro", "Não há registros cadastrados!");
             }else{
-        ?>
+        ?> 
         <table>
             <tr>
                 <td><i class="fa-solid fa-signature"></i> Nome</td>
@@ -43,9 +42,9 @@
             <tr class="body">
                 <td><?php echo $value['nome']; ?></td>
                 <td><img style="width: 120px;height: 80px;border:1px solid white" 
-                src="<?php echo INCLUDE_PATH_PAINEL; ?>uploads/<?php echo $value['slide']; ?>"></td>
-                <td><a class="btn-edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-slide?id=<?php echo $value['id']; ?>">Editar</a></td>
-                <td><a actionBtn="delete" class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-slides?excluir=<?php echo $value['id']; ?>">Excluir</a></td>
+                src="<?php echo INCLUDE_PATH_PAINEL; ?>uploads/slides/<?php echo $value['slide']; ?>"></td>
+                <td><a class="btn-edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-slide?id=<?php echo $value['id']; ?>"><i class="fa-regular fa-pen-to-square"></i> Editar</a></td>
+                <td><a class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-slides?deletar=<?php echo $value['id']; ?>"><i class="fa-solid fa-trash-can"></i> Excluir</a></td>
                 <td><a class="btn order" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-slides?order=up&id=<?php echo $value['id']; ?>"><i class="fa-solid fa-angle-up"></i></a></td>
                 <td><a class="btn order" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-slides?order=down&id=<?php echo $value['id']; ?>"><i class="fa-solid fa-angle-down"></i></a></td>
             </tr>

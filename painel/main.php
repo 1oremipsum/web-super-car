@@ -10,6 +10,7 @@ if(isset($_GET['loggout'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<?php echo INCLUDE_PATH_PAINEL; ?>css/style.css" rel="stylesheet" />
     <link href="<?php echo INCLUDE_PATH; ?>fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="<?php echo INCLUDE_PATH_PAINEL; ?>css/jquery-ui.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="<?php echo INCLUDE_PATH; ?>super.ico" type="image/x-ico" />
     <title>Painel de Controle</title>
@@ -27,7 +28,7 @@ if(isset($_GET['loggout'])){
             <?php 
                 }else{ ?>
                 <div class="imagem-usuario">
-                    <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $_SESSION['img']; ?>">
+                    <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/user/<?php echo $_SESSION['img']; ?>">
                 </div><!-- avatar-usuario -->
             <?php } ?>
             <div class="nome-usuario">
@@ -55,17 +56,13 @@ if(isset($_GET['loggout'])){
                 <h2>Configuração Geral</h2>
                 <a <?php selecionadoMenu('editar-site'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>editar-site">Editar Site</a>
 
-                <h2>Gestão de Automóveis</h2>
-                <a <?php selecionadoMenu('cadastrar-automovel'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-cliente">Cadastrar Automóvel</a>
-                <a <?php selecionadoMenu('listar-automoveis'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-clientes">Listar Automóveis</a>
+                <h2>Gestão de Concessionárias</h2>
+                <a <?php selecionadoMenu('cadastrar-concessionaria'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-concessionaria">Cadastrar Concessionária</a>
+                <a <?php selecionadoMenu('listar-concessionarias'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-concessionarias">Listar Concessionárias</a>
 
                 <h2>Gestão de Clientes</h2>
                 <a <?php selecionadoMenu('cadastrar-cliente'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-cliente">Cadastrar Cliente</a>
                 <a <?php selecionadoMenu('listar-clientes'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-clientes">Listar Clientes</a>
-
-                <h2>Gestão de Concessionárias</h2>
-                <a <?php selecionadoMenu('cadastrar-concessionaria'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-concessionaria">Cadastrar Concessionária</a>
-                <a <?php selecionadoMenu('listar-concessionarias'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-concessionarias">Listar Concessionárias</a>
                 
                 <h2>Gestão de Notícias</h2>
                 <a <?php selecionadoMenu('cadastrar-categoria'); ?> href="<?php echo INCLUDE_PATH_PAINEL; ?>cadastrar-categoria">Cadastrar Categoria</a>
@@ -98,6 +95,8 @@ if(isset($_GET['loggout'])){
     </div><!-- content -->
 
     <script src="<?php echo INCLUDE_PATH ?>js/jquery.js"></script>
+    <?php Painel::loadJS(array('jquery-ui.min.js'), 'listar-concessionarias'); ?>
+    <script src="<?php echo INCLUDE_PATH ?>js/jquery.maskMoney.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.mask.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.ajaxform.js"></script>
     <script src="<?php echo INCLUDE_PATH ?>js/constants.js"></script>
@@ -114,5 +113,6 @@ if(isset($_GET['loggout'])){
     <?php Painel::loadJS(array('ajax.js'), 'listar-clientes'); ?>
     <?php Painel::loadJS(array('ajax.js'), 'cadastrar-cliente'); ?>
     <?php Painel::loadJS(array('ajax.js'), 'editar-cliente'); ?>
+    <?php Painel::loadJS(array('concessionarias.js'), 'listar-concessionarias'); ?>
 </body>
 </html>
