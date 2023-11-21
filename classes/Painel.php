@@ -25,8 +25,7 @@
             }
         }
 
-        public static function loadPage()
-        {
+        public static function loadPage(){
             if (isset($_GET['url'])) {
                 $url = explode('/', $_GET['url']);
                 if (file_exists('pages/' . $url[0] . '.php')) {
@@ -75,6 +74,10 @@
             }
         }
 
+        public static function alertJS($msg){
+            echo '<script>alert("'.$msg.'")</script>';
+        }
+
         public static function imagemValida($imagem){
             if($imagem['type'] == 'image/jpeg' || $imagem['type'] == 'image/jpg' || $imagem['type'] == 'image/png'){
                 $tamanho = intval($imagem['size']/1024); //conversão para byts
@@ -98,7 +101,7 @@
             }
         }
 
-        public static function uploadFile($file, $path){
+        public static function uploadFile($path,$file){
 			$formatoArquivo = explode('.',$file['name']);
 			$imagemNome = uniqid().'.'.$formatoArquivo[count($formatoArquivo) - 1];
 			if(move_uploaded_file($file['tmp_name'],BASE_DIR_PAINEL.'/'.$path.'/'.$imagemNome))
@@ -171,17 +174,20 @@
             return $certo;
         }
 
-        public static function selectAll($tabela, $start=null, $end=null){ //inicializando start e end com nulo
-            if($start==null && $end==null){
+        public static function selectAll($tabela, $order=null, $start=null, $end=null){ //inicializando start e end com nulo
+            if($start==null && $end==null && $order==null){
                 $sql = MySql::conectar()->prepare("SELECT * FROM `$tabela` ORDER BY order_id ASC");
-            }else{
-                $sql = MySql::conectar()->prepare("SELECT * FROM `$tabela` ORDER BY order_id ASC LIMIT $start, $end");
+            }else if($start==null && $end==null && $order!=null){
+                $sql = MySql::conectar()->prepare("SELECT * FROM `$tabela` ORDER BY order_id $order");
+            }else {
+                $sql = MySql::conectar()->prepare("SELECT * FROM `$tabela` ORDER BY order_id $order LIMIT $start, $end");
             }
+          
             $sql->execute();
             return $sql->fetchAll();
         }
 
-        public static function deletar($tabela, $id=false){
+        public static function deletar($tabela,$id=false){
             if($id == false){
                 $sql = MySql::conectar()->prepare("DELETE FROM `$tabela`");
             }else{ 
@@ -207,6 +213,17 @@
                 $sql->execute();
             }
             return $sql->fetch();
+        }
+
+        public static function selectQuery($tabela, $query = '', $array = ''){
+            if($query != false){
+                $sql = MySql::conectar()->prepare("SELECT * FROM `$tabela` WHERE $query ");
+                $sql->execute($array);
+            }else{
+                $sql = MySql::conectar()->prepare("SELECT * FROM `$tabela`");
+                $sql->execute();
+            }
+            return $sql->fetchAll();
         }
 
         public static function orderItem($table, $oderType, $idItem){ //ordenar registros na tabela (up, down)

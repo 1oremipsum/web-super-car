@@ -1,9 +1,5 @@
 <?php 
-
-	$slides = MySql::conectar()->prepare("SELECT * FROM `tb_site.slides` ORDER BY order_id ASC");
-	$slides->execute(array());
-	$slides = $slides->fetchAll();
-	
+	$slides = Painel::selectAll('tb_site.slides');
 ?>
 <section class="banner-container">
 	<?php foreach ($slides as $key => $value) { ?>
@@ -66,9 +62,7 @@
 		<div class="w50 left depoimentos-container">
 			<h2 class="title">Depoimentos dos nossos clientes</h2>
 			<?php 
-				$sql = MySql::conectar()->prepare("SELECT * FROM `tb_site.depoimentos` ORDER BY order_id DESC LIMIT 3");
-				$sql->execute();
-				$depoimentos = $sql->fetchAll();
+				$depoimentos = Painel::selectAll('tb_site.depoimentos', 'DESC', 0, 4);
 				foreach ($depoimentos as $key => $value) {
 			?>
 			<div class="depoimento-single">
@@ -82,9 +76,8 @@
 			<div class="servicos-info">
 				<ul>
 					<?php 
-						$sql = MySql::conectar()->prepare("SELECT * FROM `tb_site.servicos` ORDER BY order_id ASC LIMIT 3");
-						$sql->execute();
-						$servicos = $sql->fetchAll();
+						
+						$servicos = Painel::selectAll('tb_site.servicos', 'DESC', 0, 3);
 						foreach ($servicos as $key => $value) {
 					?>
 					<li><?php echo $value['servico']; ?></li>

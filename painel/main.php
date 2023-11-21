@@ -56,6 +56,9 @@ if(isset($_GET['loggout'])){
                 <h2>Configuração Geral</h2>
                 <a <?php selecionadoMenu('editar-site'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>editar-site">Editar Site</a>
 
+                <h2>Gestão de Automóveis</h2>
+                <a <?php selecionadoMenu('gerenciar-automoveis'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-automoveis">Gerenciar Automóveis</a>
+
                 <h2>Gestão de Concessionárias</h2>
                 <a <?php selecionadoMenu('cadastrar-concessionaria'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-concessionaria">Cadastrar Concessionária</a>
                 <a <?php selecionadoMenu('listar-concessionarias'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-concessionarias">Listar Concessionárias</a>

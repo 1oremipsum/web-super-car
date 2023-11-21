@@ -10,13 +10,13 @@
 
     $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $porPagina = 3; //resultados por pagina
-    $servicos = Painel::selectAll('tb_site.servicos', ($paginaAtual - 1) * $porPagina, $porPagina);
+    $servicos = Painel::selectAll('tb_site.servicos', null, ($paginaAtual - 1) * $porPagina, $porPagina);
     //1º parâmentro = tabela / 2º par = índice inicial da sql / 3º par = quantos resgistros eu quero
     //($paginaAtual - 1 = 0). 0 é o primeiro registro do banco.
 ?>
 <div class="box-content">
     <h2><i class="fa-solid fa-comments-dollar"></i> Serviços Cadastrados</h2>
-    <div class="wrapper-table">
+    <div class="wrapper-table" style=" white-space: unset;">
         <?php 
             if(count($servicos) == 0){
                 Painel::alert("erro", "Não há registros cadastrados!");
@@ -25,8 +25,8 @@
         <table>
             <tr>
                 <td style="width:650px;"><i class="fa-solid fa-screwdriver-wrench"></i> Descrição do Serviço</td>
-                <td><i class="fa-regular fa-pen-to-square"></i></td>
-                <td><i class="fa-regular fa-trash-can"></i></td>
+                <td><i class="fa-regular fa-pen-to-square"></i> Editar</td>
+                <td><i class="fa-regular fa-trash-can"></i> Excluir</td>
                 <td><i class="fa-regular fa-circle-up"></i></td>
                 <td><i class="fa-regular fa-circle-down"></i></td>
             </tr>
@@ -35,8 +35,8 @@
             ?>
             <tr class="body">
                 <td><?php echo $value['servico']; ?></td>
-                <td><a class="btn-edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-servico?id=<?php echo $value['id']; ?>">Editar</a></td>
-                <td><a actionBtn="delete" class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-servicos?excluir=<?php echo $value['id']; ?>">Excluir</a></td>
+                <td><a class="btn-edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-servico?id=<?php echo $value['id']; ?>"><i class="fa-regular fa-pen-to-square"></i> Editar</a></td>
+                <td><a actionBtn="delete" class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-servicos?excluir=<?php echo $value['id']; ?>"><i class="fa-regular fa-trash-can"></i> Excluir</a></td>
                 <td><a class="btn order" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-servicos?order=up&id=<?php echo $value['id']; ?>"><i class="fa-solid fa-angle-up"></i></a></td>
                 <td><a class="btn order" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-servicos?order=down&id=<?php echo $value['id']; ?>"><i class="fa-solid fa-angle-down"></i></a></td>
             </tr>

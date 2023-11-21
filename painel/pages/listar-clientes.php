@@ -54,7 +54,7 @@
                         <div class="group-btn">
                             <a class="btn-edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-cliente?id=<?php echo $value['id']; ?>"><i class="fa-solid fa-pen"></i> Editar</a>
                             
-                            <a class="btn-delete" item_id="<?php echo $value['id']; ?>" href="<?php echo INCLUDE_PATH_PAINEL ?>"><i class="fa-solid fa-trash-can"></i> <b>Excluir</b></a>
+                            <a class="btn-delete" item_id="<?php echo $value['id']; ?>" href="<?php echo INCLUDE_PATH_PAINEL ?>"><i class="fa-solid fa-trash-can"></i> Excluir</a>
                         </div>
                     </div><!-- box-body -->
                 </div><!-- box-single -->

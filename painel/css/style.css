@@ -57,7 +57,7 @@ body{
         border-radius: 4px;
         cursor: pointer;
         margin-top: 10px;
-        background: #025a4b;
+        background: #0a927b;
         border: 0;
         font-size: 20px;
         font-weight: lighter;
@@ -385,7 +385,7 @@ body{
     /* fim tabela responsiva */
 /** Fim Página main **/
 
-/* editar-usuario */
+/* form */
     .box-content form{
         margin: 20px 0;
     }
@@ -397,21 +397,25 @@ body{
         font-weight: 300;
         color: white;
         display: block;
+        padding-left: 3px;
     }
 
     .box-content form select{
         width: 30%;
         padding: 8px;
+        height: 35px;
+        border-radius: 8px;
     }
 
     .box-content form input[type=text],
+    .box-content form input[type=number],
     .box-content form input[type=password]{
         border: 0;
-        border-radius: 10px;
+        border-radius: 8px;
         width: 100%;
         font-size: 16px;
         font-weight: normal;
-        height: 40px;
+        height: 35px;
         padding: 0 5px;
         color: black;
         padding-left: 8px;
@@ -444,7 +448,7 @@ body{
     .box-content input[type=submit]:hover{
         background: #009688;
     }    
-/* fim editar-usuario*/
+/* fim form*/
 
 /* Classe Painel - Mensagens function alert() */
     .box-alert{
@@ -513,16 +517,22 @@ body{
 
 /* Tabelas e paginacao*/
     .wrapper-table{
+        white-space: nowrap;
         overflow-x: auto;
+        overflow-y: auto;
     }
 
     .wrapper-table h2{
-        font-size: 16px;
+        font-size: 15px;
         margin-left: 28px;
     }
 
+    .wrapper-table table tr td i{
+        font-size: 16px;
+    }
+
     .wrapper-table .body a{
-        margin-left: 3px;
+        margin-right: 13px;
         text-decoration: none;
     }
 
@@ -537,11 +547,13 @@ body{
 
     table tr:nth-of-type(1){
         background: #0f2a64;
+        font-size: 15px;
         font-weight: 600;
     }
 
     table td{
         padding: 15px;
+        font-size: 15px;
         border-bottom: 1px solid white;
     }
 
@@ -549,16 +561,35 @@ body{
         color: white;
         text-decoration: none;
         transition: all 0.5s;
+        padding: 4px 6px;
+        white-space: nowrap;
+        background: #1e88ca;
+        border-radius: 10px;
     }
 
     a.btn-delete{
         color: white;
         text-decoration: none;
         transition: all 0.5s;
+        padding: 4px 6px;
+        background: darkred;
+        white-space: nowrap;
+        border-radius: 10px;
     }
 
-    a.btn-edit:hover{color: lightseagreen;}
-    a.btn-delete:hover{color: red;}
+    a.btn-view{
+        color: white;
+        text-decoration: none;
+        transition: all 0.5s;
+        padding: 4px 6px;
+        background: #207920;
+        white-space: nowrap;
+        border-radius: 10px;
+    }
+
+    a.btn-edit:hover{background: lightseagreen}
+    a.btn-delete:hover{background: #c00202;}
+    a.btn-view:hover{background: #389e38;}
 
     .paginacao{
         text-align: center;
@@ -594,7 +625,7 @@ body{
     }
 /* fim editar-site */
 
-/* listar-clientes */
+/* listar-clientes e concessionárias */
     .box-single-wraper{
         float: left;
         width: 33.3%;
@@ -604,9 +635,11 @@ body{
     .box-single{
         width: 100%;
         border: 1px solid whitesmoke;
-        height: 190px;
+        box-shadow: 8px 8px 4px rgb(14, 13, 13);
+        height: 192px;
         overflow-x: auto;
         border-radius: 10px;
+        background: #000025;
     }
 
     .box-top{
@@ -638,8 +671,12 @@ body{
         font-size: 14px;
     }
 
+    .box-body p > span{
+        color: honeydew;
+    }
+
     .group-btn{
-        margin-top: 7px;
+        margin-top: 8px;
         font-size: 14px;
     }
 
@@ -654,23 +691,120 @@ body{
     .group-btn .btn-edit{
         width: 82px;
         height: 23px;
-        border: 1px solid lightseagreen;;
+        border-radius: 10px;
+        padding: 2px 3px;
     }
 
     .group-btn .btn-delete{
-        margin-left: 1px;
         width: 82px;
         height: 24px;
-        border: 1px solid red;
+        border-radius: 10px;
+        padding: 2px 3px;
     }
-/* fim listar-clientes */
 
-/* listar concessionárias */
+    .group-btn .btn-view{
+        margin-top: 6px;
+        width: 188px;
+        height: 24px;
+        border: 1px solid #389e38;
+        border-radius: 10px;
+        padding: 1px 3px;
+    }
+
+    .wrapper-table table .body td .btn-view{
+        padding: 3px 6px; 
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
     .boxes{
 	    display: flex;
 	    flex-wrap: wrap;
     }
-/* fim listar concessionárias */
+
+    .box-imgs img.img-square{
+        width: 250px;
+        height: 200px;
+        display: block;
+        margin:8px auto;
+        border-radius: 8px;
+    }
+
+    .single-btn .btn-delete i{
+        font-size: 15px;   
+    }
+
+    .single-btn .btn-delete{
+        font-size: 17px;
+        text-align: center;
+        width: 15%;
+        height: 55px;
+        border-radius: 10px;
+        padding: 17px 0;
+        background-color: darkred;
+        box-shadow: 8px 8px 4px rgb(2, 0, 7);
+        float: inline-end;
+    }
+
+    .single-btn .btn-delete:hover{background: #c00202;}
+/* fim listar-clientes e concessionárias */
+
+/* visualizar automoveis */
+    .card-title{
+        width: 100%;
+        padding:6px;
+        color: white;
+        margin:10px 0;
+        font-size: 15px;
+        font-weight: bold;
+        background: #0091ea;
+        border-radius: 10px;
+    }
+
+    .card-title h2{
+        font-size: medium;
+        padding: 0;
+    }
+
+    .card-title i:nth-last-of-type(1){
+        font-size: 13px;
+    }
+
+    .row1{
+        float: left;
+        width: 20%;
+        padding:8px 10px;
+    }
+    
+    .row1 img{
+        width: 100%;
+        height: 150px;
+        border-radius: 10px;
+    }
+
+    .row2{
+        float: left;
+        width: 80%;
+        padding:8px 10px;
+    } 
+
+    .row2 span{
+        float: inline-end;
+        font-weight: bold;
+    }
+    
+    .row2 p{
+        font-size: 15px;
+        font-weight: bold;
+        padding:8px 2px;
+        color: whitesmoke;
+        border-bottom: 1px solid white;
+    }
+
+    .row2 p > i{
+        font-size: 15px;
+    }
+/* fim visualizar automoveis */
 
 /* barra de pesquisa */
     .search-box{
@@ -760,6 +894,14 @@ body{
 
     .search-box form input[type=text]{
         width: 100%;
+    }
+
+    .row1,.row2{
+        width: 100%;
+    }
+
+    .row1 img{
+        height: 250px;
     }
 }
 

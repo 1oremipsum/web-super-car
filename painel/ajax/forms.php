@@ -97,6 +97,13 @@
         @unlink('../uploads/clientes/'.$img);
 
         MySql::conectar()->exec("DELETE FROM `tb_site.clientes` WHERE id = $id");    
+    }else if(isset($_POST['tipo_acao']) && $_POST['tipo_acao'] == 'ordenar_concessionaria'){
+        $ids = $_POST['item'];
+        $i = 1;
+        foreach ($ids as $key => $value) {
+            MySql::conectar()->exec("UPDATE `tb_site.concessionarias` SET order_id = $i WHERE id = $value");
+            $i++;
+        }
     }
     
     die(json_encode($data));
