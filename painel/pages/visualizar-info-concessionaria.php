@@ -6,8 +6,7 @@
         Painel::alert('erro', 'Faltou o parâmetro ID.');
         die();
     }
-
-    $automoveis = Painel::selectQuery('tb_site.automoveis','id_concessionaria = ?', array($id));
+    $automoveis = Painel::selectQuery('tb_site.automoveis', "id_concessionaria = ? ", array($id));
 ?>
 
 <div class="box-content">

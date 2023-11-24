@@ -99,6 +99,7 @@ if(isset($_GET['loggout'])){
 
     <script src="<?php echo INCLUDE_PATH ?>js/jquery.js"></script>
     <?php Painel::loadJS(array('jquery-ui.min.js'), 'listar-concessionarias'); ?>
+    <?php Painel::loadJS(array('jquery-ui.min.js'), 'editar-automovel'); ?>
     <script src="<?php echo INCLUDE_PATH ?>js/jquery.maskMoney.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.mask.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.ajaxform.js"></script>
@@ -116,6 +117,7 @@ if(isset($_GET['loggout'])){
     <?php Painel::loadJS(array('ajax.js'), 'listar-clientes'); ?>
     <?php Painel::loadJS(array('ajax.js'), 'cadastrar-cliente'); ?>
     <?php Painel::loadJS(array('ajax.js'), 'editar-cliente'); ?>
-    <?php Painel::loadJS(array('concessionarias.js'), 'listar-concessionarias'); ?>
+    <?php Painel::loadJS(array('order_id/concessionarias.js'), 'listar-concessionarias'); ?>
+    <?php Painel::loadJS(array('order_id/automovel-imgs.js'), 'editar-automovel'); ?>
 </body>
 </html>

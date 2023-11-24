@@ -7,7 +7,15 @@
         die("You're not allowed to do that.");
     }
 
-    /* code here */
+    /* code below */
+
+    function orderId($ids, $table){
+        $i = 1;
+        foreach ($ids as $key => $value) {
+            MySql::conectar()->exec("UPDATE `$table` SET order_id = $i WHERE id = $value");
+            $i++;
+        }
+    }
     
     if(isset($_POST['tipo_acao']) && $_POST['tipo_acao'] == 'cadastrar_cliente'){
         sleep(1.5);
@@ -97,13 +105,14 @@
         @unlink('../uploads/clientes/'.$img);
 
         MySql::conectar()->exec("DELETE FROM `tb_site.clientes` WHERE id = $id");    
+
     }else if(isset($_POST['tipo_acao']) && $_POST['tipo_acao'] == 'ordenar_concessionaria'){
         $ids = $_POST['item'];
-        $i = 1;
-        foreach ($ids as $key => $value) {
-            MySql::conectar()->exec("UPDATE `tb_site.concessionarias` SET order_id = $i WHERE id = $value");
-            $i++;
-        }
+        orderId($ids, 'tb_site.concessionarias');
+
+    }else if(isset($_POST['tipo_acao']) && $_POST['tipo_acao'] == 'ordenar_automovel-imgs'){
+        $ids = $_POST['item'];
+        orderId($ids, 'tb_site.imagens_automoveis');
     }
     
     die(json_encode($data));

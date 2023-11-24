@@ -49,8 +49,6 @@ $(function(){
         }
     })
 
-    $('[formato=data]').mask('99/99/9999');
-
     $('[actionBtn=delete]').click(function(){
         var txt;
         var r = confirm("Deseja excluir este registro?");
@@ -59,5 +57,9 @@ $(function(){
         }else{
             return false;
         }
+    })
+
+    $('table.marca-btn').click(function(){
+        
     })
 })

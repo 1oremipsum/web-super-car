@@ -9,9 +9,7 @@
 	}
 
 	$infoAuto = $automovel->fetch();
-	$automovelImgs = MySql::conectar()->prepare("SELECT * FROM `tb_site.imagens_automoveis` WHERE automovel_id = $id");
-	$automovelImgs->execute();
-	$automovelImgs = $automovelImgs->fetchAll();
+	$automovelImgs = Painel::selectQuery('tb_site.imagens_automoveis', "automovel_id = $id ORDER BY order_id ASC", null);
 ?>
 
 <div class="box-content">
@@ -35,7 +33,88 @@
 	}
 	?>
 	<form method="post" action="<?php echo INCLUDE_PATH_PAINEL ?>editar-automovel?id=<?php echo $id; ?>" enctype="multipart/form-data">
+	<?php 
+		if(isset($_POST['acao'])){
+			$marca = $_POST['marca'];
+			$modelo = $_POST['modelo'];
+			$preco = $_POST['preco'];
+			$quilometragem = $_POST['quilometragem'];
+			$anoMod = $_POST['ano_mod'];
+			$anoFab = $_POST['ano_fab'];
+			$concess = $_POST['id_concessionaria'];
 
+			$imagens = array();
+            $amountFiles = count($_FILES['imagem']['name']);
+
+            $sucesso = true;
+
+			if($marca == '' || $modelo == ''){
+				$sucesso = false;
+				Painel::alert('erro', 'Marca ou modelo não podem estar vázios!');
+			}
+
+			if($quilometragem != ''){
+				if($quilometragem < 0 || $quilometragem > 500000){
+					$sucesso = false;
+					Painel::alert('erro', 'Quilometragem inválida.');
+				}
+			}
+
+			if($anoFab != ''){
+				if(strlen($anoFab) != 4 && ($anoFab < 2010 || $anoFab > date("Y"))){
+					$sucesso = false;
+					Painel::alert('erro', 'Ano de fabricação inválido.');
+				}
+			}
+			
+			if($anoMod != ''){ 
+				if(strlen($anoMod) != 4 && ($anoMod < 2010 || $anoMod > date("Y"))){
+					$sucesso = false;
+					Painel::alert('erro', 'Ano modelo inválido.');
+            	}
+			}
+
+            if($_FILES['imagem']['name'][0] != ''){
+                for($i=0; $i < $amountFiles; $i++){
+                    $currentImg = ['type'=>$_FILES['imagem']['type'][$i], 
+                    'size'=>$_FILES['imagem']['size'][$i]];
+                    if(!Painel::imagemValida($currentImg)){
+                        $sucesso = false;
+                        Painel::alert('erro', 'Uma das imagens selecionadas são inválidas.');
+                        break;
+                    }
+                }
+            }
+
+			if($sucesso){
+				if($_FILES['imagem']['name'][0] != ''){
+					for($i=0; $i < $amountFiles; $i++){
+						$currentImg = ['tmp_name'=>$_FILES['imagem']['tmp_name'][$i], 
+						'name'=>$_FILES['imagem']['name'][$i]];
+						$imagens[] = Painel::uploadFile('uploads/automoveis',$currentImg);
+					}
+
+					foreach ($imagens as $key => $value) {
+						MySql::conectar()->exec("INSERT INTO `tb_site.imagens_automoveis` VALUES (null,$id,'$value',0)");
+						$lastId = MySql::conectar()->lastInsertId();
+						MySql::conectar()->exec("UPDATE `tb_site.imagens_automoveis` SET order_id = $lastId WHERE id = $lastId");
+					}
+
+					$arr = ['id_concessionaria'=>$concess, 'marca'=>$marca, 'modelo'=>$modelo, 'ano_fab'=>$anoFab, 'ano_mod'=>$anoMod, 'preco'=>$preco, 'quilometragem'=>$quilometragem, 'id'=>$id, 'nome_tabela'=>'tb_site.automoveis'];
+					Painel::update($arr);
+
+					$infoAuto = Painel::select('tb_site.automoveis', 'id = ?', array($id)); //update
+					$automovelImgs = Painel::selectQuery('tb_site.imagens_automoveis', "automovel_id = $id ORDER BY order_id ASC", null);
+				}else{
+					$arr = ['id_concessionaria'=>$concess, 'marca'=>$marca, 'modelo'=>$modelo, 'ano_fab'=>$anoFab, 'ano_mod'=>$anoMod, 'preco'=>$preco, 'quilometragem'=>$quilometragem, 'id'=>$id, 'nome_tabela'=>'tb_site.automoveis'];
+					Painel::update($arr);
+					
+					$infoAuto = Painel::select('tb_site.automoveis', 'id = ?', array($id)); //update
+				}
+				Painel::redirect(INCLUDE_PATH_PAINEL."editar-automovel?id=$id");
+			}
+		}
+	?>
 	<div class="card-title"><i style="font-size: 18px;" class="fa-solid fa-circle-info"></i> Informações do Automóvel: <?php echo $infoAuto['marca']; ?> - <?php echo $infoAuto['modelo']; ?></div>
 
 		<div class="form-group">
@@ -60,13 +139,13 @@
         </div><!-- form-group -->
         <div class="clear"></div>
 
-        <div class="form-group right" style="width: 24%;">
+        <div class="form-group right" style="width: 25%;">
             <label>Ano Modelo</label>
             <input min="2010" max="2023" type="number" name="ano_mod" required
             placeholder="min/max: 2010/<?php echo date("Y");?>" value="<?php echo $infoAuto['ano_mod'];?>"/>
         </div><!-- form-group -->
 
-        <div class="form-group right" style="width: 25%; padding-right: 15px;">
+        <div class="form-group right" style="width: 24%; padding-right: 15px;">
             <label>Ano de Fabricação</label>
             <input min="2010" max="2023" type="number" name="ano_fab" required
             placeholder="min/max: 2010/<?php echo date("Y");?>" value="<?php echo $infoAuto['ano_fab'];?>" />
@@ -90,7 +169,7 @@
 		</div><!--form-group-->
 
 		<div class="single-btn">
-			<a class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-automovel?id=<?php echo $id; ?>&deletarAutomovel"><i class="fa-regular fa-trash-can"></i> Excluir Automóvel</a>
+			<a class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-automovel?id=<?php echo $id; ?>&deletarAutomovel"><i class="fa-regular fa-trash-can"></i> <span>Excluir Automóvel</span></a>
 		</div><!-- single-btn -->
 
 		<div class="form-group">
@@ -103,17 +182,16 @@
 		<?php
 			foreach ($automovelImgs as $key => $value){
 		?>
-		<div class="box-single-wraper">
-			<div style="width: 285px; background: #000025; border-radius: 8px; border: 1px solid white; padding:8px 15px;">
-			<div style="width: 100%; " class="box-imgs left">
-				<img class="img-square" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/automoveis/<?php echo $value['imagem']; ?>" />
-			</div><!--box-imgs-->
-			<div class="clear"></div>
-			<div style="text-align: center;" class="group-btn">
-				<a class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-automovel?id=<?php echo $id; ?>&deletarImagem=<?php echo $value['imagem']; ?>"><i class="fa-regular fa-trash-can"></i> Excluir</a>
-			</div><!--group-btn-->
-			
-			</div>
+		<div id="item-<?php echo $value['id']; ?>" class="box-single-wraper">
+			<div class="box-single-img">
+				<div class="box-imgs">
+					<img class="img-square" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/automoveis/<?php echo $value['imagem']; ?>" />
+				</div><!--box-imgs-->
+				
+				<div style="text-align: center;" class="group-btn">
+					<a class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-automovel?id=<?php echo $id; ?>&deletarImagem=<?php echo $value['imagem']; ?>"><i class="fa-regular fa-trash-can"></i> Excluir</a>
+				</div><!--group-btn-->
+			</div><!-- box-single-img -->
 		</div><!--box-single-wraper-->
 		<?php } ?>
 	</div><!--boxes-->

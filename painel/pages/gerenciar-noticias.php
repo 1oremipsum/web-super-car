@@ -16,7 +16,7 @@
 
     $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $porPagina = 3; //resultados por pagina
-    $noticia = Painel::selectAll('tb_site.noticias', ($paginaAtual - 1) * $porPagina, $porPagina);
+    $noticia = Painel::selectAll('tb_site.noticias', null,($paginaAtual - 1) * $porPagina, $porPagina);
     //1º parâmentro = tabela / 2º par = índice inicial da sql / 3º par = quantos resgistros eu quero
     //($paginaAtual - 1 = 0). 0 é o primeiro registro do banco.
 ?>
@@ -43,8 +43,8 @@
                     $nomeCategoria = Painel::select('tb_site.categorias', 'id=?', array($value['categoria_id']))['nome'];
             ?>
             <tr class="body">
-                <td style="width: 200px;"><?php echo $value['titulo']; ?></td>
-                <td style="width: 170px;"><?php echo $nomeCategoria; ?></td>
+                <td><?php echo $value['titulo']; ?></td>
+                <td><?php echo $nomeCategoria; ?></td>
                 <td><img style="width: 120px;height: 80px;border:1px solid white" 
                 src="<?php echo INCLUDE_PATH_PAINEL; ?>uploads/noticias/<?php echo $value['capa']; ?>"></td>
                 <td><a class="btn-edit" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-noticia?id=<?php echo $value['id']; ?>">Editar</a></td>

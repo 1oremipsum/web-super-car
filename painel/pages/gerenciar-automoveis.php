@@ -1,5 +1,7 @@
 <?php verificaPermissao(1); 
-    $automoveis = Painel::selectAll('tb_site.automoveis');
+    $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    $porPagina = 10; //resultados por pagina
+    $automoveis = Painel::selectAll('tb_site.automoveis', null, ($paginaAtual - 1) * $porPagina, $porPagina);
     $concess = Painel::selectAll('tb_site.concessionarias');
 ?>
 <div class="box-content">
@@ -133,16 +135,17 @@
 
     <div style="margin-top: 30px;" class="wrapper-table">
         <div class="card-title"><i class="fa-solid fa-car-rear"></i><i class="fa-solid fa-list-check"></i> Automóveis Cadastrados</div>
-            <table style="margin: 5px 0;">
+            <table id="listar-automoveis" style="margin: 5px 0;">
                 <tr>
                     <td>Concessionária</td>
-                    <td>Marca <i class="fa-solid fa-arrow-down-a-z"></i></td>
+                    <td>Marca</td>
                     <td>Modelo</td>
-                    <td>Preço <i class="fa-solid fa-arrow-up-wide-short"></i></td>
-                    <td>Ano/Modelo <i class="fa-solid fa-arrow-up-wide-short"></i></td>
-                    <td>Quilometragem <i class="fa-solid fa-arrow-up-wide-short"></i></td>
+                    <td>Preço</td>
+                    <td>Ano/Modelo</td>
+                    <td>Quilometragem</td>
                     <td>Visualização</td>
                 </tr>
+                
         <?php 
             foreach ($automoveis as $key => $auto) {
                 foreach ($concess as $key => $conc) {
@@ -164,4 +167,15 @@
     ?>
         </table>
     </div><!-- wrapper-table -->
+    <div class="paginacao">
+        <?php 
+            $totalPaginas = ceil(count(Painel::selectAll('tb_site.automoveis')) / $porPagina);
+            for($i=1; $i<=$totalPaginas; $i++){
+                if($i == $paginaAtual){
+                    echo '<a class="page-selected" href="'.INCLUDE_PATH_PAINEL.'gerenciar-automoveis?pagina='.$i.'">'.$i.'</a>';
+                }else
+                    echo '<a href="'.INCLUDE_PATH_PAINEL.'gerenciar-automoveis?pagina='.$i.'">'.$i.'</a>';
+            }
+        ?>
+    </div><!-- paginacao -->
 </div><!-- box-content -->

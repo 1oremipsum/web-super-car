@@ -147,7 +147,6 @@
             $query = "UPDATE `$nome_tabela` SET ";
             foreach ($array as $key => $value) {
                 $nome = $key;
-                $valor = $value;
                 if($nome == 'acao' || $nome == 'nome_tabela' || $nome == 'id')
                     continue;
                 if($value == ''){

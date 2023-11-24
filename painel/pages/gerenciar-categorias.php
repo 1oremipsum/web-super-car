@@ -19,7 +19,7 @@
 
     $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $porPagina = 3; //resultados por pagina
-    $categorias = Painel::selectAll('tb_site.categorias', ($paginaAtual - 1) * $porPagina, $porPagina);
+    $categorias = Painel::selectAll('tb_site.categorias', null,($paginaAtual - 1) * $porPagina, $porPagina);
     //1º parâmentro = tabela / 2º par = índice inicial da sql / 3º par = quantos resgistros eu quero
     //($paginaAtual - 1 = 0). 0 é o primeiro registro do banco.
 ?>

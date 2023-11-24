@@ -433,7 +433,7 @@ body{
     .box-content form input[type=submit]{
         border: 0;
         width: 30%;
-        height: 40px;
+        height: 50px;
         border-radius: 10px;
         cursor: pointer;
         margin-top: 18px;
@@ -634,8 +634,8 @@ body{
 
     .box-single{
         width: 100%;
-        border: 1px solid whitesmoke;
-        box-shadow: 8px 8px 4px rgb(14, 13, 13);
+        border: 1px solid #555555;
+        box-shadow: 8px 8px 3px #000;
         height: 192px;
         overflow-x: auto;
         border-radius: 10px;
@@ -647,7 +647,7 @@ body{
         color: whitesmoke;
         padding: 8px 0;
         height: 94px;
-        border-bottom: 1px solid whitesmoke;
+        border-bottom: 1px solid #555555;
     }
 
     .box-top i{
@@ -737,12 +737,12 @@ body{
     .single-btn .btn-delete{
         font-size: 17px;
         text-align: center;
-        width: 15%;
+        width: 200px;
         height: 55px;
         border-radius: 10px;
         padding: 17px 0;
         background-color: darkred;
-        box-shadow: 8px 8px 4px rgb(2, 0, 7);
+        box-shadow: 8px 8px 4px #000;
         float: inline-end;
     }
 
@@ -803,6 +803,19 @@ body{
 
     .row2 p > i{
         font-size: 15px;
+    }
+
+    .box-single-img{
+        width: 100%;
+        background: #000025; 
+        border-radius: 15px; 
+        border: 1px solid #555555;
+        padding: 8px 8px;
+        margin: 0;
+    }
+
+    .box-imgs{
+        width: 100%;
     }
 /* fim visualizar automoveis */
 
@@ -903,6 +916,11 @@ body{
     .row1 img{
         height: 250px;
     }
+    .form-group {
+        width: 100% !important;
+        float: none;
+        padding: 0 !important;
+    }
 }
 
 @media screen and (max-width: 500px){
@@ -916,16 +934,13 @@ body{
 }
 
 @media screen and (max-width: 400px){
-
 	.box-metrica-wraper h2{
 	    font-size: 24px;
 	}
-
 	.box-metrica-wraper p{
         padding: 10px 0;
         font-size: 22px;
 	}
-
 	.menu-wraper{
 		width: 200px;
 	}
