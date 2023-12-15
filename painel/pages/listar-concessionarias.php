@@ -75,7 +75,7 @@
                             
                             <a actionBtn="delete" class="btn-delete" href="<?php echo INCLUDE_PATH_PAINEL ?>listar-concessionarias?excluir=<?php echo $value['id']; ?>"><i class="fa-solid fa-trash-can"></i> Excluir</a>
 
-                            <a class="btn-view" href="<?php echo INCLUDE_PATH_PAINEL ?>visualizar-info-concessionaria?id=<?php echo $value['id']; ?>"><i class="fa-solid fa-eye"></i> Visualizar Informações</a>
+                            <a class="btn-view" href="<?php echo INCLUDE_PATH_PAINEL ?>visualizar-info-concessionaria/<?php echo $value['id']; ?>"><i class="fa-solid fa-eye"></i> Visualizar Informações</a>
                         </div>
                     </div><!-- box-body -->
                 </div><!-- box-single -->

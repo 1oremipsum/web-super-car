@@ -12,8 +12,11 @@
         if(isset($_POST['acao'])){
             $marca = $_POST['marca'];
             $modelo = $_POST['modelo'];
-            $preco = $_POST['preco'];
+            $versao = $_POST['versao'];
+            $preco = Painel::formatarMoedaBD($_POST['preco']);
             $quilometragem = $_POST['quilometragem'];
+            $cambio = $_POST['cambio'];
+            $combustivel = $_POST['combustivel'];
             $anoFab = $_POST['ano_fab'];
             $anoMod = $_POST['ano_mod'];
             $idConcessionaria = $_POST['id_concessionaria'];
@@ -60,8 +63,9 @@
                     $imagens[] = Painel::uploadFile('uploads/automoveis',$currentImg);
                 }
 
-                $sql = MySql::conectar()->prepare("INSERT INTO `tb_site.automoveis` VALUES (null,?,?,?,?,?,?,?,?,?)");
-                $sql->execute(array($idConcessionaria, $marca, $modelo, $anoFab, $anoMod, $preco, $quilometragem, 0 ,0));
+                $sql = MySql::conectar()->prepare("INSERT INTO `tb_site.automoveis` VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                $slug = Painel::generateSlug($modelo.' '.$versao);
+                $sql->execute(array($idConcessionaria, $marca, $modelo, $versao, $anoFab, $anoMod, $preco, $quilometragem, $cambio, $combustivel, $slug, 0 ,0));
                 $lastId = MySql::conectar()->lastInsertId();
                 MySql::conectar()->exec("UPDATE `tb_site.automoveis` SET order_id = $lastId WHERE id = $lastId");
 
@@ -87,6 +91,11 @@
             <input type="text" name="modelo" required />
         </div><!-- form-group -->
 
+        <div class="form-group">
+            <label>Versão</label>
+            <input type="text" name="versao" required />
+        </div><!-- form-group -->
+
         <div class="form-group W50 left">
             <label>Preço</label>
             <input type="text" name="preco" placeholder="R$ 0,00" required />
@@ -101,19 +110,19 @@
 
         <div class="form-group right" style="width: 24%;">
             <label>Ano Modelo</label>
-            <input min="2010" max="2023" type="number" name="ano_mod" required
+            <input min="2010" max="<?php echo date("Y");?>" type="number" name="ano_mod" required
             placeholder="min/max: 2010/<?php echo date("Y");?>"/>
         </div><!-- form-group -->
 
         <div class="form-group right" style="width: 25%; padding-right: 15px;">
             <label>Ano de Fabricação</label>
-            <input min="2010" max="2023" type="number" name="ano_fab" required
+            <input min="2010" max="<?php echo date("Y");?>" type="number" name="ano_fab" required
             placeholder="min/max: 2010/<?php echo date("Y");?>"/>
         </div><!-- form-group -->
         
-        <div class="form-group"">
+        <div class="form-group left W50">
             <label>Concessionária</label>
-            <select style="width: 49%;" name="id_concessionaria" required>
+            <select name="id_concessionaria" required>
                 <?php 
                     $concess = Painel::selectAll('tb_site.concessionarias'); 
                     foreach ($concess as $key => $value) {
@@ -123,13 +132,37 @@
             </select>
         </div>
 
+        <div class="form-group left W50" style="margin-right: 20px;">
+            <label>Câmbio</label>
+            <select name="cambio" required >
+                <?php 
+                    $cambios = \model\Automovel::$cambios;
+                    foreach ($cambios as $key => $camb) {
+                ?>
+                <option value="<?php echo $key; ?>"><?php echo $camb; ?></option>
+                <?php } ?>
+            </select>
+        </div><!-- form-group -->
+
+        <div class="form-group right W50">
+            <label>Combustível</label>
+            <select name="combustivel" required>
+                <?php 
+                    $combustiveis = \model\Automovel::$combustiveis;
+                    foreach ($combustiveis as $key => $comb) {
+                ?>
+                <option value="<?php echo $key; ?>"><?php echo $comb; ?></option>
+                <?php } ?>
+            </select>
+        </div><!-- form-group -->
+
         <div class="form-group">
             <label>Selecione Imagens</label>
             <input type="file" multiple name="imagem[]" required />
         </div><!-- form-group -->
 
         <div class="form-group">
-            <input type="submit" name="acao" value="Enviar!" />
+            <input type="submit" name="acao" value="Cadastrar!" />
         </div><!-- form-group -->
     </form>
 
@@ -148,6 +181,9 @@
                 
         <?php 
             foreach ($automoveis as $key => $auto) {
+                $auto['preco'] = Painel::convertMoney($auto['preco']);
+                $auto['quilometragem'] = Painel::convertKm($auto['quilometragem']);
+
                 foreach ($concess as $key => $conc) {
                     if($auto['id_concessionaria'] == $conc['id']){
         ?>
@@ -161,7 +197,7 @@
                 <td><a class="btn-view" href="<?php echo INCLUDE_PATH_PAINEL ?>editar-automovel?id=<?php echo $auto['id']; ?>"><i class="fa-solid fa-eye"></i> Visualizar</a></td>
             </tr>
     <?php       
-                   }
+                    }
                 }
             }             
     ?>

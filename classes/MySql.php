@@ -1,7 +1,6 @@
 <?php
 
-    class MySql
-    {
+    class MySql{
 
         private static $pdo;
 

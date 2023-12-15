@@ -32,7 +32,8 @@
 
                 if($sucesso){
                     $logo = Painel::updateFile($logo, 'uploads/concessionarias');
-                    $arr = ['nome'=>$nome, 'cnpj'=>$cnpj, 'fone'=>$fone, 'logo'=>$logo, 'order_id'=>'0', 'nome_tabela'=>'tb_site.concessionarias'];
+                    $slug = Painel::generateSlug($nome);
+                    $arr = ['nome'=>$nome, 'cnpj'=>$cnpj, 'fone'=>$fone, 'logo'=>$logo, 'slug'=>$slug, 'order_id'=>'0', 'nome_tabela'=>'tb_site.concessionarias'];
                     Painel::insert($arr);
                     Painel::alert('sucesso','A concessionária '.$nome.' foi cadastrada com sucesso!');
                 }

@@ -1,8 +1,7 @@
 $(function(){
-   
     var currentSlide = 0;
     var maxSlide = $('.banner-single').length - 1;
-    var delay = 5; 
+    var delay = 8; 
 
     initSlider();
     changeSlide();
@@ -43,5 +42,4 @@ $(function(){
         $('.bullets span').removeClass('active_slider');
         currentBullet.addClass('active_slider');
     });
-
 })

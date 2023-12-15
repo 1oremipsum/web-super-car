@@ -37,8 +37,12 @@
 		if(isset($_POST['acao'])){
 			$marca = $_POST['marca'];
 			$modelo = $_POST['modelo'];
+			$versao = $_POST['versao'];
 			$preco = $_POST['preco'];
 			$quilometragem = $_POST['quilometragem'];
+			$cambio = $_POST['cambio'];
+            $combustivel = $_POST['combustivel'];
+			$cor = $_POST['cor'];
 			$anoMod = $_POST['ano_mod'];
 			$anoFab = $_POST['ano_fab'];
 			$concess = $_POST['id_concessionaria'];
@@ -48,9 +52,11 @@
 
             $sucesso = true;
 
-			if($marca == '' || $modelo == ''){
+			if($marca == '' || $modelo == '' || $versao == '' || $cor == '' || $preco == '' || 
+			   $quilometragem == '' || $cambio == '' || $combustivel == '' || $anoMod == '' ||
+			   $anoFab == '' || $concess == ''){
 				$sucesso = false;
-				Painel::alert('erro', 'Marca ou modelo não podem estar vázios!');
+				Painel::alert('erro', 'Campos vazios não são permitidos!');
 			}
 
 			if($quilometragem != ''){
@@ -100,13 +106,15 @@
 						MySql::conectar()->exec("UPDATE `tb_site.imagens_automoveis` SET order_id = $lastId WHERE id = $lastId");
 					}
 
-					$arr = ['id_concessionaria'=>$concess, 'marca'=>$marca, 'modelo'=>$modelo, 'ano_fab'=>$anoFab, 'ano_mod'=>$anoMod, 'preco'=>$preco, 'quilometragem'=>$quilometragem, 'id'=>$id, 'nome_tabela'=>'tb_site.automoveis'];
+					$arr = ['id_concessionaria'=>$concess, 'marca'=>$marca, 'modelo'=>$modelo, 'versao'=>$versao, 'ano_fab'=>$anoFab, 'ano_mod'=>$anoMod, 'preco'=>$preco, 'quilometragem'=>$quilometragem,
+					'cambio'=>$cambio, 'combustivel'=>$combustivel, 'cor'=>$cor, 'id'=>$id, 'nome_tabela'=>'tb_site.automoveis'];
 					Painel::update($arr);
 
 					$infoAuto = Painel::select('tb_site.automoveis', 'id = ?', array($id)); //update
 					$automovelImgs = Painel::selectQuery('tb_site.imagens_automoveis', "automovel_id = $id ORDER BY order_id ASC", null);
 				}else{
-					$arr = ['id_concessionaria'=>$concess, 'marca'=>$marca, 'modelo'=>$modelo, 'ano_fab'=>$anoFab, 'ano_mod'=>$anoMod, 'preco'=>$preco, 'quilometragem'=>$quilometragem, 'id'=>$id, 'nome_tabela'=>'tb_site.automoveis'];
+					$arr = ['id_concessionaria'=>$concess, 'marca'=>$marca, 'modelo'=>$modelo, 'versao'=>$versao, 'ano_fab'=>$anoFab, 'ano_mod'=>$anoMod, 'preco'=>$preco, 'quilometragem'=>$quilometragem,
+					'cambio'=>$cambio, 'combustivel'=>$combustivel, 'cor'=>$cor, 'id'=>$id, 'nome_tabela'=>'tb_site.automoveis'];
 					Painel::update($arr);
 					
 					$infoAuto = Painel::select('tb_site.automoveis', 'id = ?', array($id)); //update
@@ -117,15 +125,25 @@
 	?>
 	<div class="card-title"><i style="font-size: 18px;" class="fa-solid fa-circle-info"></i> Informações do Automóvel: <?php echo $infoAuto['marca']; ?> - <?php echo $infoAuto['modelo']; ?></div>
 
-		<div class="form-group">
+		<div class="form-group W50 right">
             <label>Marca</label>
             <input type="text" name="marca" value="<?php echo $infoAuto['marca'];?>" required />
         </div><!-- form-group -->
 
-        <div class="form-group">
+        <div class="form-group W50 left">
             <label>Modelo</label>
             <input type="text" name="modelo" value="<?php echo $infoAuto['modelo'];?>" required />
         </div><!-- form-group -->
+
+		<div class="form-group W50 left">
+            <label>Versao</label>
+            <input type="text" name="versao" value="<?php echo $infoAuto['versao'];?>" required />
+        </div><!-- form-group -->
+
+		<div class="form-group W50 right">
+			<label>Cor do automóvel</label>
+			<input type="text" name="cor" value="<?php echo $infoAuto['cor'];?>" required />
+		</div><!--form-group-->
 
         <div class="form-group W50 left">
             <label>Preço</label>
@@ -151,18 +169,45 @@
             placeholder="min/max: 2010/<?php echo date("Y");?>" value="<?php echo $infoAuto['ano_fab'];?>" />
         </div><!-- form-group -->
         
-        <div class="form-group"">
+        <div class="form-group left W50">
             <label>Concessionária</label>
-            <select style="width: 49%;" name="id_concessionaria"  <?php if($value['id'] == $infoAuto['id_concessionaria']) echo 'selected'; ?> value="<?php echo $value['id']; ?>" required>
+            <select name="id_concessionaria" required>
                 <?php 
                     $concess = Painel::selectAll('tb_site.concessionarias'); 
                     foreach ($concess as $key => $value) {
                 ?>
-                <option <?php if($value['id'] == @$_POST['id_concessionaria']) echo 'selected'; ?> value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option>
+                <option <?php if($value['id'] == $infoAuto['id_concessionaria']) echo 'selected'; ?> 
+				value="<?php echo $value['id']; ?>"><?php echo $value['nome']; ?></option>
                 <?php } ?>
             </select>
         </div>
 	
+		<div class="form-group left W50" style="margin-right: 20px;">
+            <label>Câmbio</label>
+            <select name="cambio" required >
+                <?php 
+                	$cambios = \model\Automovel::$cambios;
+					foreach ($cambios as $key => $value) {
+                ?>
+                <option <?php if($key == $infoAuto['cambio']) echo 'selected'; ?>
+				value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                <?php } ?>
+            </select>
+        </div><!-- form-group -->
+
+        <div class="form-group right W50">
+            <label>Combustível</label>
+            <select name="combustivel" required>
+                <?php 
+                    $combustiveis = \model\Automovel::$combustiveis;
+                    foreach ($combustiveis as $key => $value) {
+                ?>
+                <option <?php if($key == $infoAuto['combustivel']) echo 'selected'; ?>
+				value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                <?php } ?>
+            </select>
+        </div><!-- form-group -->
+
 		<div class="form-group">
 			<label>Selecione as imagens</label>
 			<input multiple type="file" name="imagem[]">

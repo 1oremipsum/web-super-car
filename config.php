@@ -1,7 +1,4 @@
 <?php 
-/*
-	TO DO: Var global com os cargos.
-*/
 	session_start();
 	date_default_timezone_set('America/Sao_Paulo');
 	
@@ -24,7 +21,7 @@
     define('PASSWORD','');
     define('DATABASE','super_car');
 
-	define('NOME_EMPRESA', 'Super.Car');
+	define('NOME_EMPRESA', 'SuperCar');
 	
 	function getCargo($indice){
 		return Painel::$cargos[$indice];

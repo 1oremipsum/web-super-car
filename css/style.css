@@ -24,7 +24,6 @@ body{
 }
 
 /* Boot CSS */
-
 	img{
 		width: 100%;
 	}
@@ -62,19 +61,22 @@ body{
 	}
 /* Boot CSS */
 
-/* Home, serviço, depoimentos */
-
 	header{
 		background-color: #030630;
 		padding: 0px 0;
 		width: 100%;
-		height: 140px;
+		height: 100px;
 		position: relative;
 	}
 
 	.logo{
+		background-image: url('../imagens/superCar.png');
+		background-size: 100% 80%;
 		position: absolute;
-		top: -25px;
+		top: -30px;
+		float: left;
+		width: 240px;
+		height: 200px;
 	}
 
 	.mobile{
@@ -85,25 +87,26 @@ body{
 		list-style-type: none;
 		display: flex;
 		position: absolute;
-		top: 55px;
-		right: 45px;
+		top: 45%;
+		left: 38%;
 	}
 
 	nav.descktop li{
 		font-weight: 600;
-		font-size: 15px;
-		padding: 0 25px;
+		font-size: 14px;
+		padding-right: 40px;
 		text-transform: uppercase;
 		display: inline-block;
 	}
 
 	nav.descktop a{
-		color: #4c57f5;
+		color: gainsboro;
 		text-decoration: none;
+		transition: 0.5s;
 	}
 
 	nav.descktop a:hover{
-		text-decoration: underline;
+		color: #7bb7fc;
 	}
 
 	section.banner-container{
@@ -146,7 +149,7 @@ body{
 
 	section.banner-container form h2{
 		color: rgb(250, 250, 250);
-		font-weight: 600;
+		font-weight: 300;
 		font-size: 35px;
 		text-align: center;
 	}
@@ -175,12 +178,11 @@ body{
 		font-size: 20px;
 		border: none;
 		border-radius: 30px;
-		transition: all 0.8s;
+		transition: all 1s;
 	}
 
 	section.banner-container form input[type=submit]:hover{
 		background-color: #03449c;
-		font-size: 21px;
 	}
 
 	.bullets{
@@ -204,107 +206,8 @@ body{
 		background: aqua;
 	}
 
-	section.descricao-empresa{
-		padding: 30px 0;
-		background-color: #030630;
-	}
-
-	section.descricao-empresa h2{
-		font-size: 35px;
-		font-weight: 600;
-		color: whitesmoke;
-	}
-
-	section.descricao-empresa p{
-		font-size: 16px;
-		color: whitesmoke;
-		text-align: justify;
-		margin-top: 10px;
-	}
-
-	section.qualidades{
-		padding: 40px;
-		background-color: #03084e;
-		text-align: center;
-	}
-
-	section.qualidades h2.title{
-		font-size: 35px;
-		font-weight: 600;
-		color: whitesmoke;
-	}
-
-	.box-qualidade{
-		margin: 40px 0;
-		padding: 0 30px;
-	}
-
-	section.qualidades h3{
-		color: #E1E7E4;
-		font-size: 50px;
-		text-align: center;
-		margin-top: 10px;
-	}
-
-	section.qualidades h4{
-		color: whitesmoke;
-		font-size: 25px;
-		font-weight: 600;
-	}
-
-	section.qualidades p{
-		color: whitesmoke;
-		text-align: justify;
-		font-size: 16px;
-		font-weight: 300;
-		margin: 25px;
-	}
-
-	section.extras{
-		background-color: #030630;
-		color: whitesmoke;
-		padding: 40px 35px;
-		text-align: justify;
-	}
-
-	.servicos-container, .depoimentos-container{
-		padding: 0 50px;
-	}
-
-	section.extras .title{
-		font-weight: 600;
-		font-size: 28px;
-		margin-bottom: 20px;
-	}
-
-	.depoimento-single{
-		padding: 10px 0;
-		border-bottom: 1px solid #5056A0;
-	}
-
-	p.depoimento-descricao{
-		font-style: italic;
-		font-weight: 300;
-		font-size: 15px;
-	}
-
-	p.nome-autor{
-		font-weight: bold;
-		font-size: 18px;
-		margin-top: 20px;
-	}
-
-	.servicos-info ul{
-		margin: 20px 0;
-		list-style-position: inside;
-	}
-
-	.servicos-info li{
-		margin-bottom: 15px;
-	}
-
 	footer{
-		background-color: #0c0c0c;
+		background-color: #030630;
 		padding: 30px 0;
 	}
 
@@ -352,389 +255,425 @@ body{
 		top: 50%;
 		transform: translate(-50%, -50%);
 	}
-/* Home, serviço, depoimentos */
 
-/* PÁGINA DE ERRO */
-	section.erro-404 h1{
-		margin-top: 10%;
-		font-size: 40px;
-		text-align: center;
-		border-bottom: 1px solid black;
-	}
-
-	section.erro-404 p{
-		padding-top: 10px;
-		text-align: center;
-		font-size: 18px;
-		font-weight: 400;
-	}
-
-	section.erro-404 a{
-		color: #05649b;
-		text-decoration: none;
-	}
-/* PÁGINA DE ERRO */
-
-
-/* PÁGINA CONTATO */
-	#map{
-		width: 100%;
-		height: 400px;
-	}
-
-	.contato-dialog{
-		width: 100%;
-		padding: 30px 30px;
-		background-color: #03084e;
-	}
-
-	.contato-dialog h1{
-		text-align: center;
-		font-size: 50px;
-		color: #E1E7E4;
-	}
-
-	.contato-dialog h2{
-		font-weight: 600;
-		color: whitesmoke;
-		font-size: 30px;
-		text-align: center;
-		margin-bottom: 10px;
-	}
-
-	.contato-dialog p{
-		text-align: center;
-		color: whitesmoke;
-		font-size: 16px;
-		font-weight: 400;
-	}
-
-	.contato-container{
-		padding: 40px 0;;
-		text-align: center;
-		background-color: #030630;
-	} 
-
-	.contato-container input[type=text]{
-		background-color: whitesmoke;
-		margin: 4px 0;
-		width: 50%;
-		height: 40px;
-		padding-left: 8px;
-		font-size: 16px;
-		color: #444;
-		border: 1px solid black;
-	}
-
-	.contato-container input[type=email]{
-		background-color: whitesmoke;
-		margin: 4px 0;
-		width: 50%;
-		height: 40px;
-		padding-left: 8px;
-		font-size: 16px;
-		color: #444;
-		border: 1px solid black;
-	}
-
-	.contato-container textarea{
-		margin: 8px 0;
-		width: 50%;
-		height: 120px;
-		border: 1px solid black;
-		resize: vertical;
-		padding-left: 8px;
-		font-size: 16px;
-		max-width: 800px;
-		color: #444;
-	}
-
-	.contato-container input[type=submit]{
-		background-color: #008dc5;
-		transition: all 0.4s;
-		font-size: 16px;
-		width: 50%;
-		height: 40px;
-		color: whitesmoke;
-		cursor: pointer;
-		border: none;
-	}
-
-	.contato-container input[type=submit]:hover{
-		background-color: #03449c;
-		font-size: 18px;
-
-	}
-/* PÁGINA CONTATO */
-
-/* página notícias*/
-    .header-noticias{
-		width: 100%;
-		background: #03084e;
-		padding: 40px 0;
-	}
-
-	.header-noticias h2:nth-of-type(1){
-		font-size: 41px;
-	}
-
-	.header-noticias h2{
-		color: white;
-		text-align: center;
-		text-transform: uppercase;
-		font-weight: normal;
-		font-size: 28px;
-	}
-
-	b{
-		color: #F40B5C;
-	}
-
-	section.container-portal{
-		padding: 50px 0;
-	}
-
-	.box-content-sidebar{
-		width: 100%;
-		margin-bottom: 20px;
-		border-radius: 15px;
-		background: #DDDDDD;
-		padding: 15px;
-		color: #333864;
-	}
-
-	.sidebar{
-		float: left;
-		width: 30%;
-	}
-
-	.box-content-sidebar h3{
-		font-size: 18px;
-		font-weight: normal;
-		margin: 10px 0;
-	}
-
-	.box-content-sidebar input[type=text]{
-		width: 100%;
-		height: 35px;
-		border: 1px solid whitesmoke;
-		padding-left: 8px;
-		margin: 10px 0;
-	}
-
-	.box-content-sidebar input[type=submit]{
-		cursor: pointer;
-		background: #F40B5C;
-		color: whitesmoke;
-		border: 0;
-		width: 115px;
-		height: 35px;
-		font-weight: bold;
-		margin: 10px 0;
-		transition: all 0.4s;
-	}
-
-	.box-content-sidebar input[type=submit]:hover{
-		background: #f7377a;
-	}
-
-	.box-content-sidebar select{
-		width: 100%;
-		height: 35px;
-		border: 1px solid whitesmoke;
-		padding-left: 8px;
-		margin: 10px 0;
-	}
-
-	.autor-box-portal{
-		margin: 10px;
-		text-align: center;
-		color: #292929;
-	}
-
-	.box-img-autor{
-		width: 160px;
-		height: 160px;
-		border-radius: 50%;
-		margin: 10px 0;
-		display: inline-block;
-		background-image: url('../painel/uploads/allansan.jpg');
-		background-size: 100% 100%;
-	}
-
-	.autor-box-portal p{
-		font-size: 15px;
-		margin-top: 8px;
-		font-weight: lighter;
-	}
-
-	.conteudo-portal{
-		float: left;
-		width: 70%;
-		padding-left: 50px;
-	}
-
-	.header-conteudo-portal{
-		color: #333864;
-	}
-
-	.header-conteudo-portal h2{
+	section.description{
 		font-size: 26px;
-		font-weight: bold;
+		border-radius: 0 0 0 45px;
+		background-image: linear-gradient(
+			178deg,
+			#010322 30%,
+			#040e9b 60%,
+			whitesmoke
+		);
 	}
 
-	.header-conteudo-portal h2 > span{
-		border-top: 2px solid #333864;
+	section.search-area{
+		font-size: 26px;
+		padding: 30px 100px;
+		background-image: linear-gradient(
+			to bottom,
+			#010322,
+			#040e9b,
+			whitesmoke
+		);
 	}
 
-	.box-single-conteudo{
-		margin: 15px 0;
+	section.description h2{
+		padding: 80px 50px;
+		color: white;
+		font-weight: 300;
+		height: 220px;
+	}
+
+	section.search-1{
+		padding: 20px 0;
+		display: flex;
+		flex-direction: row;
+	}
+
+	section.search-1 .search-box{
+		background-color: #fffafa;
+		padding: 10px;
+		border-radius: 40px;
+		width: 85%;
+		height: 55px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+    }
+
+	.search-txt{
+        margin-left: 20px;
+    }
+
+	.search-box input[type=text]{
+        width: 100%;
+        height: 30px;
+        border: 0 none;
+        background: none;
+        outline: 0 none;
+        padding: 0 10px;
+        color: #121212;
+        font-size: 16px;
+        transition: 0.5s;
+    }
+
+	.search-box input[type=text]::placeholder{
+		color: #494949;
+	}
+
+    .search-btn{
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #011844;
+        transition: 0.5s;
+    }
+
+	.search-btn > i{
+		color: white;
+	}
+
+	.search-btn:hover{
+        background-color: #040c7e;
+    }
+
+	.filter-btn{
+		cursor: pointer;
+		margin-right: 5%;
 		padding: 15px 0;
+		width: 175px;
+		height: 55px;
+		border: 2px solid white;
+		border-radius: 25px;
+		float: right;
+		transition: 1s;
+	}
+
+	.filter-btn p{
+		color: white;
+		font-size: 18px;
+		text-align: center;
+	}
+
+	.filter-btn:hover{ 
+		box-shadow: 0px 0px 15px white;
+	}
+
+	.filter-btn i{
+		font-size: 18px;
+	}
+
+	section.search-2{
+		display: none;
+		font-size: 17px;
+		padding: 50px 50px;
+		color: white;
+	}
+
+	section.search-2 input[type=text],
+	section.search-2 input[type=number]{
+		color: black;
+		padding: 0 8px;
+		margin-bottom: 15px;
+		border-radius: 5px;
+		border: none;
+		font-size: 16px;
+		width: 100%;
+		height: 50px;
+	}
+
+	section.search-2 input[type=text]::placeholder{
+		color: #494949;
+	}
+
+	section.search-2 input[type=number]::placeholder{
+		color: #494949
+	}
+
+	.form-group{
+		float: left;
+		width: 50%;
+		padding: 0 5px;
+	}
+
+	section.list-automoveis{
+		background: whitesmoke;
+		padding: 25px 150px;
+	}
+
+	.title-busca{
+		color: #1a1a1a;
+		font-size: 14px;
+		margin-bottom: 20px;
+	}
+
+	.title-busca b{
+		color: crimson;
+	}
+
+	.flex-automoveis{
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.box-automovel-hidden{
+		width: 25%;
+		margin-bottom: 30px;
+	}
+
+	.box-automovel{
+		padding: 0;
+		border-radius: 15px;
+		width: 245px;
+		height: 460px;
+		background: white;
+		box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+	}
+
+	.box-automovel img{
+		width: 245px;
+		height: 180px;
+		border-radius: 15px 15px 0 0;
+	}
+
+	.box-automovel-header{
+		padding: 5px 10px;
+		text-align: center;
+	}
+
+	.box-automovel-header h2{
+		font-weight: 300;
+	}
+
+	.box-automovel-info{
+		padding: 12px 0;
+		border-top: 1px solid #ccc;
 		border-bottom: 1px solid #ccc;
 	}
 
-	.box-single-conteudo h2{
-		color: #333864;
-		font-weight: normal;
-		font-size: 22px;
+	.box-automovel-info p{
+		padding: 0 50px;
+		white-space: nowrap;
+		font-weight: lighter;
+		text-align: justify;
+		font-size: 12px;
 	}
 
-	.capa-conteudo{
-		margin-top: 13px;
-		margin-right: 12px;
-		width: 160px;
-		display: inline-block;
-		float: inline-start;
+	.box-automovel-info p > i{
+		font-size: 10px;
 	}
 
-	.box-single-conteudo p{
-		color: #292929;
-		font-weight: normal;
+	.price-area{
+		padding: 20px 0;
+		text-align: center;
+	}
+
+	.price-area h3{
 		font-size: 16px;
-		margin-top: 8px;
-		margin-bottom: 15px;
+		color: #333;
 	}
 
-	.box-single-conteudo a{
-		background: #01b95d;
-		display: block;
-		font-size: 15px;
-		margin-top: 8px;
-		width: 100px;
-		height: 30px;
-		line-height: 30px;
-		padding: 0 3px;
+	.price-area p{
+		color: #121a8d;
+		font-size: 25px;
+		font-weight: bold;
+	}
+
+	.btn-area{
+		padding: 15px 0;
 		text-align: center;
+	}
+
+	a.btn-view{
+		padding: 12px 20px;
 		text-decoration: none;
+		border-radius: 20px;
 		color: white;
-		float: center;
-		transition: all 0.4s;
-	}
-
-	.box-single-conteudo a:hover{
-		background: #23ca77;
-	}
-
-	.pages{
+		background-color: #010322;
 		text-align: center;
-	}
-
-	.pages a{
-		margin: 0 5px;
-		width: 34px;
-		height: 34px;
-		border-radius: 50%;
-		display: inline-block;
-		padding: 6px 2px;
-		background: rgb(220, 220, 220);
-		text-decoration: none;
-		color: darkblue;
-	}
-
-	.pages a.active-page{
-		background-color: rgb(190, 190, 190);
-	}
-/* página notícias*/
-
-/* pg noticia_single*/
-	section.noticia-single{
-		padding: 40px 0;
-		color: #646464;
-	}
-
-	section.noticia-single h1{
-		color: #333864;
-		font-size: 29px;
-		border-bottom: 1px solid #333864;
-	}
-
-	section.noticia-single header{
-		background-color: transparent;
-		height: 40px;
-	}
-
-	section.noticia-single article{
-		margin-top: 5px;
-	}
-
-	section.noticia-single h3,
-	section.noticia-single h2{
-		margin: 10px 0;
-	}
-
-	section.noticia-single p{
-		margin: 10px 0;
+		width: 250px;
+		height: 55px;
+		font-weight: bold;
 		font-size: 18px;
+		transition: 0.5s;
 	}
 
-	section.noticia-single ul{
-		margin: 10px 0;
-		list-style-position: inside;
+	a.btn-view:hover{
+		box-shadow: 0 0 15px #010322;
 	}
 
-	section.noticia-single img{
-		display: block;
-		margin: 0 auto;
-		max-width: 100%;
+	.home-flex-automoveis{
+		width: 100%;
 	}
-/* pg noticia_single*/
+
+	.home-flex-automoveis .home-box-automovel-hidden{
+		max-width: 1200px;
+		margin: auto;
+		padding: 0 30px;
+	}
+
+	.home-box-automovel-hidden .home-box-automovel{
+		line-height: 28px;
+		text-align: center;
+		margin: 20px 0;
+		border-radius: 15px;
+		box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+		transition: 0.5s;
+	}
+
+	.home-box-automovel img{
+		border-radius: 15px 15px 0 0;
+	}
+
+	.home-box-automovel .box-automovel-info{
+		padding: 4px 16px;
+	}
+
+	.home-box-automovel-hidden .home-box-automovel:hover{
+		box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+	}
+
+	.owl-dots{
+		text-align: center;
+		margin-top: 20px;
+	}
+
+	.owl-dot{
+		height: 15px;
+		width: 45px;
+		border-radius: 25px;
+		border: 1px solid #0072bc !important;
+		cursor: pointer;
+		outline: none;
+		margin: 0 5px;
+		text-align: center;
+		transition: all 0.3s ease;
+	}
+
+	.owl-dot.active{
+		background: #0072bc !important;
+	}
+
+	.img-carousel-area{
+		width: 100%;
+		height: 375px;
+		background: whitesmoke;
+		border-radius: 0 0 18px 18px;
+		box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+	}
+
+	.img-carousel-area .img-wrapper{
+		max-width: 1200px;
+		margin: auto;
+		padding: 0 5px;
+	}
+
+	.img-wrapper .img-single{
+		text-align: center;
+		margin: 20px 0;
+	}
+
+	.img-single > img{
+		width: 400px;
+		height: 285px;
+		border-radius: 10px;
+	}
+
+	.img-carousel-area .owl-dots{
+		text-align: center;
+		margin-top: 0;
+	}
+
+	.img-carousel-area .owl-dot{
+		height: 18px;
+		width: 18px;
+		border-radius: 50%;
+		border: 1px solid #0072bc !important;
+		cursor: pointer;
+		outline: none;
+		margin: 0 5px;
+		text-align: center;
+		transition: all 0.3s ease;
+	}
+
+	.box-content{
+		width: 100%;
+		padding: 30px 30px;
+		background: white;
+	}
+
+	.box-content > h2{
+		margin-top: 10px;
+		font-weight: 300;
+	}
+
+	.wrapper-table{
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: auto;
+		width: 650px;
+		height: 220px;
+		margin: 16px 0;
+		padding: 15px 0px;
+		border-radius: 10px;
+		box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+		background: whitesmoke;
+    }
+
+    .wrapper-table table tr td i{
+        font-size: 16px;
+    }
+
+    .wrapper-table .body a{
+        margin-right: 13px;
+        text-decoration: none;
+    }
+
+	.table-responsive{
+		color: black;
+		margin: 20px auto;
+	}
+
+	.row{
+		padding: 0;
+		font-weight: 300;
+	}
+
+	.col{
+		padding: 5px 15px;
+		float: left;
+		height: 30px;
+		width: 50%;
+	}
+
+	.col > span{
+		font-size: 15px;
+	}
+
+	.col > span > b{
+		font-weight: normal;
+	}
+
+	.row:nth-of-type(2n + 1) > .col{
+		background-color: #ececec;
+	}
+
+	.col:nth-of-type(2n + 2){
+		padding-left: 80px;
+	}
 
 @media screen and (max-width: 1204px){
-	nav.descktop ul{
-		right: 0;
+	section.search-2{
+		transform:translate(2%, 10%);
+		padding: 0;
 	}
-	nav.descktop li{
-		padding: 0 15px;
+	section.search-2 input[type=text],
+	section.search-2 input[type=number]{
+		width: 90%;
 	}
-	img.right{
-		float: none !important;
-		margin-top: 110px;
-	}
-	.w33{
-		width: 100%;
-		margin: 10px;
-	}
-	.box-qualidade{
-		margin: 0;
-		padding: 10px 10px;
-	}
-	section.erro-404 h1{
-		margin-top: 15%;
-	}
-	section.noticia-single header{
-		height: 60px;
-	}
-	section.noticia-single h3,
-	section.noticia-single h2{
-		margin-top: 40px;
-	}
-}
-
-@media screen and (max-width: 790px){
-	header{
-		border-top: 1px  solid #4c57f5;
-		border-bottom: 1px  solid #4c57f5;
-	}
+	
 	nav.descktop{
 		display: none;
 	}
@@ -747,7 +686,7 @@ body{
 		display: none;
 		z-index: 3;
 		position: absolute;
-		top: 138px;
+		top: 98px;
 		right: 0;
 		width: 100%;
 		border-top:  1px  solid #4c57f5;
@@ -762,60 +701,108 @@ body{
 	}
 	nav.mobile li a{
 		text-decoration: none;
-		color: #4c57f5;
+		color: gainsboro;
 		font-weight: 400;
 		font-size: 18px;
-	}
-	.botao-menu-mobile{
-		color: #4c57f5;
-		font-size: 32px;
-		margin-top: 42px;
-		margin-right: 3.2rem;
-		cursor: pointer;
-	}
-	section.erro-404 h1{
-		margin-top: 20%;
+		transition: 0.5s;
 	}
 
-	section.noticia-single header{
-		border: none;
+	nav.mobile li a:hover{
+		color: #7bb7fc;
 	}
-	section.noticia-single h3,
-	section.noticia-single h2{
-		margin-top: 60px;
+
+	.botao-menu-mobile{
+		color: #4c57f5;
+		font-size: 30px;
+		margin-top: 30px;
+		margin-right: 3.0rem;
+		cursor: pointer;
+	}
+	nav.descktop li{
+		padding: 0 15px;
+	}
+
+	section.search-area{
+		padding: 60px 20px;
+	}
+
+	.filter-btn{
+		padding: 18px 32px;
+	}
+
+	.w33{
+		width: 100%;
+		margin: 10px;
+	}
+
+	section.list-automoveis{
+		padding: 20px 100px;
+	}
+
+	.flex-automoveis{
+		display: flex;
+	}
+
+	.box-automovel-hidden{
+		width: 33.3%;
+		white-space: nowrap;
+	}
+}
+
+@media screen and (max-width: 790px){
+	header{
+		border-top: 1px  solid #4c57f5;
+		border-bottom: 1px  solid #4c57f5;
+	}
+	.form-group{
+		width: 50%;
+	}
+	section.search-2 input[type=text]::placeholder{
+		font-size: 12px;
+	}
+	section.search-2 input[type=number]::placeholder{
+		font-size: 12px;
+	}
+	section.search-1{
+		display: block;
+		flex-direction: none;
+	}
+	section.search-1 .search-box{
+		width: 100%;
+	}
+	.filter-btn{
+		width: 30%;
+		white-space: nowrap;
+		padding: 18px 35px;
+		transform:translate(-100%, -50%);
+		border-radius: 10px;
+	}
+	section.search-2{
+		transform:translate(2%, 10%);
+		padding: 0;
+	}
+
+	section.list-automoveis{
+		padding: 0 22%;
+	}
+
+	.box-automovel-hidden{
+		width: 100%;
+	}
+
+	.box-automovel{
+		width: 275px;
+		margin-bottom: 0;
+	}
+
+	.box-automovel img{
+		width: 275px;
 	}
 }
 
 @media screen and (max-width: 768px){
-	.conteudo-portal{
-		width: 100%;
-		padding-left: 0;
-	}
-
-	.sidebar{
-		width: 100%;
-		text-align: center;
-	}
-
-	section.banner-principal form h2{
-		font-weight: 600;
-		font-size: 22px;
-	}
-	img.right{
-		float: none !important;
-		display: block;
-		margin: 0 auto !important;
-		max-width: 600px;
-	}
 	.w50{
 		width: 100%;
 		padding: 20px;
-	}
-	.box-qualidade{
-		margin: 0;
-		padding: 10px 10px;
-	}
-	section.erro-404 h1{
-		margin-top: 30%;
 	}
 }

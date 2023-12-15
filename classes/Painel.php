@@ -1,7 +1,7 @@
 <?php
 
-    class Painel
-    {
+    class Painel{
+
         public static $cargos = [0 => 'espectador', 1 => 'Sub-administrador', 2 => 'Administrador'];
 
         public static function logado()
@@ -30,11 +30,18 @@
                 $url = explode('/', $_GET['url']);
                 if (file_exists('pages/' . $url[0] . '.php')) {
                     include('pages/' . $url[0] . '.php');
-                } else {
-                    //Pagina n existe = home.
-                    header('Location: ' . INCLUDE_PATH_PAINEL);
+                }else {
+                    if(Router::get('visualizar-info-concessionaria/?',function($par){
+						include('views/visualizar-info-concessionaria.php');
+					})){
+                    }else if(Router::post('visualizar-info-concessionaria/?',function($par){
+						include('views/visualizar-info-concessionaria.php');
+					})){
+					}else{
+						header('Location: '.INCLUDE_PATH_PAINEL);
+					}
                 }
-            } else {
+            }else {
                 //URL n existe = home.
                 include('pages/home.php');
             }
@@ -64,6 +71,20 @@
             $sql = MySql::conectar()->prepare("SELECT * FROM `tb_admin.visitas` WHERE dia = ?");
             $sql->execute(array(date('Y-m-d')));
             return $sql;
+        }
+
+        public static function formatarMoedaBD($val){
+            $val = str_replace('.', '', $val);
+            $val = str_replace(',', '.', $val);
+            return $val;
+        }
+
+        public static function convertMoney($val){
+            return number_format($val, 2, ',', '.');
+        }
+
+        public static function convertKm($val){
+            return number_format($val, 0, null, '.');
         }
 
         public static function alert($tipo, $mensagem){

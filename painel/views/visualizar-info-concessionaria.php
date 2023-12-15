@@ -1,12 +1,13 @@
 <?php 
-    if(isset($_GET['id'])){
-        $id = $_GET['id'];
-        $conc = Painel::select('tb_site.concessionarias', 'id = ?', array($id));
-    }else{
-        Painel::alert('erro', 'Faltou o parâmetro ID.');
+    verificaPermissao(2);
+    $id = $par[2];
+    $conc = Painel::select('tb_site.concessionarias', 'id = ?', array($id));
+    $automoveis = Painel::selectQuery('tb_site.automoveis', "id_concessionaria = ? ", array($id));
+
+    if($conc['nome'] == ''){
+        header('Location: '.INCLUDE_PATH_PAINEL);
         die();
     }
-    $automoveis = Painel::selectQuery('tb_site.automoveis', "id_concessionaria = ? ", array($id));
 ?>
 
 <div class="box-content">
@@ -15,7 +16,7 @@
     <div class="info-item">
         <div class="row1">
             <div class="card-title"><i class="fa-solid fa-flag"></i> Logomarca</div>
-            <img src="<?php INCLUDE_PATH_PAINEL ?>uploads/concessionarias/<?php echo $conc['logo']; ?>" />
+            <img src="<?php INCLUDE_PATH_PAINEL ?>../uploads/concessionarias/<?php echo $conc['logo']; ?>" />
         </div><!-- row1 -->
 
         <div class="row2">
@@ -34,15 +35,17 @@
         <div class="wrapper-table">
             <table style="margin: 5px 0;">
                 <tr>
-                    <td>Marca <i style="font-size: 16px;" class="fa-solid fa-arrow-down-a-z"></i></td>
+                    <td>Marca</td>
                     <td>Modelo</td>
-                    <td>Preço <i style="font-size: 16px;" class="fa-solid fa-arrow-up-wide-short"></i></td>
-                    <td>Quilometragem <i style="font-size: 16px;" class="fa-solid fa-arrow-up-wide-short"></i></td>
-                    <td>Ano/Modelo <i style="font-size: 16px;" class="fa-solid fa-arrow-up-wide-short"></i></td>
+                    <td>Preço</td>
+                    <td>Quilometragem</td>
+                    <td>Ano/Modelo</td>
                     <td>Visualização</td>
                 </tr>
         <?php 
             foreach ($automoveis as $key => $value) {
+                $value['preco'] = Painel::convertMoney($value['preco']);
+                $value['quilometragem'] = Painel::convertKm($value['quilometragem']);
         ?>
             <tr class="body">
                 <td><?php echo $value['marca'];?></td>

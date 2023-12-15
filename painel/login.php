@@ -62,8 +62,8 @@
         ?>
         <h2>Efetue o Login</h2>
         <form method="post">
-            <input type="text" name="user" placeholder="Login..." required >
-            <input type="password" name="password" placeholder="Senha..." required >
+            <input type="text" name="user" placeholder="Login" required >
+            <input type="password" name="password" placeholder="Senha" required >
             <div class="form-group-login">
                 <input type="submit" name="acao" value="Logar!">
             </div><!-- form-group-login -->

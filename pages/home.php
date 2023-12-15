@@ -1,5 +1,5 @@
 <?php 
-	$slides = Painel::selectAll('tb_site.slides');
+	$parameters = \view\MainView::$par;
 ?>
 <section class="banner-container">
 	<?php foreach ($slides as $key => $value) { ?>
@@ -16,75 +16,55 @@
 			<input type="hidden" name="identificador" value="from_home" />
 			<input type="submit" name="acao" value="Cadastrar!">
 		</form>
-	</div>
+	</div><!-- center -->
 	
 	<div class="bullets"></div>
+</section><!-- banner-container -->
+
+<section class="description">
+		<h2>Automóveis seminovos de procedência você encontra aqui</h2>
 </section>
 
-<section class="descricao-empresa">
-	<div class="center">
-		<div id="sobre" class="w50 left">
-			<h2>Sobre nós</h2>
-			<p><?php echo $infoSite['desc_empresa']; ?></p>
-		</div>
+<section class="list-automoveis">  
+	<div class="home-flex-automoveis owl-carousel">
+	<?php 
+		foreach ($parameters['veiculos'] as $key => $value) {
+			$value['preco'] = Painel::convertMoney($value['preco']);
+			$value['quilometragem'] = Painel::convertKm($value['quilometragem']);
 
-		<div class="w50 right">
-			<img class="right" style="border-radius: 15px;" src="<?php echo INCLUDE_PATH; ?>imagens/empresa_resized.jpg" />
-		</div>
-		<div class="clear"></div>
-	</div>
-</section>
+			$imgs = \MySql::conectar()->prepare("SELECT imagem FROM `tb_site.imagens_automoveis` WHERE automovel_id = $value[id] ORDER BY order_id LIMIT 1");
+			$imgs->execute();
+			$imgs = $imgs->fetchAll();
 
-<section class="qualidades">
-	<div class="center">
-		<h2 class="title">Nossas melhores qualidades</h2>
-		<div class="w33 left box-qualidade">
-			<h3><i class="<?php echo $infoSite['icone1'];?>"></i></h3>
-			<h4><?php echo $infoSite['qualidade1'];?></h4>
-			<p><?php echo $infoSite['descricao1']; ?></p>
-		</div>
-		<div class="w33 left box-qualidade">
-			<h3><i class="<?php echo $infoSite['icone2'];?>"></i></h3>
-			<h4><?php echo $infoSite['qualidade2'];?></h4>
-			<p><?php echo $infoSite['descricao2']; ?></p>
-		</div>
-		<div class="w33 left box-qualidade">
-			<h3><i class="<?php echo $infoSite['icone3'];?>"></i></h3>
-			<h4><?php echo $infoSite['qualidade3'];?></h4>
-			<p><?php echo $infoSite['descricao3']; ?></p>
-		</div>
-		<div class="clear"></div>
-	</div>
-</section>
+        	foreach ($imgs as $key => $img){
+    ?>  
+		<div class="home-box-automovel-hidden">
+			<div class="home-box-automovel"> 
+				<img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/automoveis/<?php echo $img['imagem']; ?>" />
+				<div class="box-automovel-wrapper">
+					<div class="box-automovel-header">
+						<h2><?php echo $value['marca'];?> - <?php echo $value['modelo'];?></h2>
+					</div>
+					<div class="box-automovel-info">
+						<p><i class="fa-solid fa-angle-right"></i> 
+						Combustível: <?php echo \view\Automovel::getCombustivel($value['combustivel']); ?></p>
 
-<section class="extras">
-	<div class="center">
-		<div class="w50 left depoimentos-container">
-			<h2 class="title">Depoimentos dos nossos clientes</h2>
-			<?php 
-				$depoimentos = Painel::selectAll('tb_site.depoimentos', 'DESC', 0, 4);
-				foreach ($depoimentos as $key => $value) {
-			?>
-			<div class="depoimento-single">
-				<p class="depoimento-descricao">"<?php echo $value['depoimento']; ?>"</p>
-				<p class="nome-autor"><?php echo $value['nome']; ?> - <?php echo $value['data']; ?></p>
-			</div>
-			<?php } ?>
-		</div>
-		<div id="servicos" class="w50 left servicos-container">
-			<h2 class="title">Serviços</h2>
-			<div class="servicos-info">
-				<ul>
-					<?php 
-						
-						$servicos = Painel::selectAll('tb_site.servicos', 'DESC', 0, 3);
-						foreach ($servicos as $key => $value) {
-					?>
-					<li><?php echo $value['servico']; ?></li>
-					<?php } ?>
-				</ul>
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
+						<p><i class="fa-solid fa-angle-right"></i> 
+                        Quilometragem: <?php echo $value['quilometragem']; ?> Km</p>
+
+						<p><i class="fa-solid fa-angle-right"></i> 
+						Câmbio: <?php echo \view\Automovel::getCambio($value['cambio']);?></p>
+					</div>
+					<div class="price-area">
+						<h3>POR APENAS</h3>
+						<p>R$ <?php echo $value['preco']?></p>
+					</div>
+					<div class="btn-area">
+						<a class="btn-view" href="#">Estou Interessado!</a>
+					</div>
+				</div><!-- box-automovel-wrapper -->
+			</div><!-- box-automovel -->
+		</div><!-- box-automovel-hidden -->
+		<?php }} ?>
+	</div><!-- flex-automoveis -->
 </section>
