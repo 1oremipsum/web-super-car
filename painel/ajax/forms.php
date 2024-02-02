@@ -17,11 +17,12 @@
         }
     }
     
-    if(isset($_POST['tipo_acao']) && $_POST['tipo_acao'] == 'cadastrar_cliente'){
+    if(isset($_GET['signup']) && $_GET['signup'] == 'signup-client'){
         sleep(1.5);
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $senha = $_POST['password'];
+        $nome = $_GET['nome'];
+        $email = $_GET['email'];
+        $senha = $_GET['password'];
+        $senha2 =  $_GET['confirmPassword'];
         $img = "";
 
         if($nome == ''){
@@ -29,7 +30,7 @@
             $data['msg'] = "O campo Nome não pode estar vázio.";
         }
 
-        if(isset($_POST['email']) && $email != ''){
+        if(isset($_GET['email']) && $email != ''){
             $sql = MySql::conectar()->prepare("SELECT `id` FROM `tb_site.clientes` WHERE email = ?");
             $sql->execute(array($email));
                 if($sql->rowCount() != 0){
@@ -43,7 +44,10 @@
 
         if($senha == ''){
             $data['sucesso'] = false;
-            $data['msg'] = "O Nome é obrigatório.";
+            $data['msg'] = "Senha está vazia!";
+        }else if($senha !== $senha2){
+            $data['sucesso'] = false;
+            $data['msg'] = "As senhas digitadas não coincidem!";
         }
 
         if(isset($_FILES['img'])){
@@ -59,9 +63,8 @@
         if($data['sucesso'] == true){
             if(is_array($img))
                 $img = Painel::uploadFile($img, 'uploads/clientes');
-            $sql = MySql::conectar()->prepare("INSERT INTO `tb_site.clientes` VALUES (null,?,?,?,?)");
-            $sql->execute(array($nome, $email, $senha, $img));
-            $data['msg'] = "Cliente cadastrado com sucesso!";
+            \view\Login::signUp($nome, $email, $senha, $img);
+            $data['msg'] = "Cadastrado realizado com sucesso!";
         }
 
     }else if(isset($_POST['tipo_acao']) && $_POST['tipo_acao'] == 'editar_cliente'){
@@ -70,7 +73,7 @@
         $nome = $_POST['nome'];
         $email = $_POST['email'];
         $senha = $_POST['password'];
-        $img = $_POST['imagem_original'];
+        $img = $_POST['imagem_original']; // current img
 
         if($nome == '' || $email == '' || $senha == ''){
             $data['sucesso'] = false;

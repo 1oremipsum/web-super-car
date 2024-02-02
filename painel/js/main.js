@@ -58,8 +58,4 @@ $(function(){
             return false;
         }
     })
-
-    $('table.marca-btn').click(function(){
-        
-    })
 })

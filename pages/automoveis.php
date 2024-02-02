@@ -9,7 +9,7 @@
         </div>
         <div class="clear"></div>
         <div class="search-box">
-            <input class="search-txt" type="text" name="busca" placeholder="O que está buscando? (busque por uma palavra chave)">
+            <input class="search-txt" type="text" name="busca" placeholder="O que está buscando? (Busque por uma palavra chave)">
             <button class="search-btn">
                     <i class="fa-solid fa-magnifying-glass"></i>
             </button>
@@ -18,7 +18,7 @@
     </section><!-- search-1 -->
 
     <section class="search-2">
-        <form method="post" action="<?php echo INCLUDE_PATH ?>ajax/formularios.php">
+        <form method="post" action="<?php echo INCLUDE_PATH ?>ajax/search.php">
             <div class="form-group">
                 <input name="marca" type="text" placeholder="Marca">
             </div><!-- form-group -->

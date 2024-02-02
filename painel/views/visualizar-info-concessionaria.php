@@ -21,9 +21,9 @@
 
         <div class="row2">
             <div class="card-title"><i class="fa-solid fa-building-circle-exclamation"></i> Informações da concessionária</div>
-            <p><i class="fa-solid fa-star"></i> Nome: <span><?php echo $conc['nome']; ?></span></p>
-            <p><i class="fa-solid fa-star"></i> CNPJ: <span><?php echo $conc['cnpj']; ?></span></p>
-            <p><i class="fa-solid fa-star"></i> Fone: <span><?php echo $conc['fone']; ?></span></p>
+            <p>Nome <span><?php echo $conc['nome']; ?></span></p>
+            <p>CNPJ <span><?php echo $conc['cnpj']; ?></span></p>
+            <p>Fone <span><?php echo $conc['fone']; ?></span></p>
         </div><!-- row2 -->
         <div class="clear"></div>
     </div><!-- info-item -->

@@ -1,28 +1,26 @@
 <?php 
 	$parameters = \view\MainView::$par;
+	$site = Painel::select('tb_site.config', false);
 ?>
 <section class="banner-container">
 	<?php foreach ($slides as $key => $value) { ?>
-
 	<div style="background-image: url('<?php echo INCLUDE_PATH; ?>imagens/<?php echo $value['slide']; ?>');" class="banner-single"></div>
-
 	<?php } ?>
 	
+	<div class="home-dialog">
+		<h2><?php echo $site['titulo_msg_banner'];?></h2>
+		<h1><?php echo $site['msg_banner']?></h1>
+		<button>
+			<a href="<?php INCLUDE_PATH?>automoveis">Continuar <i class="fa-regular fa-circle-check"></i></a>
+		</button>
+	</div>
+
 	<div class="overlay"></div>
-	<div class="center">
-		<form method="post" class="ajax-form">
-			<h2>Seu melhor e-mail!</h2>
-			<input type="email" name="email" required />
-			<input type="hidden" name="identificador" value="from_home" />
-			<input type="submit" name="acao" value="Cadastrar!">
-		</form>
-	</div><!-- center -->
-	
 	<div class="bullets"></div>
 </section><!-- banner-container -->
 
 <section class="description">
-		<h2>Automóveis seminovos de procedência você encontra aqui</h2>
+		<h2><?php echo $site['descricao1']?></h2>
 </section>
 
 <section class="list-automoveis">  
@@ -60,11 +58,11 @@
 						<p>R$ <?php echo $value['preco']?></p>
 					</div>
 					<div class="btn-area">
-						<a class="btn-view" href="#">Estou Interessado!</a>
+						<a class="btn-view" href="<?php echo INCLUDE_PATH.'automovel/'.$value['slug'];?>">Estou Interessado!</a>
 					</div>
 				</div><!-- box-automovel-wrapper -->
 			</div><!-- box-automovel -->
 		</div><!-- box-automovel-hidden -->
 		<?php }} ?>
-	</div><!-- flex-automoveis -->
+	</div><!-- home-flex-automoveis owl-carousel -->
 </section>

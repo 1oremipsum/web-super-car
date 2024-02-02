@@ -173,7 +173,7 @@ body{
         border: 2px solid darkcyan;
     }
 
-    .avatar-usuario i{
+    .avatar-usuario .fa-user{
         position: relative;
         top: 50%;
         left: 50%;
@@ -435,21 +435,21 @@ body{
 
     .box-content form input[type=submit]{
         border: 0;
-        width: 30%;
+        width: 200px;
         height: 50px;
         border-radius: 10px;
         cursor: pointer;
         margin-top: 18px;
-        background: #0a74b6;
+        background: #009650;
         border: 0;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 18px;
+        font-weight: 300;
         color: white;
         transition: all 0.8s;
     }
 
     .box-content input[type=submit]:hover{
-        background: #0ab6ad;
+        background: #008a49;
     }    
 /* fim form*/
 
@@ -564,30 +564,30 @@ body{
         color: white;
         text-decoration: none;
         transition: all 0.5s;
-        padding: 4px 6px;
+        padding: 3px 6px;
         white-space: nowrap;
         background: #1e88ca;
-        border-radius: 10px;
+        border-radius: 5px;
     }
 
     a.btn-delete{
         color: white;
         text-decoration: none;
         transition: all 0.5s;
-        padding: 4px 6px;
+        padding: 3px 6px;
         background: darkred;
         white-space: nowrap;
-        border-radius: 10px;
+        border-radius: 5px;
     }
 
     a.btn-view{
         color: white;
         text-decoration: none;
         transition: all 0.5s;
-        padding: 4px 6px;
+        padding: 3px 6px;
         background: #207920;
         white-space: nowrap;
-        border-radius: 10px;
+        border-radius: 5px;
     }
 
     a.btn-edit:hover{background: lightseagreen}
@@ -654,7 +654,9 @@ body{
     }
 
     .box-top i{
-        font-size: 28px;
+        font-size: 50px;
+        position: relative;
+        bottom: -15px;
     }
 
     .box-top img{
@@ -758,8 +760,8 @@ body{
         padding:6px;
         color: white;
         margin:10px 0;
-        font-size: 15px;
-        font-weight: bold;
+        font-size: 18px;
+        font-weight: lighter;
         background: #0091ea;
         border-radius: 10px;
     }
@@ -820,6 +822,47 @@ body{
     .box-imgs{
         width: 100%;
     }
+
+    .row1.venda-automovel{
+        width: 49%;
+    }
+
+    .row1.venda-automovel img{
+       height: 370px;
+    }
+
+    .row2.venda-automovel{
+        float: right;
+        width: 49%;
+    }
+
+    .row2.venda-automovel.cliente{
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .row2.venda-automovel p{
+        font-weight: 400;
+    }
+
+    .row2.venda-automovel span{
+        font-weight: 300;
+    }
+
+    .remove-sale{
+        background: #ed1c24;
+        width: 200px;
+        height: 50px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        color: white;
+        transition: 0.3s;
+    }
+
+    .remove-sale:hover{
+        background: #c00202;
+    }
 /* fim visualizar automoveis */
 
 /* barra de pesquisa */
@@ -837,7 +880,6 @@ body{
        justify-content: space-between;
        align-items: center;
     }
-
 
     .search-txt{
         margin-left: 20px;

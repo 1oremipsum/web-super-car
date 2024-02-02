@@ -1,7 +1,7 @@
 $(function(){
     var currentSlide = 0;
     var maxSlide = $('.banner-single').length - 1;
-    var delay = 8; 
+    var delay = 10; 
 
     initSlider();
     changeSlide();

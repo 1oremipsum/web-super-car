@@ -4,19 +4,36 @@
 
         public static $cargos = [0 => 'espectador', 1 => 'Sub-administrador', 2 => 'Administrador'];
 
-        public static function logado()
-        {
+        public static function logado(){
             return isset($_SESSION['login']) ? true : false;
         }
 
-        public static function loggout()
-        {
+        public static function loggout(){
             setcookie('lembrar', 'true', time()-1, '/'); // destruir cookie time()-1
             session_destroy();
             header('Location: ' . INCLUDE_PATH_PAINEL);
         }
 
         public static function loadJS($files, $page){
+            $array = explode('/',@$_GET['url']);
+            if(count($array) == 1){
+                $url = explode('/',@$_GET['url'])[0];
+                if($page == $url){
+                    foreach ($files as $key => $value) {
+                        echo '<script src="'.INCLUDE_PATH.'js/'.$value.'"></script>';
+                    }
+                }
+            }else if(count($array) == 2){
+                $url = explode('/',@$_GET['url'])[1];
+                if($page == $url){
+                    foreach ($files as $key => $value) {
+                        echo '<script src="'.INCLUDE_PATH.'js/'.$value.'"></script>';
+                    }
+                }
+            }
+        }
+
+        public static function loadJSPainel($files, $page){
             $url = explode('/',@$_GET['url'])[0];
             if($page == $url){
                 foreach ($files as $key => $value) {
@@ -36,6 +53,12 @@
 					})){
                     }else if(Router::post('visualizar-info-concessionaria/?',function($par){
 						include('views/visualizar-info-concessionaria.php');
+					})){
+                    }else if(Router::get('visualizar-info-venda/?',function($par){
+						include('views/visualizar-info-venda.php');
+                    })){
+                    }else if(Router::post('visualizar-info-venda/?',function($par){
+						include('views/visualizar-info-venda.php');
 					})){
 					}else{
 						header('Location: '.INCLUDE_PATH_PAINEL);
@@ -73,6 +96,12 @@
             return $sql;
         }
 
+        public static function convertDate($date){
+            $array = explode('-', $date);
+            $newDate = $array[2].'/'.$array[1].'/'.$array[0];
+            return $newDate;
+        }
+
         public static function formatarMoedaBD($val){
             $val = str_replace('.', '', $val);
             $val = str_replace(',', '.', $val);
@@ -89,9 +118,15 @@
 
         public static function alert($tipo, $mensagem){
             if($tipo == 'sucesso'){
-                echo '<div class="box-alert sucesso"><i class="fa-solid fa-circle-check"></i> '.$mensagem.'</div>';
+                echo 
+                '<div class="box-alert sucesso">
+                    <i class="fa-solid fa-circle-check"></i> '.$mensagem.
+                '</div>';
             }else if($tipo == 'erro'){
-                echo '<div class="box-alert erro"><i class="fa-solid fa-circle-xmark"></i>'.$mensagem.'</div>';
+                echo 
+                '<div class="box-alert erro">
+                    <i class="fa-solid fa-circle-xmark"></i>'.$mensagem.
+                '</div>';
             }
         }
 

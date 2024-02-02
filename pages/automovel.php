@@ -31,7 +31,11 @@
 
             <div class="row">
                 <div class="col">
+                    <?php if(mb_strlen($automovel['versao']) <= 40){?>
                     <span>VERSÃO: <b><?php echo $automovel['versao'];?></b></span>
+                    <?php }else{?>
+                    <span>VERSÃO:<span style="font-size: 9.5px;"><b> <?php echo $automovel['versao'];?></b></span></span>
+                    <?php }?>
                 </div><!-- col -->
                 <div class="col">
                     <span>QUILOMETRAGEM: <b><?php echo Painel::convertKm($automovel['quilometragem']);?></b></span>
@@ -74,4 +78,28 @@
             </div><!-- row -->
         </div><!-- table-responsive -->
     </div><!-- wrapper-table -->
-</section>
+
+    <div class="wrapper-table right">
+        <div class="range">
+            <div class="price-area">
+                <h3>POR APENAS</h3>
+                <p>R$ <?php echo Painel::convertMoney($automovel['preco']);?></p>
+            </div><!-- price-area -->
+        </div><!-- range -->
+        <?php if(\view\Login::logado()){?>
+            <div class="range">
+                <form id="form-buy-vehicle" class="ajax" action="<?php echo INCLUDE_PATH?>ajax/forms.php" method="get">
+                    <input type="hidden" name="vehicle" value="<?php echo $automovel['versao']; ?>">
+                    <input type="hidden" name="client" value="<?php echo $_SESSION['email']; ?>">
+                    <button type="submit" name="buy" value="buy-vehicle">Estou interessado!</button>
+                </form>
+            </div><!-- range -->
+        <?php }else{ ?>
+            <div class="range">
+            <div class="dialog">Está interessado(a)? 
+                <a href="http://localhost/supercar/login">Cadastre-se</a> ou realize 
+                <a href="http://localhost/supercar/login">Login</a> para proceder com a compra!</div>
+            </div><!-- range -->
+        <?php } ?>
+    </div><!-- wrapper-table right -->
+</section><!-- box-content -->

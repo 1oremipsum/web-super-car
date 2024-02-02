@@ -7,5 +7,6 @@
             \view\Automovel::getAutomoveis(\model\Automovel::getAutomoveis());
             \view\MainView::render('automoveis.php');
         }
+
     }
 ?>

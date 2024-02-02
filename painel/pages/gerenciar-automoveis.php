@@ -13,6 +13,7 @@
             $marca = $_POST['marca'];
             $modelo = $_POST['modelo'];
             $versao = $_POST['versao'];
+            $cor = $_POST['cor'];
             $preco = Painel::formatarMoedaBD($_POST['preco']);
             $quilometragem = $_POST['quilometragem'];
             $cambio = $_POST['cambio'];
@@ -25,6 +26,11 @@
             $amountFiles = count($_FILES['imagem']['name']);
 
             $sucesso = true;
+
+            if($marca == '' || $modelo == '' || $versao == '' || $cor == '' || $preco == '' || $quilometragem == '' || $cambio == '' || $combustivel == '' || $anoFab == '' || $anoMod == '' || $idConcessionaria == ''){
+                $sucesso = false;
+                Painel::alert('erro', 'Campos vázios não são permitidos.');
+            }
 
             if($quilometragem < 0 || $quilometragem > 500000){
                 $sucesso = false;
@@ -63,9 +69,9 @@
                     $imagens[] = Painel::uploadFile('uploads/automoveis',$currentImg);
                 }
 
-                $sql = MySql::conectar()->prepare("INSERT INTO `tb_site.automoveis` VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                $sql = MySql::conectar()->prepare("INSERT INTO `tb_site.automoveis` VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 $slug = Painel::generateSlug($modelo.' '.$versao);
-                $sql->execute(array($idConcessionaria, $marca, $modelo, $versao, $anoFab, $anoMod, $preco, $quilometragem, $cambio, $combustivel, $slug, 0 ,0));
+                $sql->execute(array($idConcessionaria, $marca, $modelo, $versao, $anoFab, $anoMod, $preco, $quilometragem, $cambio, $combustivel, $cor, $slug, 0 ,0));
                 $lastId = MySql::conectar()->lastInsertId();
                 MySql::conectar()->exec("UPDATE `tb_site.automoveis` SET order_id = $lastId WHERE id = $lastId");
 
@@ -81,43 +87,48 @@
     ?>
         <div class="card-title"><i class="fa-solid fa-car-rear"></i><i class="fa-solid fa-plus"></i> Cadastrar Automóvel</div>
 
-        <div class="form-group">
+		<div class="form-group W50 right">
             <label>Marca</label>
             <input type="text" name="marca" required />
         </div><!-- form-group -->
 
-        <div class="form-group">
+        <div class="form-group W50 left">
             <label>Modelo</label>
             <input type="text" name="modelo" required />
         </div><!-- form-group -->
 
-        <div class="form-group">
-            <label>Versão</label>
+		<div class="form-group W50 left">
+            <label>Versao</label>
             <input type="text" name="versao" required />
         </div><!-- form-group -->
 
+		<div class="form-group W50 right">
+			<label>Cor do automóvel</label>
+			<input type="text" name="cor" required />
+		</div><!--form-group-->
+
         <div class="form-group W50 left">
             <label>Preço</label>
-            <input type="text" name="preco" placeholder="R$ 0,00" required />
+            <input type="text" name="preco" required />
         </div><!-- form-group -->
 
         <div class="form-group W50 right">
             <label>Quilometragem</label>
             <input type="number" name="quilometragem" min="0" max="500000" required 
-            placeholder="max: 500.000 km"/>
+            placeholder="max: 500.000 km" />
         </div><!-- form-group -->
         <div class="clear"></div>
 
-        <div class="form-group right" style="width: 24%;">
+        <div class="form-group right" style="width: 25%;">
             <label>Ano Modelo</label>
             <input min="2010" max="<?php echo date("Y");?>" type="number" name="ano_mod" required
-            placeholder="min/max: 2010/<?php echo date("Y");?>"/>
+            placeholder="min/max: 2010/<?php echo date("Y");?>" />
         </div><!-- form-group -->
 
-        <div class="form-group right" style="width: 25%; padding-right: 15px;">
+        <div class="form-group right" style="width: 24%; padding-right: 15px;">
             <label>Ano de Fabricação</label>
             <input min="2010" max="<?php echo date("Y");?>" type="number" name="ano_fab" required
-            placeholder="min/max: 2010/<?php echo date("Y");?>"/>
+            placeholder="min/max: 2010/<?php echo date("Y");?>" />
         </div><!-- form-group -->
         
         <div class="form-group left W50">

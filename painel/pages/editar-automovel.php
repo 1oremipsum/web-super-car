@@ -159,13 +159,13 @@
 
         <div class="form-group right" style="width: 25%;">
             <label>Ano Modelo</label>
-            <input min="2010" max="2023" type="number" name="ano_mod" required
+            <input min="2010" max="<?php echo date("Y");?>" type="number" name="ano_mod" required
             placeholder="min/max: 2010/<?php echo date("Y");?>" value="<?php echo $infoAuto['ano_mod'];?>"/>
         </div><!-- form-group -->
 
         <div class="form-group right" style="width: 24%; padding-right: 15px;">
             <label>Ano de Fabricação</label>
-            <input min="2010" max="2023" type="number" name="ano_fab" required
+            <input min="2010" max="<?php echo date("Y");?>" type="number" name="ano_fab" required
             placeholder="min/max: 2010/<?php echo date("Y");?>" value="<?php echo $infoAuto['ano_fab'];?>" />
         </div><!-- form-group -->
         

@@ -30,3 +30,23 @@ $(function(){
         });
     }
 })
+
+// animation: sign in and sign up 
+var formSignIn = document.querySelector('#sign-in');
+var formEmpre = document.querySelector('#form-empre');
+var formSignUp = document.querySelector('#sign-up');
+var btnColor = document.querySelector('.btn-color');
+
+document.querySelector('#btn-sign-in').addEventListener('click', () =>{
+    formSignIn.style.left = '25px';
+    formEmpre.style.left = '0px';
+    formSignUp.style.left = '450px';
+    btnColor.style.left = '0px';
+});
+
+document.querySelector('#btn-sign-up').addEventListener('click', () =>{
+    formSignIn.style.left = '-450px';
+    formEmpre.style.left = '-450px';
+    formSignUp.style.left = '25px';
+    btnColor.style.left = '110px';
+});

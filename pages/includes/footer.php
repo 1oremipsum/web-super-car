@@ -12,9 +12,17 @@
 	<script src="<?php echo INCLUDE_PATH; ?>js/script.js"></script>
 	<script src="<?php echo INCLUDE_PATH; ?>js/slider.js"></script>
 	<script src="<?php echo INCLUDE_PATH; ?>js/formularios.js"></script>
-	<script src="<?php echo INCLUDE_PATH; ?>js/nav-mobile.js"></script>
+	<script src="<?php echo INCLUDE_PATH; ?>js/menu.js"></script>
+	<script src="<?php echo INCLUDE_PATH; ?>js/form-profile.js"></script>
 	<script src="<?php echo INCLUDE_PATH; ?>js/carousel.js"></script>
 	<script src="<?php echo INCLUDE_PATH_PAINEL; ?>js/jquery.ajaxform.js"></script>
+	<?php 
+		@$url = explode('/', $_GET['url'])[1];
+		Painel::loadJS(array('ajax.js'), $url);	
+		Painel::loadJS(array('ajax.js'), 'login');
+		Painel::loadJS(array('ajax.js'), 'editar-perfil'); 
+		Painel::loadJS(array('ajax.js'), 'automoveis');
+	?>
 	
 </body>
 </html>

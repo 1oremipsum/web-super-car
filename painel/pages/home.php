@@ -1,5 +1,5 @@
 <?php 
-    verificaPermissao(2);
+    verificaPermissao(1);
     $usuariosOnline = Painel::listarUsuariosOnline();
 
     $visitasTotais = Painel::getVisitasTotais();

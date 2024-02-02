@@ -3,7 +3,7 @@
     $site = Painel::select('tb_site.config', false);
 ?>
 <div class="box-content">
-    <i class="fa-solid fa-wand-magic-sparkles"></i><h2> Editar Conteúdo do site</h2>
+    <i class="fa-solid fa-wand-magic-sparkles"></i><h2> Editar Conteúdo da Home</h2>
 
     <form method="post" enctype="multipart/form-data">
         <?php 
@@ -27,35 +27,24 @@
 
         <div class="space"></div>
 
-        <div class="site sobre-nos">
-            <div class="form-group">
-                <h2>Sobre nós</h2>
-                <label>Descrição</label>
-                <textarea name="desc_empresa"><?php echo $site['desc_empresa']?></textarea>
-            </div><!-- form-group -->
-        </div><!-- "site sobre-nos" -->
+        <div class="form-group">
+            <h2>Mensagem do Banner</h2>
+            <label>Título</label>
+            <input name="titulo_msg_banner" type="text" value="<?php echo $site['titulo_msg_banner']?>" />
+        </div><!-- form-group -->
+
+        <div class="form-group">
+            <label>Descrição</label>
+            <input name="msg_banner" type="text" value="<?php echo $site['msg_banner']?>" />
+        </div><!-- form-group -->
 
         <div class="space"></div>
 
-        <div class="site qualidades">
-            <h2>Qualidades</h2>
-            <?php 
-                for($i=1; $i<=3; $i++){ 
-            ?>
-            <div class="form-group">
-                <label>Ícone: <i class="<?php echo $site['icone'.$i]?>"></i></label>
-                <input type="text" name="icone<?php echo $i; ?>" value="<?php echo $site['icone'.$i]?>" />
-                <label>Qualidade</label>
-                <input type="text" name="qualidade<?php echo $i; ?>" value="<?php echo $site['qualidade'.$i]?>" />
-            </div><!-- form-group -->
-
-            <div class="form-group">
-                <label>Descrição</label>
-                <textarea name="descricao<?php echo $i; ?>"><?php echo $site['descricao'.$i]?></textarea>
-            </div><!-- form-group -->
-            <div class="space"></div>
-            <?php } ?>
-        </div><!-- site qualidades -->
+        <div class="form-group">
+            <h2>Mensagem do Carrosel</h2>
+            <label>Descrição</label>
+            <textarea name="descricao1"><?php echo $site['descricao1']?></textarea>"
+        </div><!-- form-group -->
 
         <div class="form-group">
             <input type="hidden" name="nome_tabela" value="tb_site.config" />

@@ -49,13 +49,16 @@ if(isset($_GET['loggout'])){
                 <h2>Gestão de Automóveis</h2>
                 <a <?php selecionadoMenu('gerenciar-automoveis'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-automoveis">Gerenciar Automóveis</a>
 
+                <h2>Gestão de Clientes</h2>
+                <a <?php selecionadoMenu('cadastrar-cliente'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-cliente">Cadastrar Cliente</a>
+                <a <?php selecionadoMenu('listar-clientes'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-clientes">Listar Clientes</a>
+
                 <h2>Gestão de Concessionárias</h2>
                 <a <?php selecionadoMenu('cadastrar-concessionaria'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-concessionaria">Cadastrar Concessionária</a>
                 <a <?php selecionadoMenu('listar-concessionarias'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-concessionarias">Listar Concessionárias</a>
 
-                <h2>Gestão de Clientes</h2>
-                <a <?php selecionadoMenu('cadastrar-cliente'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-cliente">Cadastrar Cliente</a>
-                <a <?php selecionadoMenu('listar-clientes'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>listar-clientes">Listar Clientes</a>
+                <h2>Gestão de Vendas</h2>
+                <a <?php selecionadoMenu('gerenciar-vendas'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>gerenciar-vendas">Gerenciar Vendas</a>
 
                 <h2>Gestão de Slides</h2>
                 <a <?php selecionadoMenu('cadastrar-slide'); ?> href="<?php echo INCLUDE_PATH_PAINEL ?>cadastrar-slide">Cadastrar Slide</a>
@@ -87,8 +90,8 @@ if(isset($_GET['loggout'])){
     </div><!-- content -->
 
     <script src="<?php echo INCLUDE_PATH ?>js/jquery.js"></script>
-    <?php Painel::loadJS(array('jquery-ui.min.js'), 'listar-concessionarias'); ?>
-    <?php Painel::loadJS(array('jquery-ui.min.js'), 'editar-automovel'); ?>
+    <?php Painel::loadJSPainel(array('jquery-ui.min.js'), 'listar-concessionarias'); ?>
+    <?php Painel::loadJSPainel(array('jquery-ui.min.js'), 'editar-automovel'); ?>
     <script src="<?php echo INCLUDE_PATH ?>js/jquery.maskMoney.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.mask.js"></script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/jquery.ajaxform.js"></script>
@@ -103,10 +106,10 @@ if(isset($_GET['loggout'])){
         });
     </script>
     <script src="<?php echo INCLUDE_PATH_PAINEL ?>js/helperMask.js"></script>
-    <?php Painel::loadJS(array('ajax.js'), 'listar-clientes'); ?>
-    <?php Painel::loadJS(array('ajax.js'), 'cadastrar-cliente'); ?>
-    <?php Painel::loadJS(array('ajax.js'), 'editar-cliente'); ?>
-    <?php Painel::loadJS(array('order_id/concessionarias.js'), 'listar-concessionarias'); ?>
-    <?php Painel::loadJS(array('order_id/automovel-imgs.js'), 'editar-automovel'); ?>
+    <?php Painel::loadJSPainel(array('ajax.js'), 'listar-clientes'); ?>
+    <?php Painel::loadJSPainel(array('ajax.js'), 'cadastrar-cliente'); ?>
+    <?php Painel::loadJSPainel(array('ajax.js'), 'editar-cliente'); ?>
+    <?php Painel::loadJSPainel(array('order_id/concessionarias.js'), 'listar-concessionarias'); ?>
+    <?php Painel::loadJSPainel(array('order_id/automovel-imgs.js'), 'editar-automovel'); ?>
 </body>
 </html>
