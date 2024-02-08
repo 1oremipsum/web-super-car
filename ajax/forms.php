@@ -14,25 +14,40 @@
 
         if($nome == ''){
             $data['sucesso'] = false;
-            $data['msg'] = "O campo Nome não pode estar vázio.";
+            $data['msg'] = "O campo Nome não pode estar vázio";
+        }
+
+        if(strlen($nome) <= 2){
+            $data['sucesso'] = false;
+            $data['msg'] = "Seu nome está pequeno demais";
         }
 
         if(isset($_GET['email']) && $email != ''){
-            if(!\model\Cliente::emailExists($email)){
+            if(\model\Cliente::emailExists($email)){
                 $data['sucesso'] = false;
                 $data['msg'] = "E-mail informado já está cadastrado";
             }
         }else{
             $data['sucesso'] = false;
-            $data['msg'] = "O campo E-mail não pode estar vázio.";
+            $data['msg'] = "O campo E-mail não pode estar vázio";
+        }
+
+        if(!str_contains($email, '@gmail.com')){
+            $data['sucesso'] = false;
+            $data['msg'] = "O formato de e-mail está incorreto";
         }
 
         if($senha == ''){
             $data['sucesso'] = false;
-            $data['msg'] = "A Senha está vazia!";
+            $data['msg'] = "A senha não pode estar vázia!";
         }else if($senha !== $senha2){
             $data['sucesso'] = false;
             $data['msg'] = "As senhas digitadas não coincidem!";
+        }
+
+        if(strlen($senha) <= 4){
+            $data['sucesso'] = false;
+            $data['msg'] = "Senha muito fraca! tente novamente";
         }
 
         if($data['sucesso'] == true){
@@ -109,7 +124,7 @@
                 $venda->efetuarPedidoVenda();
                 $data['msg'] = "Pedido de compra do veículo $vehicle[modelo] foi confirmado!";
             }else{
-                die("Dados necessários não encontrados.");
+                die("Dados necessários não encontrados");
             }
         }
     }else if(isset($_GET['edit-profile']) && $_GET['edit-profile'] == 'basic-data'){
@@ -188,7 +203,7 @@
                 $data['msg'] = "Imagem atualizada com sucesso!";
             }else{
                 $data['sucesso'] = false;
-                $data['msg'] = "Erro ao atualizar a foto.";
+                $data['msg'] = "Erro ao atualizar a foto";
             }
         }else{
             $data['sucesso'] = false;
@@ -206,12 +221,12 @@
         }else{
             if($newPass !== $cnfPass){
                 $data['sucesso'] = false;
-                $data['msg'] = "As novas senhas não coincidem.";
+                $data['msg'] = "As novas senhas não coincidem";
             }else{
                 $client = \view\Cliente::getClienteByEmail($_SESSION['email']);
                 if($currentPass !== $client['senha']){
                     $data['sucesso'] = false;
-                    $data['msg'] = "A senha atual está incorreta.";
+                    $data['msg'] = "A senha atual está incorreta";
                 }else{
                     $newP = new \model\Cliente();
                     if($newP->updatePassword($newPass, $client['id'])){
@@ -222,6 +237,5 @@
             }
         }
     }
-    
     die(json_encode($data));
 ?>
