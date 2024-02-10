@@ -1,4 +1,5 @@
-<?php verificaPermissao(1); 
+<?php 
+    verificaPermissao(1); 
     $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $porPagina = 10; //resultados por pagina
     $automoveis = Painel::selectAll('tb_site.automoveis', null, ($paginaAtual - 1) * $porPagina, $porPagina);

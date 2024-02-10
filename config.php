@@ -11,7 +11,7 @@
 
 	spl_autoload_register($autoload);
 
-	define('INCLUDE_PATH','http://localhost/supercar/');
+	define('INCLUDE_PATH','http://localhost/revendas.supercar/');
 	define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
 
 	define('BASE_DIR_PAINEL', __DIR__.'/painel');
@@ -42,12 +42,34 @@
 		}
 	}
 
-	function verificaPermissao($permissao){
-		if($_SESSION['cargo'] >= $permissao){
-			return;
-		}else{
-			include('painel/pages/permissao_negada.php');
-			die();
+	function verificaPermissao($permissao, $tipoDeAcao = ""){
+		switch ($tipoDeAcao) {
+			case "delete":
+				if($_SESSION['cargo'] >= $permissao){
+					return true;
+				}else{
+					Painel::alert("erro", "Você não possui permissão para deletar este conteúdo!");
+					die();
+				}
+				break;
+			
+			case "edit":
+				if($_SESSION['cargo'] >= $permissao){
+					return true;
+				}else{
+					Painel::alert("erro", "Você não possui permissão para editar este conteúdo!");
+					die();
+				}
+				break;
+				
+			default:
+				if($_SESSION['cargo'] >= $permissao){
+					return true;
+				}else{
+					include('painel/pages/permissao_negada.php');
+					die();
+				}
+				break;
 		}
 	}
 

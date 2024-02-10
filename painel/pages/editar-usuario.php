@@ -1,3 +1,6 @@
+<?php 
+    verificaPermissao(1);
+?>
 <div class="box-content">
     <i class="fa-solid fa-pen"></i><h2> Editar Usuário</h2>
 

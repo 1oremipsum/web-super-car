@@ -47,7 +47,7 @@
 
         if(strlen($senha) <= 4){
             $data['sucesso'] = false;
-            $data['msg'] = "Senha muito fraca! tente novamente";
+            $data['msg'] = "Senha muito fraca, tente outra...";
         }
 
         if($data['sucesso'] == true){
@@ -137,12 +137,22 @@
             $data['sucesso'] = false;
             $data['msg'] = "Campos Nome e E-mail estão vázios";
         }
+
+        if(strlen($name) <= 2){
+            $data['sucesso'] = false;
+            $data['msg'] = "Nome de usuário está muito pequeno";
+        }
         
         if($email != '' && $email !== $_SESSION['email']){
             if(\model\Cliente::emailExists($email)){
                 $data['sucesso'] = false;
                 $data['msg'] = "E-mail informado já está cadastrado";
             }
+        }
+
+        if(!str_contains($email, "@gmail.com")){
+            $data['sucesso'] = false;
+            $data['msg'] = "Formato de e-mail está incorreto";
         }
 
         if($_GET['passw'] != ''){
@@ -157,6 +167,7 @@
                 if(!$newClient->updateNameAndEmail($name, $email, $client['id'])){
                     $data['sucesso'] = false;
                     $data['msg'] = "Não foi possível realizar as atualizações";
+                                    /*O nome de usuário está muito pequeno*/
                 }else{
                     $_SESSION['nome'] = $name;
                     $_SESSION['email'] = $email;
@@ -191,19 +202,22 @@
         $photo = $_FILES['picture__input'];
         
         if(Painel::imagemValida($photo)){
-            @unlink('../painel/uploads/clientes/'.$currentPhoto);            
+            @unlink('../painel/uploads/clientes/'.$currentPhoto);        
             $client = \view\Cliente::getClienteByEmail($_SESSION['email']);
 
-            $photo['name'] = "$photo[name]-$client[id]";
-            move_uploaded_file($photo['tmp_name'], '../painel/uploads/clientes/'.$photo['name']);
-            
-            $newPhoto = new model\Cliente();
-            if($newPhoto->updatePhoto($photo['name'], $client['id'])){
-                $_SESSION['img'] = $photo['name'];
-                $data['msg'] = "Imagem atualizada com sucesso!";
+            if(is_array($photo)){
+                $photo = Painel::uploadFile('uploads/clientes', $photo);
+                $newPhoto = new model\Cliente();
+                if($newPhoto->updatePhoto($photo, $client['id'])){
+                    $_SESSION['img'] = $photo;
+                    $data['msg'] = "Imagem atualizada com sucesso!";
+                }else{
+                    $data['sucesso'] = false;
+                    $data['msg'] = "Erro ao atualizar a foto";
+                }
             }else{
                 $data['sucesso'] = false;
-                $data['msg'] = "Erro ao atualizar a foto";
+                $data['msg'] = "Tipo de imagem inválido";
             }
         }else{
             $data['sucesso'] = false;
@@ -212,10 +226,10 @@
     }else if(isset($_GET['edit-profile']) && $_GET['edit-profile'] == 'edit-passw'){
         sleep(1.5);
         $newPass = $_GET['new-passw'];
-        $cnfPass = $_GET['cnf-passw'];
+        $cnfPass = $_GET['cnf-passw'];  //cnf = confirm
         $currentPass = $_GET['current-passw'];
 
-        if($newPass == '' && $cnfPass == '' && $currentPass == ''){
+        if($newPass == '' || $cnfPass == '' || $currentPass == ''){
             $data['sucesso'] = false;
             $data['msg'] = "Campos vázios não são permitidos";
         }else{
@@ -223,15 +237,20 @@
                 $data['sucesso'] = false;
                 $data['msg'] = "As novas senhas não coincidem";
             }else{
-                $client = \view\Cliente::getClienteByEmail($_SESSION['email']);
-                if($currentPass !== $client['senha']){
+                if(strlen($newPass) <= 4){
                     $data['sucesso'] = false;
-                    $data['msg'] = "A senha atual está incorreta";
+                    $data['msg'] = "Senha muito fraca, tente outra...";
                 }else{
-                    $newP = new \model\Cliente();
-                    if($newP->updatePassword($newPass, $client['id'])){
-                        $_SESSION['senha'] = $newPass;
-                        $data['msg'] = "Senha atualizada com sucesso!";
+                    $client = \view\Cliente::getClienteByEmail($_SESSION['email']);
+                    if($currentPass !== $client['senha']){
+                        $data['sucesso'] = false;
+                        $data['msg'] = "A senha atual está incorreta";
+                    }else{
+                        $newP = new \model\Cliente();
+                        if($newP->updatePassword($newPass, $client['id'])){
+                            $_SESSION['senha'] = $newPass;
+                            $data['msg'] = "Senha atualizada com sucesso!";
+                        }
                     }
                 }
             }

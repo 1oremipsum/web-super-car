@@ -11,7 +11,7 @@
 <div class="box-content">
     <i class="fa-solid fa-pen"></i><h2> Editar Cliente</h2>
 
-    <form class="ajax" atualizar method="post" action="<?php INCLUDE_PATH_PAINEL ?>ajax/forms.php" enctype="multipart/form-data">
+    <form class="ajax" method="post" action="<?php INCLUDE_PATH_PAINEL ?>ajax/forms.php" enctype="multipart/form-data">
         <div class="form-group">
             <label>Nome</label>
             <input type="text" name="nome" value="<?php echo $cliente['nome']; ?>" />

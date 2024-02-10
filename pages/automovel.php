@@ -97,8 +97,8 @@
         <?php }else{ ?>
             <div class="range">
             <div class="dialog">Está interessado(a)? 
-                <a href="http://localhost/supercar/login">Cadastre-se</a> ou realize 
-                <a href="http://localhost/supercar/login">Login</a> para proceder com a compra!</div>
+                <a href="http://localhost/revendas.supercar/login">Cadastre-se</a> ou realize 
+                <a href="http://localhost/revendas.supercar/login">Login</a> para proceder com a compra!</div>
             </div><!-- range -->
         <?php } ?>
     </div><!-- wrapper-table right -->

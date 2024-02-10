@@ -1,6 +1,6 @@
 <?php 
-    verificaPermissao(2);
-    if(isset($_GET['deletar'])){
+    verificaPermissao(1);
+    if(isset($_GET['deletar']) && verificaPermissao(2, "delete")){
         $id = (int)$_GET['deletar'];
         $slide = MySql::conectar()->prepare("SELECT `slide` FROM `tb_site.slides` WHERE id = $id");
         $slide->execute();

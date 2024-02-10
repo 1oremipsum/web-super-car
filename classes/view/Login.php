@@ -12,9 +12,9 @@
             header('Location: ' . INCLUDE_PATH . 'login');
         }
 
-        public static function signUp($name,$email, $password, $imgage){
+        public static function signUp($name,$email, $password, $image){
             $cliente = new \model\Cliente();
-            $cliente->clientSignUp($name, $email, $password, $imgage);
+            $cliente->clientSignUp($name, $email, $password, $image);
         }
 
         public static function signIn($email, $password){

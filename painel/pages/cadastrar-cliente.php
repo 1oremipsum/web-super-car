@@ -1,10 +1,10 @@
 <?php 
-    verificaPermissao(2);
+    verificaPermissao(1);
 ?>
 <div class="box-content">
     <i class="fa-solid fa-user-plus"></i><h2> Cadastrar Clientes</h2>
 
-    <form class="ajax" action="<?php INCLUDE_PATH_PAINEL?>ajax/forms.php" method="get" enctype="multipart/form-data">
+    <form class="ajax" action="<?php INCLUDE_PATH_PAINEL ?>ajax/forms.php" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
             <label>Nome</label>

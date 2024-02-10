@@ -1,6 +1,6 @@
 <?php 
-    verificaPermissao(2);
-    if(isset($_GET['excluir'])){
+    verificaPermissao(1);
+    if(isset($_GET['excluir']) && verificaPermissao(2, "delete")){
         $id = (int)$_GET['excluir'];
         $logo = MySql::conectar()->prepare("SELECT `logo` FROM `tb_site.concessionarias` WHERE id = $id");
         $logo->execute();

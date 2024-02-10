@@ -1,4 +1,5 @@
 <?php
+	verificaPermissao(1);
 	$id = (int)$_GET['id'];
 	$automovel = MySql::conectar()->prepare("SELECT * FROM `tb_site.automoveis` WHERE id = ?");
 	$automovel->execute(array($id));
@@ -15,14 +16,14 @@
 <div class="box-content">
 	<h2><i class="fa-solid fa-pen-to-square"></i> Editar Automóvel | Visualizar Imagens</h2>
 	<?php
-	if(isset($_GET['deletarImagem'])){
+	if(isset($_GET['deletarImagem']) && verificaPermissao(2, "delete")){
 		$idImagem = $_GET['deletarImagem'];
 		@unlink(BASE_DIR_PAINEL.'/uploads/automoveis/'.$idImagem);
 		MySql::conectar()->exec("DELETE FROM `tb_site.imagens_automoveis` WHERE imagem = '$idImagem'");
 		Painel::alert('sucesso','A imagem foi deletada com sucesso!');
 		$automovelImgs = Painel::selectQuery('tb_site.imagens_automoveis', 'automovel_id = ?', array($id));
 
-	}else if(isset($_GET['deletarAutomovel'])){
+	}else if(isset($_GET['deletarAutomovel']) && verificaPermissao(2, "delete")){
 		foreach ($automovelImgs as $key => $value) {
 			@unlink(BASE_DIR_PAINEL.'/uploads/automoveis/'.$value['imagem']);
 		}
@@ -34,7 +35,7 @@
 	?>
 	<form method="post" action="<?php echo INCLUDE_PATH_PAINEL ?>editar-automovel?id=<?php echo $id; ?>" enctype="multipart/form-data">
 	<?php 
-		if(isset($_POST['acao'])){
+		if(isset($_POST['acao']) && verificaPermissao(2, "edit")){
 			$marca = $_POST['marca'];
 			$modelo = $_POST['modelo'];
 			$versao = $_POST['versao'];

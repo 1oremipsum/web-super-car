@@ -1,5 +1,5 @@
 <?php 
-    verificaPermissao(2);
+    verificaPermissao(1);
 ?>
 <div class="box-content">
     <i class="fa-solid fa-building-flag"></i><h2> Cadastrar Concessionária</h2>

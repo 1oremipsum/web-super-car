@@ -1,5 +1,5 @@
 <?php 
-    verificaPermissao(2);
+    verificaPermissao(1);
     $id = $par[2];
     $conc = Painel::select('tb_site.concessionarias', 'id = ?', array($id));
     $automoveis = Painel::selectQuery('tb_site.automoveis', "id_concessionaria = ? ", array($id));

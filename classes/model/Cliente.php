@@ -24,7 +24,7 @@
         }
 
         public function EmpregSignIn(){
-            $sql = \MySql::conectar()->prepare("SELECT * FROM `tb_site.clientes` WHERE nome = 'Recrutador' AND senha = 'recrutadoranonimo321'");
+            $sql = \MySql::conectar()->prepare("SELECT * FROM `tb_site.clientes` WHERE nome = 'Recrutador' AND senha = 'recanoni321'");
             $sql->execute();
             return $sql->fetch();
         }
