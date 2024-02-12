@@ -48,7 +48,7 @@ if(isset($_GET['loggout'])){
 						if(!\view\Login::logado()){ 
 							$url = explode('/',@$_GET['url']);
 							if(count($url) >= 2){?>
-								<a title="login" href="http://localhost/revendas.supercar/login"><i class="fa-solid fa-arrow-right-to-bracket"></i> <span>Login</span></a>
+								<a title="login" href="http://localhost/seminovos-supercar/login"><i class="fa-solid fa-arrow-right-to-bracket"></i> <span>Login</span></a>
 								<?php }else{ ?>
 								<a title="login" href="<?php INCLUDE_PATH; ?>login"><i class="fa-solid fa-arrow-right-to-bracket"></i> <span>Login</span></a> 
 								<?php } ?> 
@@ -156,7 +156,7 @@ if(isset($_GET['loggout'])){
 					<li>
 						<?php if(!\view\Login::logado()){ ?>
 							<?php if($url >= 2){?>
-								<a title="Login" class="login" href="http://localhost/revendas.supercar/login"><span>Login</span></a>
+								<a title="Login" class="login" href="http://localhost/seminovos-supercar/login"><span>Login</span></a>
 							<?php }else{ ?>
 								<a title="Login" class="login" href="<?php INCLUDE_PATH; ?>login"><span>Login</span></a>
 							<?php } ?>
