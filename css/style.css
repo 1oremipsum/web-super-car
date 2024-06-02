@@ -2,6 +2,7 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+	user-select: none;
 	font-family: "Open Sans";
 }
 
@@ -104,7 +105,7 @@ header{
 
 .alert{
 	position: absolute;
-	width: 450px;
+	min-width: 420px;
 	right: 10px;
 	top: 110px;
 	overflow: hidden;
@@ -113,34 +114,23 @@ header{
 
 .buy-alert{
 	position: absolute;
-	width: 650px;
+	min-width: 420px;
 	right: 10px;
 	bottom: -450px;
 	overflow: hidden;
 	z-index: 999;
 }
 
-.alert .span{
-	float: inline-start;
-}
-
-.buy-alert .span{
-	float: inline-start;
-}
-
 .close-btn{
 	position: absolute;
 	right: 0px;
-	top: 0px;
-	width: 65px;
-	height: 65px;
+	top: 50%;
+    transform: translateY(-50%);
+	padding: 32px 12px;
 }
 
 .close-btn .fa-xmark{
-	position: absolute;
-	left: 22px;
-	top: 50%;
-	transform:translateY(-50%);
+	line-height: 40px;
 	font-size: 25px;
 }
 
@@ -181,7 +171,7 @@ header{
 
 .error{
 	background: #ef9a9a;
-	padding: 20px 45px;
+	padding: 20px 40px;
 	border-radius: 4px;
 	border-left: 8px solid darkred;
 }
@@ -190,7 +180,7 @@ header{
 	position: absolute;
 	left: 10px;
 	top: 50%;
-	transform:translateY(-50%);
+	transform: translateY(-50%);
 	color: darkred;
 	font-size: 30px;
 }
@@ -452,7 +442,7 @@ section.banner-container .home-dialog h2{
 section.banner-container .home-dialog h1{
 	color: white;
 	font-weight: bold;
-	text-align: left;
+	text-align: center;
 	font-size: 40px;
 	margin-top: 5px;
 	margin-bottom: 15px;
@@ -687,10 +677,10 @@ section.search-2 input[type=number]::placeholder{
 
 section.list-automoveis{
 	background: whitesmoke;
-	padding: 25px 150px;
 }
 
 .title-busca{
+	text-align: center;
 	color: #1a1a1a;
 	font-size: 14px;
 	margin-bottom: 20px;
@@ -702,12 +692,13 @@ section.list-automoveis{
 
 .flex-automoveis{
 	display: flex;
+	margin: 4rem 8rem;
 	flex-wrap: wrap;
+	gap: 20px 0;
 }
 
 .box-automovel-hidden{
 	width: 25%;
-	margin-bottom: 30px;
 }
 
 .box-automovel{
@@ -1124,7 +1115,8 @@ section.container .signin-signup #form-empre{
 
 .wrapper-table.right .price-area{
 	position: relative;
-	transform:translateX(52%);
+	margin-left: auto;
+	margin-right: auto;
 	width: 300px;
 	height: 90px;
 	box-shadow: 0 0 15px 0 #121212;
@@ -1569,6 +1561,19 @@ section.container .signin-signup #form-empre{
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
+@media screen and (max-width: 1350px){
+	.box-content{
+		height: 600px;
+	}
+	.wrapper-table{
+		display: block;
+		width: 100%;
+	}
+	.flex-automoveis{
+		margin: 4rem 5rem;
+	}
+}
+
 @media screen and (max-width: 1204px){
 	section.banner-container .home-dialog{
 		width: 55%;
@@ -1691,12 +1696,8 @@ section.container .signin-signup #form-empre{
 		margin: 10px;
 	}
 
-	section.list-automoveis{
-		padding: 20px 100px;
-	}
-
 	.flex-automoveis{
-		display: flex;
+		margin: 4rem 6rem;
 	}
 
 	.box-automovel-hidden{
@@ -1730,10 +1731,6 @@ section.container .signin-signup #form-empre{
 	.wrapper-table{
 		display: block;
 		width: 100%;
-	}
-
-	.wrapper-table.right .price-area{
-		transform:translateX(105%);
 	}
 
 	#form-buy-vehicle button{
@@ -1830,8 +1827,8 @@ section.container .signin-signup #form-empre{
 		padding: 0;
 	}
 
-	section.list-automoveis{
-		padding: 0 22%;
+	.flex-automoveis{
+		margin: 3rem 6.5rem;
 	}
 
 	.box-automovel-hidden{
@@ -1855,8 +1852,8 @@ section.container .signin-signup #form-empre{
 		padding-left: 160px;
 	}
 
-	.wrapper-table.right .price-area{
-		transform:translateX(20%);
+	.col > span{
+		font-size: 13px;
 	}
 
 	#form-buy-vehicle button{
@@ -1864,19 +1861,6 @@ section.container .signin-signup #form-empre{
 	}
 	.botao-menu-mobile{
 		margin-top: 20px;
-	}
-	.buy-alert{
-		width: 96%;
-	}
-	.buy-alert .close-btn{
-		height: 87px;
-	}
-	.buy-alert .success span{
-		padding: 0;
-	}
-	.buy-alert .error span{
-		padding: 0 5px;
-		font-size: 17px;
 	}
 
 	.box-total-aquisitions{

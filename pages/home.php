@@ -11,7 +11,7 @@
 		<h2><?php echo $site['titulo_msg_banner'];?></h2>
 		<h1><?php echo $site['msg_banner']?></h1>
 		<button>
-			<a href="<?php INCLUDE_PATH?>automoveis">Continuar <i class="fa-regular fa-circle-check"></i></a>
+			<a href="<?php INCLUDE_PATH?>automoveis">Continuar <i class="fa-regular fa-circle-right"></i></a>
 		</button>
 	</div>
 

@@ -12,8 +12,7 @@
             $_SESSION['cargo'] = $info['cargo'];
             $_SESSION['nome'] = $info['nome'];
             $_SESSION['img'] = $info['img']; 
-            header('Location: ' . INCLUDE_PATH_PAINEL);
-            die();
+            Painel::redirect(INCLUDE_PATH_PAINEL);
         }
     }
 ?>
@@ -48,13 +47,12 @@
                 $_SESSION['cargo'] = $info['cargo'];
                 $_SESSION['nome'] = $info['nome'];
                 $_SESSION['img'] = $info['img'];
-                if($_POST['lembrar']){
+                if(@$_POST['lembrar']){
                     setcookie('lembrar', true, time()+(60*60*24), '/');
                     setcookie('user', $user,  time()+(60*60*24), '/');
                     setcookie('password', $password,  time()+(60*60*24), '/');
                 }
-                header('Location: ' . INCLUDE_PATH_PAINEL);
-                die();
+                Painel::redirect(INCLUDE_PATH_PAINEL);
             } else {
                 echo '<div class="box-erro"><i class="fa-solid fa-xmark"></i> Usuário ou senha incorretos!</div>';
             }

@@ -3,6 +3,72 @@
     $data['sucesso'] = true;
     $data['msg'] = '';
 
+    function validarNome($nome, $data){
+        if($nome == ''){
+            $data['sucesso'] = false;
+            $data['msg'] = "O campo de nome não pode estar vazio!";
+        }
+
+        if(strlen($nome) <= 4){
+            $data['sucesso'] = false;
+            $data['msg'] = "O Nome deve ter no mínimo quatro (4) caracteres";
+        }
+
+        return $data;
+    }
+
+    function validarEmail($email, $data){
+        if(isset($_GET['email']) && $email != ''){
+            if(\model\Cliente::emailExists($email)){
+                $data['sucesso'] = false;
+                $data['msg'] = "O e-mail informado já está cadastrado!";
+            }
+        }else{
+            $data['sucesso'] = false;
+            $data['msg'] = "O campo de e-mail não pode estar vazio!";
+        }
+
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $data['sucesso'] = false;
+            $data['msg'] = "O formato de e-mail informado não é válido!";
+        }
+
+        return $data;
+    }
+
+    function validarSenha($senha, $senha2, $data){
+        if($senha != '' && $senha2 != ''){
+            if(strlen($senha) < 8){
+                $data['sucesso'] = false;
+                $data['msg'] = "A senha deve ter no mínimo oito (8) caracteres!";
+            }
+
+            if(!preg_match('/[a-z]/', $senha)){
+                $data['sucesso'] = false;
+                $data['msg'] = "A senha deve ter pelo menos uma letra minúscula";
+            }
+
+            if(!preg_match('/[A-Z]/', $senha)){
+                $data['sucesso'] = false;
+                $data['msg'] = "A senha deve ter pelo menos uma letra maiúscula";
+            }
+
+            if(!preg_match('/[0-9]/', $senha)){
+                $data['sucesso'] = false;
+                $data['msg'] = "A senha deve ter pelo menos um número!";
+            }
+    
+            if($senha !== $senha2){
+                $data['sucesso'] = false;
+                $data['msg'] = "As senhas informadas não estão iguais!";
+            }
+        }else{
+            $data['sucesso'] = false;
+            $data['msg'] = "Os campos de senha não podem estar vazios!";
+        }
+        return $data;
+    }
+
     if(isset($_GET['signup']) && $_GET['signup'] == 'signup-client'){
         sleep(2);
 
@@ -12,47 +78,14 @@
         $senha2 =  $_GET['confirmPassword'];
         $img = "";
 
-        if($nome == ''){
-            $data['sucesso'] = false;
-            $data['msg'] = "O campo Nome não pode estar vázio";
-        }
+        $data = validarNome($nome, $data);
+        $data = validarEmail($email, $data);
+        $data = validarSenha($senha, $senha2, $data);
 
-        if(strlen($nome) <= 2){
-            $data['sucesso'] = false;
-            $data['msg'] = "Seu nome está pequeno demais";
-        }
-
-        if(isset($_GET['email']) && $email != ''){
-            if(\model\Cliente::emailExists($email)){
-                $data['sucesso'] = false;
-                $data['msg'] = "E-mail informado já está cadastrado";
-            }
-        }else{
-            $data['sucesso'] = false;
-            $data['msg'] = "O campo E-mail não pode estar vázio";
-        }
-
-        if(!str_contains($email, '@gmail.com')){
-            $data['sucesso'] = false;
-            $data['msg'] = "O formato de e-mail está incorreto";
-        }
-
-        if($senha == ''){
-            $data['sucesso'] = false;
-            $data['msg'] = "A senha não pode estar vázia!";
-        }else if($senha !== $senha2){
-            $data['sucesso'] = false;
-            $data['msg'] = "As senhas digitadas não coincidem!";
-        }
-
-        if(strlen($senha) <= 4){
-            $data['sucesso'] = false;
-            $data['msg'] = "Senha muito fraca, tente outra...";
-        }
-
+        // REALIZANDO REGISTRO
         if($data['sucesso'] == true){
             \view\Login::signUp($nome, $email, $senha, $img);
-            $data['msg'] = "Cadastrado realizado com sucesso!";
+            $data['msg'] = "Seu cadastro foi realizado com sucesso!";
         }
     }else if(isset($_GET['signin']) && $_GET['signin'] == 'signin-empre'){
         sleep(1.5);
@@ -69,7 +102,6 @@
             $_SESSION['email'] = $empregador['email'];
             $_SESSION['senha'] = $empregador['senha'];
             $_SESSION['img'] = $empregador['img'];
-
             $data['msg'] = "Login realizado com sucesso!";
         }
     }else if(isset($_GET['signin']) && $_GET['signin'] == 'signin-client'){
@@ -113,7 +145,7 @@
             if($checkSale['status_venda'] == 0){
                 $data['msg'] = "Você já possui uma compra deste veículo em andamento!";
             }else if($checkSale['status_venda'] == 1){
-                die("Este veículo está vendido.");
+                die("Desculpe, este veículo já foi vendido.");
             }else if($checkSale['status_venda'] == 2){
                 $data['msg'] = "Seu pedido de compra para este veículo foi cancelado!";
             }
@@ -133,67 +165,51 @@
         $name = $_GET['nome'];
         $email = $_GET['email'];
 
-        if($email == '' && $name == ''){
-            $data['sucesso'] = false;
-            $data['msg'] = "Campos Nome e E-mail estão vázios";
-        }
-
-        if(strlen($name) <= 2){
-            $data['sucesso'] = false;
-            $data['msg'] = "Nome de usuário está muito pequeno";
-        }
+        $data = validarNome($name, $data);
         
         if($email != '' && $email !== $_SESSION['email']){
-            if(\model\Cliente::emailExists($email)){
-                $data['sucesso'] = false;
-                $data['msg'] = "E-mail informado já está cadastrado";
-            }
+            $data = validarEmail($email, $data);
         }
 
-        if(!str_contains($email, "@gmail.com")){
-            $data['sucesso'] = false;
-            $data['msg'] = "Formato de e-mail está incorreto";
-        }
-
-        if($_GET['passw'] != ''){
-            if($_GET['passw'] !== $_SESSION['senha']){
+        if($data['sucesso'] == true){
+            if($_GET['passw'] != ''){
+                if($_GET['passw'] !== $_SESSION['senha']){
+                    $data['sucesso'] = false;
+                    $data['msg'] = "A senha informada está incorreta";
+                }
+    
+                $client = \view\Cliente::getClienteByEmail($_SESSION['email']);
+                $newClient = new model\Cliente();
+                if($name != '' && $email != ''){
+                    if(!$newClient->updateNameAndEmail($name, $email, $client['id'])){
+                        $data['sucesso'] = false;
+                        $data['msg'] = "Não foi possível realizar as atualizações";
+                    }else{
+                        $_SESSION['nome'] = $name;
+                        $_SESSION['email'] = $email;
+                    }
+                }else if($name != ''){
+                    if(!$newClient->updateName($name, $client['id'])){
+                        $data['sucesso'] = false;
+                        $data['msg'] = "Não foi possível realizar a atualização";
+                    }else{
+                        $_SESSION['nome'] = $name;
+                    }
+                }else if($email != ''){
+                    if(!$newClient->updateEmail($email, $client['id'])){
+                        $data['sucesso'] = false;
+                        $data['msg'] = "Não foi possível realizar a atualização";
+                    }else{
+                        $_SESSION['email'] = $email;
+                    }
+                }
+                if($data['sucesso'] == true){
+                    $data['msg'] = "Seu perfil foi atualizado com sucesso!";
+                }
+            }else{
                 $data['sucesso'] = false;
-                $data['msg'] = "A senha informada está incorreta";
+                $data['msg'] = "A senha não pode estar vazia!";
             }
-
-            $client = \view\Cliente::getClienteByEmail($_SESSION['email']);
-            $newClient = new model\Cliente();
-            if($name != '' && $email != ''){
-                if(!$newClient->updateNameAndEmail($name, $email, $client['id'])){
-                    $data['sucesso'] = false;
-                    $data['msg'] = "Não foi possível realizar as atualizações";
-                                    /*O nome de usuário está muito pequeno*/
-                }else{
-                    $_SESSION['nome'] = $name;
-                    $_SESSION['email'] = $email;
-                }
-            }else if($name != ''){
-                if(!$newClient->updateName($name, $client['id'])){
-                    $data['sucesso'] = false;
-                    $data['msg'] = "Não foi possível realizar a atualização";
-                }else{
-                    $_SESSION['nome'] = $name;
-                }
-            }else if($email != ''){
-                if(!$newClient->updateEmail($email, $client['id'])){
-                    $data['sucesso'] = false;
-                    $data['msg'] = "Não foi possível realizar a atualização";
-                }else{
-                    $_SESSION['email'] = $email;
-                }
-            }
-
-            if($data['sucesso']){
-                $data['msg'] = "Perfil atualizado com sucesso!";
-            }
-        }else{
-            $data['sucesso'] = false;
-            $data['msg'] = "A senha não pode estar vázia!";
         }
     }else if(isset($_POST['edit-profile']) && $_POST['edit-profile'] == 'edit-photo'){
         sleep(1.5);
@@ -226,33 +242,28 @@
     }else if(isset($_GET['edit-profile']) && $_GET['edit-profile'] == 'edit-passw'){
         sleep(1.5);
         $newPass = $_GET['new-passw'];
-        $cnfPass = $_GET['cnf-passw'];  //cnf = confirm
+        $cnfPass = $_GET['cnf-passw'];  //cnf = confirm...
         $currentPass = $_GET['current-passw'];
 
         if($newPass == '' || $cnfPass == '' || $currentPass == ''){
             $data['sucesso'] = false;
-            $data['msg'] = "Campos vázios não são permitidos";
+            $data['msg'] = "Campos vazios não são permitidos!";
         }else{
-            if($newPass !== $cnfPass){
-                $data['sucesso'] = false;
-                $data['msg'] = "As novas senhas não coincidem";
-            }else{
-                if(strlen($newPass) <= 4){
-                    $data['sucesso'] = false;
-                    $data['msg'] = "Senha muito fraca, tente outra...";
-                }else{
-                    $client = \view\Cliente::getClienteByEmail($_SESSION['email']);
-                    if($currentPass !== $client['senha']){
-                        $data['sucesso'] = false;
-                        $data['msg'] = "A senha atual está incorreta";
-                    }else{
-                        $newP = new \model\Cliente();
-                        if($newP->updatePassword($newPass, $client['id'])){
-                            $_SESSION['senha'] = $newPass;
-                            $data['msg'] = "Senha atualizada com sucesso!";
-                        }
-                    }
-                }
+
+            $data = validarSenha($newPass, $cnfPass, $data);
+
+            if($data['sucesso'] == true){
+                $client = \view\Cliente::getClienteByEmail($_SESSION['email']);
+                if($currentPass !== $client['senha']){
+                   $data['sucesso'] = false;
+                   $data['msg'] = "A senha atual informada está incorreta!";
+               }else{
+                   $newP = new \model\Cliente();
+                   if($newP->updatePassword($newPass, $client['id'])){
+                       $_SESSION['senha'] = $newPass;
+                       $data['msg'] = "Sua senha foi atualizada com sucesso!";
+                   }
+               }
             }
         }
     }
