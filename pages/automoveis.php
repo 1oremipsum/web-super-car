@@ -68,35 +68,31 @@
 			$imgs = $imgs->fetchAll();
 
         	foreach ($imgs as $key => $img){
-    ?>  
-		<div class="box-automovel-hidden">
-			<div class="box-automovel"> 
-				<img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/automoveis/<?php echo $img['imagem']; ?>" />
-				<div class="box-automovel-wrapper">
-					<div class="box-automovel-header">
-						<h2><?php echo $value['marca'];?> - <?php echo $value['modelo'];?></h2>
-					</div>
-					<div class="box-automovel-info">
+    ?>
+                <div class="box-automovel">
+                    <img src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/automoveis/<?php echo $img['imagem']; ?>" />
+                    <div class="box-automovel-header">
+                        <h2><?php echo $value['marca'];?> - <?php echo $value['modelo'];?></h2>
+                    </div>
+                    <div class="box-automovel-info">
 
-						<p><i class="fa-solid fa-angle-right"></i> 
-						Combustível: <?php echo \view\Automovel::getCombustivel($value['combustivel']); ?></p>
+                        <p><i class="fa-solid fa-angle-right"></i> 
+                        Combustível: <?php echo \view\Automovel::getCombustivel($value['combustivel']); ?></p>
 
-						<p><i class="fa-solid fa-angle-right"></i> 
+                        <p><i class="fa-solid fa-angle-right"></i> 
                         Quilometragem: <?php echo $value['quilometragem']; ?> Km</p>
 
-						<p><i class="fa-solid fa-angle-right"></i> 
-						Câmbio: <?php echo \view\Automovel::getCambio($value['cambio']); ?></p>
-					</div>
-					<div class="price-area">
-						<h3>POR APENAS</h3>
-						<p>R$ <?php echo $value['preco']?></p>
-					</div>
-					<div class="btn-area">
-						<a class="btn-view" href="<?php echo INCLUDE_PATH.'automovel/'.$value['slug'];?>">Estou Interessado!</a>
-					</div>
-				</div><!-- box-automovel-wrapper -->
-			</div><!-- box-automovel -->
-		</div><!-- box-automovel-hidden -->
+                        <p><i class="fa-solid fa-angle-right"></i> 
+                        Câmbio: <?php echo \view\Automovel::getCambio($value['cambio']); ?></p>
+                    </div>
+                    <div class="price-area">
+                        <h3>POR APENAS</h3>
+                        <p>R$ <?php echo $value['preco']?></p>
+                    </div>
+                    <div class="btn-area">
+                        <a class="btn-view" href="<?php echo INCLUDE_PATH.'automovel/'.$value['slug'];?>">Estou Interessado!</a>
+                    </div>
+                </div><!-- box-automovel -->
     <?php }} ?>
 	</div><!-- flex-automoveis -->
 </section>

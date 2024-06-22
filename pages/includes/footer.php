@@ -1,6 +1,6 @@
     <footer>
 		<div class="center">
-			<p><?php echo NOME_EMPRESA;?> - Todos os direitos reservados</p>
+			<p><b>ATENÇÃO:</b> este site é uma mera <b>demonstração</b>, não possuindo <b>fins lucrativos</b>.</p>
 		</div>
 	</footer>
 
