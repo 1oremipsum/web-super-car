@@ -3,7 +3,7 @@
 	margin: 0;
 	box-sizing: border-box;
 	user-select: none;
-	font-family: "Open Sans";
+	font-family: 'Open Sans';
 }
 
 ::-webkit-scrollbar{
@@ -1354,29 +1354,37 @@ section.container .signin-signup #form-empre{
 	color: #7a7a7a;
 }
 
+/* TO DO */
+
 .area-edit-profile{
-	max-width: 850px;
-	min-height: 510px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+	height: 90vh;
 }
 
 .container-edit-profile{
-	width: 1220px;
-	min-height: 450px;
 	position: relative;
+    display: grid;
+	width: 1200px;
+	min-height: 450px;
 	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 .container-edit-profile .header-profile{
-	height: 100px;
-	width: 85%;
-	position: absolute;
-	right: 0px;
+    position: absolute;
+    right: 0;
+    width: 85%;
+    height: 20%;
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
 	background: whitesmoke;
 }
 
 .container-edit-profile .header-profile {
-	padding: 10px 0;
-	text-align: center;
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
@@ -1393,55 +1401,60 @@ section.container .signin-signup #form-empre{
 	font-weight: 300;
 }
 
+.container-edit-profile .info-profile{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 85%;
+    height: 80%;
+	background-color: whitesmoke;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
 .container-edit-profile .menu-profile{
-	width: 15%;
-	height: 450px;
 	position: absolute;
-	left: 0;
+    left: 0;
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 	background-color: whitesmoke;
 	border: 1px solid #ccc;
 }
 
-.container-edit-profile .info-profile{
-	width: 85%;
-	height: 350px;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	background-color: whitesmoke;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-}	
-
-.container-edit-profile .menu-profile .user-area{
+.menu-profile .avatar-usuario{
 	position: relative;
-	width: 100%;
-	height: 100px;
-}
-
-.menu-profile .user-area .avatar-usuario{
+	margin-top: 2rem;
+	margin-left: auto;
+	margin-right: auto;
 	width: 95px;
-	position: absolute;
-	top: 10px;
-	left: 45px;
 	height: 95px;
 	background: #1f1f1f;
 }
 
-.menu-profile .user-area .imagem-usuario img{
-	width: 100px;
+.menu-profile .imagem-usuario{
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 	height: 100px;
+}
+
+.menu-profile .imagem-usuario img{
+	position: relative;
+	margin-top: 1rem;
+	width: 95px;
+	height: 95px;
 	border-radius: 50%;
-	position: absolute;
-	top: 10px;
-	left: 45px;
 	border: 2px solid white;
 }
 
-.menu-profile .user-area .avatar-usuario i{
+.menu-profile .avatar-usuario i{
 	color: white;
 	font-size: 30px;
-}
+} 
 
 .menu-profile .name-user{
 	padding: 12px;
@@ -1471,7 +1484,7 @@ section.container .signin-signup #form-empre{
 	display: block;
 	width: 100%;
 	height: 300px;
-	padding: 18px 180px;
+	padding: 20px;
 	margin: 20px 0;
 }
 
@@ -1491,7 +1504,7 @@ section.container .signin-signup #form-empre{
 .info-profile form h4{	
 	color: #1f1f1f;
 	font-weight: 600;
-	font-size: small;
+	font-size: 14px;
 	margin-bottom: 10px;
 }
 
@@ -1772,12 +1785,6 @@ section.container .signin-signup #form-empre{
 	.container-edit-profile{
 		width: 970px;
 	}
-	.menu-profile .user-area .avatar-usuario{
-		left: 25px;
-	}
-	.menu-profile .user-area .imagem-usuario img{
-		left: 25px;
-	}
 }
 
 @media screen and (max-width: 790px){
@@ -1893,7 +1900,6 @@ section.container .signin-signup #form-empre{
 	}
 	.content .aquisition-img{
 		position: absolute;
-
 		bottom: 0;
 	}
 	.content .aquisition-img img{
@@ -1901,14 +1907,20 @@ section.container .signin-signup #form-empre{
 		height: 110px;
 	}
 
-	.container-edit-profile{
-		width: 465px;
-	}
-	.menu-profile{
-		display: none;
+	.area-edit-profile{
+		height: 125vh;
+		display: flex;
+		flex-direction: column;
 	}
 	.menu-profile.mobile{
 		display: block;
+		width: 500px;
+	}
+	.container-edit-profile{
+		width: 500px;
+	}
+	.container-edit-profile .menu-profile{
+		display: none;
 	}
 	.container-edit-profile .header-profile{
 		width: 100%;
@@ -1924,12 +1936,6 @@ section.container .signin-signup #form-empre{
 		border-radius: 5px;
 		padding: 0px;
 		margin: 15px 0;
-	}
-	.menu-profile.mobile .user-area{
-		position: relative;
-		left: 34%;
-		width: 100%;
-		height: 100px;
 	}
 }
 
