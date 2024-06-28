@@ -19,38 +19,17 @@
 
     <section class="search-2">
         <form method="post" action="<?php echo INCLUDE_PATH ?>ajax/search.php">
-            <div class="form-group">
-                <input name="marca" type="text" placeholder="Marca">
-            </div><!-- form-group -->
+            <input name="marca" type="text" placeholder="Marca">
+            <input  name="modelo" type="text" placeholder="Modelo">
 
-            <div class="form-group">
-                <input  name="modelo" type="text" placeholder="Modelo">
-            </div><!-- form-group -->
+            <input name="km_min" type="number" min="0" max="500000" placeholder="Quilometragem Mínima">
+            <input  name="km_max" type="number" min="0" max="500000" placeholder="Quilometragem Máxima">
 
-            <div class="form-group">
-                <input name="km_min" type="number" min="0" max="500000" placeholder="Quilometragem Mínima">
-            </div><!-- form-group -->
+            <input name="preco_min" type="text" min="0" max="5000000" placeholder="Preço Mínimo">
+            <input name="preco_max" type="text" min="0" max="5000000" placeholder="Preço Máximo">
 
-            <div class="form-group">
-                <input  name="km_max" type="number" min="0" max="500000" placeholder="Quilometragem Máxima">
-            </div><!-- form-group -->
-
-            <div class="form-group">
-                <input name="preco_min" type="text" min="0" max="5000000" placeholder="Preço Mínimo">
-            </div><!-- form-group -->
-
-            <div class="form-group">
-                <input name="preco_max" type="text" min="0" max="5000000" placeholder="Preço Máximo">
-            </div><!-- form-group -->
-
-            <div class="form-group">
-                <input name="ano_min" type="number" min="2010" max="<?php echo date("Y")?>" placeholder="Ano Mínimo">
-            </div><!-- form-group -->
-
-            <div class="form-group">
-                <input name="ano_max" type="number" min="2010" max="<?php echo date("Y")?>" placeholder="Ano Máximo">
-            </div><!-- form-group -->
-            <div class="clear"></div>
+            <input name="ano_min" type="number" min="2010" max="<?php echo date("Y")?>" placeholder="Ano Mínimo">
+            <input name="ano_max" type="number" min="2010" max="<?php echo date("Y")?>" placeholder="Ano Máximo">
         </form>
     </section><!-- search-2 -->
 </section><!-- search-area -->

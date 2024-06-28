@@ -658,11 +658,11 @@ section.search-2 input[type=text],
 section.search-2 input[type=number]{
 	color: black;
 	padding: 0 8px;
-	margin-bottom: 15px;
+	margin: 8px;
 	border-radius: 5px;
 	border: none;
 	font-size: 16px;
-	width: 100%;
+	width: 95%;
 	height: 50px;
 }
 
@@ -674,10 +674,9 @@ section.search-2 input[type=number]::placeholder{
 	color: #494949
 }
 
-.form-group{
-	float: left;
-	width: 50%;
-	padding: 0 5px;
+section.search-2 form{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
 section.list-automoveis{
@@ -1123,10 +1122,13 @@ section.container .signin-signup #form-empre{
 	overflow-y: hidden;
 }
 
+.wrapper-table.right .range{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .wrapper-table.right .price-area{
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
 	width: 300px;
 	height: 90px;
 	box-shadow: 0 0 15px 0 #121212;
@@ -1157,13 +1159,11 @@ section.container .signin-signup #form-empre{
 }
 
 #form-buy-vehicle button{
-	position: relative;
 	font-weight: 600;
 	font-size: medium;
 	color: white;
 	width: 180px;
 	height: 50px;
-	left: 215px;
 	border: none;
 	border-radius: 5px;
 	background-color: #040e9b;
@@ -1174,44 +1174,75 @@ section.container .signin-signup #form-empre{
 	background-color: #131eb3;
 }	
 
+/* AQUISITIONS */
+
 .acquisitions{
-	min-height: 550px;
 	background: whitesmoke;
-	padding-bottom: 30px;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+	margin-bottom: 4rem;
 }
 
-.content h1{
+.acquisitions-header{
+	margin: 2rem;
+	width: 80%;
+}
+
+.box-total-aquisitions{
+	margin-bottom: 2rem;
+}
+
+.acquisitions h1{
 	font-size: 38px;
 	font-weight: lighter;
 	color: black;
 }
 
-.content p:nth-child(2){
+.acquisitions p:nth-child(2){
 	margin-top: 20px;
 	margin-bottom: 15px;
 	color: #333;
 	font-weight: 600;
 }
 
-.content p > span{
+.acquisitions p > span{
 	padding-left: 5px;
 	color: #327568;
 	font-weight: 300;
 	font-size: 16px;
 }
 
-.content.cs{
+.no-results{
+	width: 100%;
+	min-height: 60vh;
+}
+
+.content-header{
+	margin: 0 2rem;
+}
+
+.content-cs{
+	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
+.continue-shopping{
+	margin: 2rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
 .continue-shopping a{
-	display: block;
 	text-decoration: none;
 	padding: 13px 15px;
-	margin: 20px 0;
-	margin-left: 25%;
+	margin-top: 1rem;
 	width: 200px;
 	height: 50px;
 	background: #7700ff;
@@ -1223,32 +1254,48 @@ section.container .signin-signup #form-empre{
 	background: #5400b4;
 }
 
-.content .aquisition-single{
-	width: 70%;
-	height: 145px;
-	position: relative;
-	padding: 5px 3px;
-	background: white;
-	border: 1px solid #b8b8b8;
-	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-	display: inline-block;
-	border-radius: 5px;
-	margin: 8px 0;
+.box-total-aquisitions p{
+	color: #7a7a7a;
+	font-size: small;
 }
 
-.aquisition-single .aquisition-img img{
-	width: 180px;
-	height: 130px;
+.acquisitions .aquisition-single{
+	width: 80%;
+	height: auto;
+	display: grid;
+    grid-template-columns: 1fr 4fr;
+	background: #f8ebeb;
+	border: 1px solid #b8b8b8;
+	box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.5);
 	border-radius: 5px;
+	margin: 1rem;
+	gap: 1rem;
+}
+
+.aquisition-single .title{
+	width: 100%;
+	height: 25px;
+	padding: 5px 3px;
+}
+
+.aquisition-single .title h2{
+	font-size: medium;
+	color: #363636;
+	letter-spacing: 1px;
+	font-weight: bold;
+}
+
+.aquisition-single img{
+	width: 250px;
+	height: 100%;
+	border-radius: 5px 0 0 5px;
+	grid-row: 1 / 4;
 }
 
 .aquisition-single .aquisition-info{
-	position: absolute;
-	top: 5px;
-	left: 200px;
-	width: 700px;
-	height: 130px;
-	word-wrap: break-word;
+	display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .aquisition-single .aquisition-info h2{
@@ -1256,17 +1303,28 @@ section.container .signin-signup #form-empre{
 	color: #1b1b1b;
 }
 
-.content .aquisition-info p{
-	color: black;
-	font-size: small;
+.acquisitions .aquisition-info p{
+	color: #1f1f1f;
+	font-size: 14px;
 	font-weight: normal;
-	margin: 8px 0;
+	margin: 6px 0;
+}
+
+.aquisition-single .aquisition-info .aquisition-desc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 2px;
 }
 
 .aquisition-info .aquisition-price{
- 	position: absolute;
-	top: 0px;
-	right: 50px;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+	align-items: center;
+	height: 100%;
+    margin: 0 4px;
+    padding: 5px;
 }
 
 .aquisition-info .aquisition-price p{
@@ -1276,18 +1334,11 @@ section.container .signin-signup #form-empre{
 
 .aquisition-info .aquisition-price p{
 	color: #8700bc;
-	font-size: 18px;
+	font-size: 20px;
 }
 
 .aquisition-info .aquisition-price p > i{
 	padding-left: 6px;
-}
-
-
-.aquisition-single .cancel-btn{
-	position: absolute;
-	top: 35px;
-	right: 70px;
 }
 
 .aquisition-single .cancel-btn a{
@@ -1307,21 +1358,22 @@ section.container .signin-signup #form-empre{
 }
 
 .aquisition-info .aquisition-status{
-	position: absolute;
-	height: 80px;
-	top: 30px;
-	right: 300px;
+	display: flex;
+	text-align: center;
+    flex-direction: column;
+    justify-content: center;
+	height: 100%;
 }
 
 .aquisition-info .aquisition-status p{
 	color: #7a7a7a;
-	font-size: 13px;
+	font-size: 15px;
 }
 
 .aquisition-info .aquisition-status h1{
 	color: #333;
 	font-weight: 600;
-	font-size: 12px;
+	font-size: 14px;
 	text-align: center;
 }
 
@@ -1343,18 +1395,7 @@ section.container .signin-signup #form-empre{
 	background: #98f39d;
 }
 
-.box-total-aquisitions{
-	display: inline-block;
-	position: absolute;
-	top: 250px;
-	margin: 0 60px;
-}
-
-.box-total-aquisitions p{
-	color: #7a7a7a;
-}
-
-/* TO DO */
+/* FIM AQUISITIONS */
 
 .area-edit-profile{
     display: flex;
@@ -1761,25 +1802,17 @@ section.container .signin-signup #form-empre{
 		bottom: -45rem;
 	}
 
-	.content .aquisition-single{
-		width: 100%;
-		top: 100px;
+	.acquisitions .aquisition-single{
+		width: 90%;
 	}
 
-	.box-total-aquisitions{
+	.aquisition-single img{
+		width: 185px;
+	}
+
+	.aquisition-single .aquisition-info .aquisition-desc p{
+		padding: 0;
 		margin: 0;
-		display: block;
-		width: 100%;
-	}
-
-	.content .aquisition-single .aquisition-price{
-		right: -50px;
-	}
-	.content .aquisition-single .cancel-btn{
-		right: -25px;
-	}
-	.content .aquisition-single .aquisition-status{
-		right: 250px;
 	}
 
 	.container-edit-profile{
@@ -1873,38 +1906,40 @@ section.container .signin-signup #form-empre{
 		margin-top: 20px;
 	}
 
-	.box-total-aquisitions{
-		margin-top: 16px;
+	.acquisitions .aquisition-single{
+		width: 50%;
+		display: flex;
+        height: auto;
+        flex-direction: column;
+        margin: 1rem 0;
 	}
-
-	.content .aquisition-single{
+	.acquisitions .aquisition-single img{
 		width: 100%;
-		height: 250px;
-		top: 100px;
+		border-radius: 5px 5px 0 0;
+		height: auto;
 	}
-	.content .aquisition-single .aquisition-info{
-		left: 5px;
+	.aquisition-single .title{
+		padding: 0 8px;
+		margin-bottom: 15px;
 	}
-	
-	.content .aquisition-single .aquisition-price{
-		left: 300px;
-		top: 20px;
+	.aquisition-single .title h2{
+		letter-spacing: none;
+		text-align: center;
 	}
-	.content .aquisition-single .cancel-btn{
-		left: 300px;
-		top: 55px;
+	.aquisition-single .aquisition-info{
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr;
 	}
-	.content .aquisition-single .aquisition-status{
-		right: 260px;
-		top: 150px;
+	.aquisition-single .aquisition-info .aquisition-desc{
+		text-align: center;
+		margin-bottom: 10px;
 	}
-	.content .aquisition-img{
-		position: absolute;
-		bottom: 0;
+	.aquisition-single .aquisition-info .aquisition-status{
+		margin-bottom: 10px;
 	}
-	.content .aquisition-img img{
-		width: 180px;
-		height: 110px;
+	.aquisition-single .aquisition-info .aquisition-price{
+		margin-bottom: 10px;
 	}
 
 	.area-edit-profile{
@@ -1943,5 +1978,12 @@ section.container .signin-signup #form-empre{
 	.w50{
 		width: 100%;
 		padding: 20px;
+	}
+
+	.acquisitions .aquisition-single{
+		width: 60%;
+	}
+	.acquisitions .aquisition-single .title h2{
+		font-size: 14px;
 	}
 }
